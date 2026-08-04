@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.x.x"></script>
+  <script src="search.js"></script>
+  <style>
+    .ui.segment.highlighted {
+      border: 4px solid;
+    }
+  </style>
+{% endblock %}
+
+{% block body_attrs %}
+  x-data="{
+    results: [],
+    selectedSwitch: getUrlHashId(),
+  }"
+  @hashchange.window="selectedSwitch = getUrlHashId()"
+{% endblock %}
+
+{% block header_title %}
+  Module &mdash; {{ module['name'] }}
+{% endblock %}
+
+{% block header_items %}
+  <a class="ui item" href="index.html">
+    <i class="arrow left large icon" ></i>
+  </a>
+  {{ super() }}
+
+  <div class="right menu">
+    <div class="ui simple dropdown item">
+      Category
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        {% for cat in module['categories'] | sort(attribute='name') %}
+        <a class="item" href="#{{ cat['name'] }}">
+          {{ cat['name'] }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% include 'search.html' %}
+  </div>
+{% endblock %}
+
+{% block content %}
+  {% for cat in module['categories'] | sort(attribute='name') %}
+    <div class="ui hidden divider"></div>
+    <h2 id="{{ cat['name'] }}" class="ui dividing header">
+      <a href="#"><i class="arrow up icon" ></i></a>
+      <div class="content">
+        {{ cat['name'] }}
+        {% if cat['namelist'] %}
+        <div class="sub header">/{{ cat['namelist'] }}/</div>
+        {% endif %}
+      </div>
+      <div class="ui grey label">Data type</div>
+      <div class="ui grey label">Default value</div>
+    </h2>
+
+    <div class="ui basic segment">
+      <div class="ui text container">{{ cat['description'] }}</div>
+    </div>
+
+    {% for group in cat['groups'] %}
+      {% if 'name' not in group %}
+        {% set switch = group['switches'][0] %}
+        <div
+          id="{{ cat['name'] }}.{{ switch['name'] }}"
+          class="ui segment"
+          :class="selectedSwitch === $el.id && 'highlighted'"
+        >
+          <h3 class="ui header">
+            {{ switch['name'] }}
+            <div class="ui label">
+              {{ switch['type'] | default('-', True) }}
+            </div>
+            <div class="ui label">
+              {{ switch['default'] | default('-', True) }}
+            </div>
+          </h3>
+          <p>
+            {{ switch['description'] | default('<em>No description.</em>', True)}}
+          </p>
+        </div>
+      {% else %}
+        <div
+          class="ui segments"
+        >
+          <div class="ui secondary segment">
+            <h4 class="ui header">
+              Group
+            </h4>
+            <p>
+              {{ group['description'] | default('<em>No description.</em>', True)}}
+            </p>
+          </div>
+          {% for switch in group['switches'] %}
+            <div
+              id="{{ cat['name'] }}.{{ switch['name'] }}"
+              class="ui segment"
+              :class="selectedSwitch === $el.id && 'highlighted'"
+            >
+              <h3 class="ui header">
+                {{ switch['name'] }}
+                <div class="ui label">
+                  {{ switch['type'] | default('-', True) }}
+                </div>
+                <div class="ui label">
+                  {{ switch['default'] | default('-', True) }}
+                </div>
+              </h3>
+              <p>
+                {{ switch['description'] | default('', True)}}
+              </p>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endblock %}

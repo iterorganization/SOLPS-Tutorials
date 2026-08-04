@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.x.x"></script>
+{% endblock %}
+
+{% block body_attrs %}
+  x-data="{ category: '{{ label_to_bc | first }}' }"
+{% endblock %}
+
+{% block header_title %}
+  Boundary conditions
+{% endblock %}
+
+{% block header_items %}
+  <a class="ui item" href="index.html">
+    <i class="arrow left large icon" ></i>
+  </a>
+  {{ super() }}
+  {% for name in label_to_bc %}
+    <a
+      class="item"
+      :class="category === '{{ name }}' && 'active'"
+      @click="category = '{{ name }}'"
+    >
+      {{ name.upper() }}
+    </a>
+  {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class="ui equal width grid">
+      {% for name in label_to_bc %}
+      <div
+        class="row"
+        x-show="category === '{{ name }}'"
+        x-data="{ show: '' }"
+      >
+        <div class="four wide column">
+          <div class="ui vertical fluid menu">
+            <a
+              class="item"
+              :class="show === '' && 'active'"
+              @click="show = ''"
+            >
+              All
+            </a>
+          </div>
+          <div class="ui vertical fluid menu">
+            <div class="divider"></div>
+            {% for label, bc_list in label_to_bc[name].items() %}
+              {% if bc_list | length > 0 %}
+                <a
+                  class="item"
+                  :class="show === '{{ label }}' && 'active'"
+                  @click="show = '{{ label }}'"
+                >
+                  {{ labels[label]['long'] }}
+                  <div class="ui {{ labels[label]['style'] }} label">
+                    {{ bc_list | length }}
+                  </div>
+                </a>
+              {% else %}
+              <a class="item disabled">{{ labels[label]['long'] }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="column">
+          <h2 id="{{ name }}" class="ui dividing header">
+            <div class="content">
+              {{ name.upper() }}
+            </div>
+          </h2>
+          <div class="ui basic segment">
+            {{ descriptions[name]['introduction'] }}
+          </div>
+
+          {% for label, bc_list in label_to_bc[name].items() %}
+            {% if not bc_list %}
+            <div x-show="false" style="display: none;">
+            {% elif label[0] == '_' %}
+            <div
+              x-show="!show || show === '{{ label }}'"
+              id="{{ name }}.{{ label }}"
+              class="ui segment secondary">
+            {% else %}
+            <div
+              x-show="!show || show === '{{ label }}'"
+              id="{{ name }}.{{ label }}"
+              class="ui segment"
+            >
+            {% endif %}
+              <h3 class="ui header">
+                {{ labels[label]['long'] }}
+              </h3>
+              <ul>
+                {% for i in bc_list %}
+                  <br/>
+                  <li>
+                    <b>{{ i }}:</b>
+                    {{ descriptions[name][i] }}
+                    <br/>
+                    {% for l in bc_to_label[name][i].split() %}
+                      <div class="ui label tiny {{ labels[l]['style'] }}">{{ l }}</div>
+                    {% endfor %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+{% endblock %}

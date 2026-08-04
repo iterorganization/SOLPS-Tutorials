@@ -1,0 +1,7 @@
+/*
+https://fonts.google.com/icons
+Overriding the fixed size of the icons (24px) to inherit from parent element.
+*/
+.material-symbols-outlined {
+    font-size: inherit;
+}

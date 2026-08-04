@@ -1,0 +1,75 @@
+*label          (lblmn, character*60; free format)
+ 'COMPASS shot #17588, 1100 ms, D+C, standard EFIT equilibrium'
+*b2cmpa         basic parameters
+*b2cmpb         boundary conditions
+*b2cmpt         transport coefficients
+*endphy
+
+# SIMULATION RUN TIME
+# ===================
+
+# Maximum time of the simulation in seconds (real time). If it is 0, the simulation will never stop due to elapsed time constraint. Default: 0.0 (real)
+'b2mndr_elapsed' '3600'
+
+# Maximum number of time steps, after which the simulation will stop. If it is 0, the simulation will only read b2fstati and create b2fplasma and b2fstate. Default: 1 (integer)
+'b2mndr_ntim' '100000000'
+
+# Time step in seconds (simulation time). Default: 1.0 (real)
+'b2mndr_dtim' '1.000E-04'
+
+# Initial time of the simulation. Negative: start up from the time read from b2fstati and appends tracing data to existing files. Non-negative: overwrite existing tracing files. Default: 0.0 (real)
+'b2mndr_stim' '-1.000E+00'
+
+
+
+# TURN ON EIRENE
+# ==============
+
+# 0: Use B2.5 in standalone mode (fluid neutrals). Anything else: Use EIRENE for neutrals simulation. Default: 0 (integer)
+'b2mndr_eirene' '1'
+
+# Multiplier to the neutral density on the first time step. Default: 1.0 (real)
+'b2mndr_rescale_neutrals' '1.000E+00'
+
+# Multiplier to the neutral sources (either computed by Eirene or the corresponding rate coefficients). Default: 1.0 (real)
+'b2mndr_rescale_neutrals_sources' '1.000E-10'
+
+# Set how many times B2.5 should be run during one code iteration (between two EIRENE runs). Default: 1 (integer)
+'b2mndt_nstg2' '15'
+
+
+
+# BOUNDARY CONDITIONS
+# ===================
+
+# Use the "physics" boundary condition input files
+'b2stbc_boundary_namelist' '1'
+'b2stbr_neutrals_namelist' '1'
+'b2tqna_transport_namelist' '1'
+
+# Use a profile of the diffusion coefficients
+'b2tqna_inputfile' '1'
+
+
+
+# OUTPUT FILES
+# ============  
+
+# Nonzero: Produce the b2tallies.nc and balance.nc output files. Default: 0 (integer)
+'tallies_netcdf' '1'
+'balance_netcdf' '1'
+
+# Set the number of time steps between writes of the b2tallies.nc file. Positive: additionally writes b2tallies.nc at the end of the simulation. Default: 1 (integer)
+'b2mndr_tally' '10'
+
+# Set the number of time steps between writes of the b2time.nc file. Positive: overwrite existing b2time.nc, and additionally writes b2time.nc at the end of the simulation. Negative: append to the previous entries in b2time.nc. Default: 1 (integer)
+'b2mndr_b2time' '10'
+
+
+
+# OTHER
+# =====
+
+# X index of the outer midplane. Default in LSN: three quarters of the way between the two X-points (integer)
+'b2mwti_jxa' '52'
+

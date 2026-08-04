@@ -1,0 +1,19 @@
+# Note:
+#   to select branch, add prefix "refs/heads/"
+#   to select tag, add prefix "refs/tags/"
+#   to select commit, use the full commit hash without any prefix
+
+versions:
+  - git_ref: refs/heads/develop
+    label: 3.0.9@develop
+  - git_ref: refs/heads/release/3.1.1
+    label: 3.1.1
+  - git_ref: refs/heads/feature/wg_workflow
+    label: 3.2.0@wg_workflow
+  - git_ref: refs/tags/3.0.8
+    label: 3.0.8@old
+
+# The `xhtml-symbol.ent` file is not really changed often, thus we assume
+# that it's ok to pick one recent version and share it for all `b2input.xml` versions.
+xhtml_symbol:
+  git_ref: refs/heads/develop

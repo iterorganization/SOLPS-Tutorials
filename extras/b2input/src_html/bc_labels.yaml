@@ -1,0 +1,170 @@
+labels:
+  default:
+    long: No condition
+    style: black
+  const:
+    long: Constant value, gradient
+    style: grey
+  sheath:
+    long: Sheath conditions
+    style: red
+  flux:
+    long: Flux based
+    style: blue
+  decay_len:
+    long: Decay length
+    style: yellow
+  leakage:
+    long: Leakage conditions
+    style: orange
+  feedback:
+    long: Feedback for const value
+    style: teal
+  drifts:
+    long: Recommended when drifts are enabled
+    style: pink
+  neoclassical:
+    long: Neoclassical theory
+    style: brown
+  coupling:
+    long: Coupling with other codes
+    style: brown
+  special:
+    long: Special
+    style: brown
+  _deprec:
+    long: Deprecated
+    style: black
+  _future:
+    long: Not yet implemented
+    style: black
+
+bc_to_label:
+  bcene:
+    0: default
+    1: const
+    2: const
+    3: sheath
+    4: const
+    5: flux
+    6: _deprec
+    7: _future
+    8: flux
+    9: decay_len
+    10: feedback
+    11: _future
+    12: sheath
+    13: flux
+    14: leakage
+    15: sheath drifts
+    16: feedback
+    17: feedback
+    18: _future
+    19: decay_len
+    20: feedback
+    21: feedback
+    22: leakage
+
+  bceni:
+    0: default
+    1: const
+    2: const
+    3: sheath
+    4: const
+    5: flux
+    6: _deprec
+    7: _future
+    8: flux
+    9: decay_len
+    10: feedback
+    11: sheath
+    12: sheath
+    13: flux
+    14: leakage
+    15: sheath drifts
+    16: feedback
+    17: feedback
+    18: _future
+    19: decay_len
+    20: feedback
+    21: _unknown
+    22: leakage
+    23: average neoclassical
+    24: average neoclassical feedback
+    25: feedback
+    26: average
+    27: average feedback
+
+  bcpot:
+    0: default
+    1: const
+    2: const
+    3: sheath
+    4: const
+    5: flux
+    6: _future
+    7: _future
+    8: flux
+    9: decay_len
+    10: _future
+    11: sheath drifts
+    12: drifts
+    13: drifts
+    # 14
+    # 15
+    16: feedback
+    # 17
+    # 18
+    # 19
+    # 20
+    21: feedback
+
+  bccon:
+    0: default
+    1: const
+    2: const
+    3: sheath
+    4: const
+    5: flux
+    6: flux
+    7: _future
+    8: flux
+    9: decay_len
+    10: leakage drifts
+    11: feedback
+    12: feedback
+    13: feedback
+    14: flux drifts
+    15: leakage
+    16: coupling flux
+    # 17
+    18: coupling const
+    19: coupling feedback
+    20: feedback
+    21: const neoclassical
+    22: average neoclassical feedback
+    23: average neoclassical feedback
+    24: feedback
+    25: average feedback
+    26: average feedback
+    27: average feedback
+
+  bcmom:
+    0: default
+    1: const
+    2: const
+    3: sheath
+    4: const
+    5: flux
+    6: _future
+    7: _future
+    8: special
+    9: flux
+    10: decay_len
+    11: special
+    12: const
+    13: sheath
+    14: const
+    15: const
+    16: average
+    17: leakage

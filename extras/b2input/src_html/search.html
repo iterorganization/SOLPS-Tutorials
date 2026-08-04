@@ -1,0 +1,50 @@
+{% set module_name = module['name'] if module is defined else '' %}
+
+<div
+  class="ui simple dropdown item"
+  :class="searchOpen && 'active'"
+  x-effect="searchOpen = search !== ''"
+  @mousedown.outside="searchOpen = false"
+  x-data="{
+    search: '',
+    searchOpen: false,
+    b2input: {},
+    fuse: initFuse({}),
+  }"
+  x-init="
+    b2input = await (await fetch('b2input.json')).json();
+    fuse = initFuse(b2input);
+  "
+>
+  <div class="ui icon input" @click="searchOpen = true">
+    <i class="search icon" x-show="search === ''"></i>
+    <i class="times link icon" x-show="search !== ''" @click="search = ''"></i>
+    <input
+      type="text"
+      placeholder="Find switch..."
+      x-model="search"
+      x-effect="results = fuse.search(search)"
+    />
+  </div>
+  <div class="menu" >
+    <template x-for="result in results.slice(0, 10)">
+      <a class="item"
+        :href="getLink(result)"
+        @click="search = ''"
+      >
+        <i class="external alternate icon"
+          x-show="result.item.module !== '{{ module_name }}'"
+        ></i>
+        <span class="text" x-text="result.item.name"></span>
+        <span class="description" x-text="
+            result.item.module === '{{ module_name }}'
+            ? result.item.category : result.item.module
+          "
+        ></span>
+      </a>
+    </template>
+    <div class="item" x-show="search !== '' && results.length === 0">
+      No results
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+# TRANSPORT COEFFICIENTS
+# ======================
+
+# Set the parallel electron thermal conductivity. 1: fitted Balescu formulation from SOLPS5.0. 2: Older Braginskii SOLPS4.0 model. 3: 21-moment Balescu formulation. Default: 1 (integer)
+# 'b2tqxe_model'   '3'
+
+# Nonzero: Modify the heat transfer model according to the 21-moment approach. This should only be used for multi-fluid runs. Default: 0 (integer)
+# 'b2trcl_lthf21'   '1'
+
+# Nonzero: Modify vicosities according to the 21-moment approach. This should only be used for multi-fluid runs. Default: 0 (integer)
+# 'b2trcl_lvis21'   '1'
+
+# Ballooning switches for adjusting the parallel profile of the radial transport: see 'b2tqna_balloonning'
+
+# Rescale all ion and electron transport coefficients in the PFR or divertor SOL. Default: 1.0 (real)
+# 'b2tqna_divsol_rescale'   '2.0'
+# 'b2tqna_pfr_rescale'   '2.0'
+
+
+
+
+# BOUNDARY CONDITIONS
+# ===================
+
+# Set the secondary electron emission coefficient at the divertor targets. 0: use cbsch(7,ireg) and/or gammae. 1: calculate locally according to a kinetic model. Default: 0 (integer)
+# 'b2stbc_secmodel'   '1'
+
+# Turn on feedback mode for boundary conditions. Default: 0 (integer)
+# 'b2stbc_feedback'  '1'
+
+
+
+
+# LABELLING THE SIMULATION
+# ========================
+
+# Set the run number label. Default: 1000 (integer)
+#'b2mndr_run_number'  '10'
+
+# Set the shot number. Default: 0 (integer)
+# 'b2mndr_shot_number'  '17588'
+
+
+
+
+# CONVERGENCE TRICKS
+# ==================
+
+# Set the interval of CPU time after which the intermediate files plasmastate.xxxx are written. In case of a crash, the simulation can be recovered from these files. Default: 3600.0 (real)
+# 'b2mndr_savecpu'  '3600.0'
+
+# Calculate running averages. Good for averaging EIRENE noise and gauging convergence. Default: 0 (integer)
+# 'b2mndt_av'   '1'
+
+# Set minimum ion species density. Default: 1e4 (real)
+# 'b2mndr_na_min'   '1e5'
+
+# Set ion density in the flat profiles solution. Default: 1e14 (real):
+# 'b2mndr_na_new'   '1e15'
+
+
+
+
+# OUTPUT FILES
+# ============  
+
+# Set the number of time steps between writing out tallies. Positive: also writes tallies when the simulation finishes. Default: 1 (integer)
+# 'b2mndr_tally'   '10'
+
+# Produce detailed output files of all B2.5 equation terms in all cells
+# 'b2wdat_iout'   '4'
+
+
+
+
+# TURNING ON DRIFTS
+# =================
+
+# There is a group of switches in b2ag.dat which allow flipping the magnetic field direction (for drift effect studies.
+# 'b2agfs_pit_rescale'   '-1.0'
+
+
+
+
+# POWER BALANCE
+# =============
+
+# Switch from solving the internal energy equation to the total energy equation. Default: 0.0 (real)
+# 'b2news_BoRiS'  '1.0'
+
+# Switch groups which can turn off sources due to ionisation, recombination, heat loss, atomic physics etc.: see 'b2sqel_phm1'
+
+
+
+
+# MAIN ION SPECIES
+# ================
+
+# Set the ion species number of the main ion species. Default: 1.0 (real)
+# 'b2mndr_ismain'   '1'
+

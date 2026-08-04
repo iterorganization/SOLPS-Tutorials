@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block head %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block page_title %}b2 input &ndash; {{ header_label or 'SOLPS-ITER' }}{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  {% endblock %}
+</head>
+
+<body
+  {% block body_attrs %}{% endblock %}
+>
+  <div class="ui inverted borderless attached menu">
+    <div class="ui container">
+      {% block header_items %}
+      {% if header_label is defined and header_label != '' %}
+      <div class="item">
+        <span class="ui blue large label">{{ header_label }}</span>
+      </div>
+      {% endif %}
+      <h1 class="ui inverted large header item">
+        <div class="content">
+          {% block header_title %}
+          Title
+          {% endblock %}
+        </div>
+      </h1>
+      {% endblock %}
+    </div>
+    </div>
+
+  <div class="ui main container" style="margin-top: 3rem;">
+    {% block content %}
+    Content
+    {% endblock %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+site_name: 'SOLPS wiki'
+site_url: https://solps.pages.tok.ipp.cas.cz/solps-doc/
+site_dir: public
+theme:
+  name: material
+  palette:
+    primary: teal
+  features:
+    - navigation.sections
+  logo: img/logo/logo.png
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.blocks.admonition
+  - pymdownx.blocks.definition
+  - pymdownx.blocks.details
+  - pymdownx.blocks.tab:
+      # Necessary when using the "material" theme
+      alternate_style: True
+extra_javascript:
+  - javascript/config.js
+  # Apparently not good? https://www.theregister.com/2024/06/25/polyfillio_china_crisis/
+  # - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+extra_css:
+  - https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0
+  - css/overrides.css
+nav:
+  - index.md
+  - My first SOLPS-ITER simulation:
+      - 'Installing SOLPS-ITER':
+          - installing/solps-iter-codebase.md
+          - installing/installing-in-container.md
+          - installing/legacy-installing-at-compass-soroban.md
+          - installing/legacy-installing-at-it4i.md
+      - my_first_simulation/Creating_a_new_SOLPS-ITER_simulation.md
+      - my_first_simulation/Running_SOLPS-ITER.md
+      - my_first_simulation/Processing_SOLPS-ITER_output.md
+      - my_first_simulation/Adjusting_SOLPS-ITER_input.md
+  - Feature blog:
+      - feature_blog/Diffusion_coefficients.md
+      - feature_blog/Gas_puffing_and_pumping.md
+      - feature_blog/Impurities.md
+      - feature_blog/Drifts.md
+      - feature_blog/Wide_grids.md
+      - feature_blog/Magnetic_equilibrium_reconstructions.md
+      - feature_blog/Energy_fluxes_deep_dive.md
+      - feature_blog/Interpretative_simulations_of_COMPASS.md
+  - Supplementary material:
+      - supplementary/SOLPS-ITER_user_wisdom.md
+      - supplementary/Library.md
+      - supplementary/Remote_access.md
+      - supplementary/Common_pitfalls.md
+      - supplementary/Questions_and_answers.md
+      - 'B2.5 switches': /solps-doc/extras/b2input

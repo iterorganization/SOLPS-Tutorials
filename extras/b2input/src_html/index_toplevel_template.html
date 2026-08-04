@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block header_title %}
+  B2.5 Input Docs Viewer (parsed b2input.xml)
+{% endblock %}
+
+{% block header_items %}
+  <a class="ui item" href="/">
+    <i class="home left large icon" ></i>
+  </a>
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+  <div style="margin-top: 3rem;"></div>
+
+  <div class="ui icon message">
+    <i class="calendar check outline icon"></i>
+    <div class="content">
+      <div class="header">
+        Last updated on {{ current_date.strftime('%Y-%m-%d') }}
+      </div>
+      <p>Kept up-to-date via automated gitlab pipeline.</p>
+    </div>
+  </div>
+
+  <h1 class="ui dividing header">Available SOLPS-ITER versions</h1>
+
+  {% for label in labels %}
+    <div class="ui hidden divider"></div>
+    <h2 class="ui header">
+      <div class="content">
+        <a href="{{ label | urlencode }}/">SOLPS-ITER {{ label }}</a>
+      </div>
+    </h2>
+  {% endfor %}
+
+
+{% endblock %}

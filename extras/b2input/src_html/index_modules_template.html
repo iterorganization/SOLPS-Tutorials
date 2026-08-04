@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.x.x"></script>
+  <script src="search.js"></script>
+{% endblock %}
+
+{% block body_attrs %}
+  x-data="{
+    results: [],
+  }"
+{% endblock %}
+
+{% block header_title %}
+  Viewing b2input.xml
+{% endblock %}
+
+{% block header_items %}
+  <a class="ui item" href="/">
+    <i class="home left large icon" ></i>
+  </a>
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+  <div class="ui secondary padded segment">
+    <h2 class="ui centered header">
+      {% include 'search.html' %}
+    </h2>
+  </div>
+
+  <div style="margin-top: 3rem;"></div>
+
+  <h2 class="ui dividing header">Complete modules:</h2>
+  {% for module in all_modules.values() %}
+    <div class="ui hidden divider"></div>
+    <h3 class="ui header">
+      <div class="content">
+        <a href="{{ module['name'] }}.html">{{ module['name'] }}</a>
+      </div>
+    </h3>
+  {% endfor %}
+
+  <div style="margin-top: 3rem;"></div>
+
+  <h2 class="ui dividing header">Special highlights:</h2>
+  <div class="ui hidden divider"></div>
+  <h3 class="ui header">
+    <div class="content">
+      <a href="detail_bc.html">Boundary conditions</a> (from b2.boundary.parameters)
+    </div>
+  </h3>
+{% endblock %}

@@ -1,0 +1,73 @@
+image: python:3.9
+
+.pip_install: &pip_install
+  - pip install -r requirements.txt
+
+test_mkdocs:
+  stage: test
+  variables:
+    OUTPUT_DIRECTORY: "./test_mkdocs"
+  before_script:
+    - *pip_install
+  script:
+    # MkDocs
+    - mkdocs build --strict --verbose --site-dir $OUTPUT_DIRECTORY
+  artifacts:
+    paths:
+      - test_mkdocs
+  except:
+    - master
+
+test_extras_b2input:
+  stage: test
+  variables:
+    OUTPUT_DIRECTORY: "./test_extras_b2input"
+    B2INPUT_XML_DIR: "./extras/b2input/fetched"
+    GIT_ITER_USER: ${GIT_ITER_READ_USER}
+    GIT_ITER_TOKEN: ${GIT_ITER_READ_TOKEN}
+  before_script:
+    - *pip_install
+  script:
+    # Extras/b2input
+    - python ./extras/b2input/fetch_b2input_xml_files.py
+        --verbose
+        --dest-dir $B2INPUT_XML_DIR
+        ./extras/b2input/versions.yaml
+    - python ./extras/b2input/generate_html.py
+        --verbose
+        --source-dir ./extras/b2input
+        --dest-dir $OUTPUT_DIRECTORY/extras/b2input
+        $B2INPUT_XML_DIR
+  artifacts:
+    paths:
+      - test_extras_b2input
+  except:
+    - master
+
+pages:
+  stage: deploy
+  variables:
+    OUTPUT_DIRECTORY: "./public"
+    B2INPUT_XML_DIR: "./extras/b2input/fetched"
+    GIT_ITER_USER: ${GIT_ITER_READ_USER}
+    GIT_ITER_TOKEN: ${GIT_ITER_READ_TOKEN}
+  before_script:
+    - *pip_install
+  script:
+    # MkDocs
+    - mkdocs build --strict --verbose --site-dir $OUTPUT_DIRECTORY
+    # Extras/b2input
+    - python ./extras/b2input/fetch_b2input_xml_files.py
+        --verbose
+        --dest-dir $B2INPUT_XML_DIR
+        ./extras/b2input/versions.yaml
+    - python ./extras/b2input/generate_html.py
+        --verbose
+        --source-dir ./extras/b2input
+        --dest-dir $OUTPUT_DIRECTORY/extras/b2input
+        $B2INPUT_XML_DIR
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
