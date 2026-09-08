@@ -5,13 +5,15 @@
 
 versions:
   - git_ref: refs/heads/develop
-    label: 3.0.9@develop
-  - git_ref: refs/heads/release/3.1.1
-    label: 3.1.1
-  - git_ref: refs/heads/feature/wg_workflow
-    label: 3.2.0@wg_workflow
-  - git_ref: refs/tags/3.0.8
-    label: 3.0.8@old
+    label: develop
+  - git_ref: refs/tags/3.0.10a
+    label: 3.0.10a
+  - git_ref: refs/tags/3.1.2a
+    label: 3.1.2a
+  - git_ref: refs/tags/3.2.1a
+    label: WG-3.2.1a
+  - git_ref: refs/heads/feature/wg-release
+    label: WG-3.2.0@wg_release
 
 # The `xhtml-symbol.ent` file is not really changed often, thus we assume
 # that it's ok to pick one recent version and share it for all `b2input.xml` versions.

@@ -1,5 +1,7 @@
 builds
 public
+docs/extras
+extras/b2input/fetched
 
 /venv
 __pycache__/

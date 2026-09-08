@@ -37,7 +37,7 @@ python generate_html.py -d "./public" /path/to/solps-iter/modules/B2.5/src/docum
 
 ### Advanced usage (in CI pipeline)
 
-There is a second script, which can download the `b2input.xml` files for one or more SOLPS-ITER versions directly from its git repository. Requires a `versions.yaml` file analogous to the one found in this repository and a read-access token, see [https://git.iter.org/account](https://git.iter.org/account) -> HTTP access tokens.
+There is a second script, which can download the `b2input.xml` files for one or more SOLPS-ITER versions directly from its git repository. Requires a `versions.yaml` file analogous to the one found in this repository.
 
 ```bash
 python fetch_b2input_xml_files.py --help
