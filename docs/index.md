@@ -1,11 +1,11 @@
 # Introduction
 
-Welcome to the **SOLPS wiki**, home to step-by-step guides on using the [SOLPS-ITER](https://github.com/iterorganization/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span> transport code! Accessible documentation for beginners is our goal. As the main author, Kateřina Hromasová, says:
+Welcome to **SOLPS Tutorials**, home to step-by-step guides on using the [SOLPS-ITER](https://github.com/iterorganization/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span> transport code! Accessible documentation for beginners is our goal. As the main author, Kateřina Hromasová, says:
 > "I want tutorials that are so easy to understand that I'll be able to use them out of the box after I come back from a three-year maternity leave."
 
-The SOLPS wiki [webpage](https://solps.pages.tok.ipp.cas.cz/solps-doc/) is compiled using [MkDocs](https://www.mkdocs.org/)<span class="material-symbols-outlined">open_in_new</span> from its source code, hosted on the [IPP Prague's GitLab](https://repo.tok.ipp.cas.cz/solps/solps-doc)<span class="material-symbols-outlined">open_in_new</span>. If you wish to contribute, read its [README](https://repo.tok.ipp.cas.cz/solps/solps-doc#solps-doc)<span class="material-symbols-outlined">open_in_new</span>.
+The SOLPS Tutorials [webpage](https://solps-tutorials.readthedocs.io/) is compiled using [MkDocs](https://www.mkdocs.org/)<span class="material-symbols-outlined">open_in_new</span> from its source code, hosted on the [ITER Organisation GitHub](https://github.com/iterorganization/SOLPS-Tutorials)<span class="material-symbols-outlined">open_in_new</span>. If you wish to contribute, read the [Contribute](Contribute.md) tutorial.
 
-![SOLPS wiki logo](img/logo/logo.png)
+![SOLPS Tutorials logo](img/logo/logo.png)
 
 *SOLPS wiki logo: a supra-luminal unicorn ([why?](supplementary/Questions_and_answers.md#unicorn))*
 
