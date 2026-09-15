@@ -5,29 +5,29 @@ This document contains "meta" information on installing, using and understanding
 Categories of SOLPS-ITER user wisdom:
 
 - [Where to find information](#where-to-find-information) - or "I have a problem, please help"
-- [Read the f***ing manual](#rtfm) - advice on the SOLPS manual, which should answer all questions but it really doesn't
+- [Read the friendly manual](#rtfm) - advice on the SOLPS manual
 - [Dictionary](#dictionary) - glossary of SOLPS-ITER jargon
 - [Useful links](#useful-links) - compilation of SOLPS and SOLPS-related documentation
-- [Memes](#memes) - jokes for keeping sane
+- [Jokes](#jokes) - jokes to lighten the heart
 
 
 
 ## Where to find information
 
-About half of Kateřina's SOLPS work is being stuck on a problem (simulation diverges, server won't launch simulations, updating SOLPS ends in error message...). Occasionally she bounces between problems, wondering which one will give first and finally allow her to do some physics. Seeking solutions is, therefore, a priority. As SOLPS documentation is fragmented, this section provides tips where to find information.
+In Kateřina's experience, about half of SOLPS work is being stuck on a problem (simulation diverges, server won't launch simulations, updating SOLPS ends in error message...). Occasionally she bounces between problems, wondering which one will give first and finally allow her to do some physics. Seeking solutions is, therefore, a priority. As SOLPS documentation is fragmented, this section provides tips where to find information.
 
 
 ### Common bugfixes
 
-- Update to the current `develop` SOLPS-ITER branch, if you don't care what particular code version you're using. Xavier *will* ask if you have tried this.
+- Update to the current `develop` SOLPS-ITER branch, if you don't care what particular code version you're using.
 - Particularly when you're switching around different versions of SOLPS, make sure to start up the SOLPS environment from scratch. The `source setup.csh` command can set up different versions of the same library, causing problems with compilation.
 
 
-### Decode the technobabble
+### Decode the technical language
 
 - If you don't know what the words mean, try the [Dictionary](#dictionary).
 
-- If you receive an error message (in the terminal or in `run.log`), take heart and **read the log carefully**. Chances are, it says what the problem is and might even suggest a way to fix it. To search for a string of characters in a long file (such as `run.log`):
+- If you receive an error message (in the terminal or in `run.log`), **read the log carefully**. Chances are, it says what the problem is and might even suggest a way to fix it. To search for a string of characters in a long file (such as `run.log`):
 
         # Print out 5 lines above and below "chemical sputtering"
         grep -C 5 'chemical sputtering' run.log
@@ -43,7 +43,7 @@ About half of Kateřina's SOLPS work is being stuck on a problem (simulation div
 
 ### I wish I could just Google this
 
-Well, you can't. Since SOLPS-ITER is developed by brilliant people with excellent memory who don't take career breaks to have kids, little attention has been given to a searchable, comprehensive, publicly available knowledge base. (As of June 2026, when you google "SOLPS-ITER", the first result is *this wiki*. The second is the source code of SOLPS-ITER. We are proud and horrified.) SOLPS lore is so well hidden, not even [AI with direct access to its source code](https://deepwiki.com/iterorganization/SOLPS-ITER/1-overview)<span class="material-symbols-outlined">open_in_new</span> can tell you what heat flux limiters are. The only semi-usable SOLPS-ITER search engines are [Google Scholar](https://scholar.google.com/)<span class="material-symbols-outlined">open_in_new</span> for articles, conference proceedings and theses, and the SOLPS wiki search toolbar (upper right corner). We all make do.
+SOLPS-ITER is developed by brilliant people with excellent memory who don't take career breaks to have kids. In consequence, writing a publicly available knowledge base is near the bottom of the list of SOLPS priorities. As of June 2026, when you google "SOLPS-ITER", the first result is *this wiki*. The second is the source code of SOLPS-ITER. (We are proud and horrified.) SOLPS lore is so well hidden, not even [AI with direct access to its source code](https://deepwiki.com/iterorganization/SOLPS-ITER/1-overview)<span class="material-symbols-outlined">open_in_new</span> can tell you what heat flux limiters are. The only semi-usable SOLPS-ITER search engines are [Google Scholar](https://scholar.google.com/)<span class="material-symbols-outlined">open_in_new</span> for articles, conference proceedings and theses, and the SOLPS wiki search toolbar (upper right corner).
 
 If you compiled all of these sources and made them fully searchable, you'd get a half-decent knowledge base:
 
@@ -67,12 +67,6 @@ If you compiled all of these sources and made them fully searchable, you'd get a
 
 ### Ask for help
 
-/// hint | Sad truth: I am a dummy, and probably on the spectrum too
-I would rather stick my head into a pile of sand than to ask someone for help. Sadly, the sand has not whispered any sweet secrets to me so far. Thus I regularly have to go through the demeaning practice of revealing to someone that I am a dummy. Fortunately, it appears that a few other SOLPS users may be dummies, too. Dummies, unite! Using the searchable SOLPS wiki, we will eliminate the necessity to communicate via speech and mail! All hail the database!
-
-No, seriously, I direly need a group of SOLPS friends who aren't afraid to ask each other dummy questions. If you ever come to Prague, <span class="material-symbols-outlined">mail</span> [write to me](mailto:hromasova@ipp.cas.cz) and we'll grab a coffee. I know a good place.
-///
-
 While asking for help, I'd advise to follow this hierarchy. Do not skip to the next step before you have tried the previous step. It saves time and face.
 
 1. Ask the nearest coworker, ideally but not necessarily a SOLPS-ITER user. Chances are, your problem is not strictly SOLPS-related.
@@ -84,7 +78,7 @@ While asking for help, I'd advise to follow this hierarchy. Do not skip to the n
 
 <a name="rtfm"></a>
 
-## RTFM (Read the f\*\*\*ing manual)
+## RTFM (Read the friendly manual)
 
 /// tip | Where do I find the SOLPS manual?
 The SOLPS source code includes source files for building the manual PDF using LaTEX in the folder `$SOLPSTOP/doc/solps`, but not the actual PDF. The PDF is usually built during code compilation as `$SOLPSTOP/doc/solps/solps.pdf`. If you can't find it or don't want to compile the entire code just for the manual, try
@@ -93,23 +87,24 @@ make manual
 ```
 in the [SOLPS-ITER work environment](../installing/solps-iter-codebase.md#how-to-initiate-the-solps-iter-work-environment). The [pre-built container installations](../installing/installing-in-container.md#use-a-pre-installed-read-only-container) of SOLPS don't build the manual PDF because the container is light-weight and LaTEX is a lot of additional software.
 
-You can always find the latest version of the manual on the [ITER SharePoint](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General?csf=1&web=1&e=wG7NCS)<span class="material-symbols-outlined">open_in_new</span>: [structured grids manual](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation/SOLPS-ITER_User_Manual.pdf?csf=1&web=1&e=bDGjaU)<span class="material-symbols-outlined">open_in_new</span> and [wide grids manual](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation/SOLPS-ITER_User_Manual_for_WG.pdf?csf=1&web=1&e=KhmO6Y)<span class="material-symbols-outlined">open_in_new</span>.
+You can always find the latest version of the manual on the [ITER SharePoint](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General?csf=1&web=1&e=wG7NCS)<span class="material-symbols-outlined">open_in_new</span>: [structured grids manual](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER_User_Manual.pdf)<span class="material-symbols-outlined">open_in_new</span> and [wide grids manual](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER_User_Manual_for_WG.pdf)<span class="material-symbols-outlined">open_in_new</span>.
 ///
 
 The SOLPS-ITER manual is a beast of 600+ pages, containing more information than you could ever want, but not the one you actually want. **Each SOLPS version has its own version of the manual**, so try using the one found in your installation. Most of their contents are the same (like the section on heat flux limiting, which is twenty years old) but relevant new information may be missing from older manuals.
 
-Even if the manual is hard to read and hard to find answers in, do not underestimate it. Try not to ask people for help before you have scoured the manual. And I do mean scoured. "I have skimmed it" does not cut it. Xavier will scold you for it. When you reach out for help at the [SOLPS-ITER Slack channel](http://solps.slack.com)<span class="material-symbols-outlined">open_in_new</span>, always detail to which degree the manual answered your question. Even people proficient with SOLPS-ITER always have the manual open while working.
+Even if the manual is hard to read and hard to find answers in, do not underestimate it. Try not to ask people for help before you have scoured the manual. And I do mean scoured. "I have skimmed it" does not cut it. When you reach out for help at the [SOLPS-ITER Slack channel](http://solps.slack.com)<span class="material-symbols-outlined">open_in_new</span>, always detail to which degree the manual answered your question. Even people proficient with SOLPS-ITER always have the manual open while working.
 
-A note on Fortran notation in the manual: When you see something like `if quantity.eq.1`, it means "if quantity is equal to 1". Similarly for `quantity.ge.3` ("greater or equal to 3"), `quantity.ne.0` ("not equal to 0") etc. The notation is not unified, there are `if \> 1` and similar alternative notations mixed in with this one, but those are largely intuitive.
-
+/// note | Fortran notation in the manual
+When you see something like `if quantity.eq.1`, it means "if quantity is equal to 1". Similarly for `quantity.ge.3` ("greater or equal to 3"), `quantity.ne.0` ("not equal to 0") etc. The notation is not unified, there are `if > 1` and similar alternative notations mixed in with this one, but those are largely intuitive.
+///
 
 ### How to properly search the manual for information
 
-Follow the instructions in this order and don't go straight to `Ctrl+F`. I know it's tempting but it's *very* unreliable.
+Follow the instructions in this order and don't go straight to `Ctrl+F`. It's tempting but *very* unreliable.
 
 1. **Read the table of contents.** The section titles are quite informative.
 2. **Read entire sections**, not just the little bit of text where your keyword is located. This will give you context and you're very likely to find extra information as your topic is revisited.
-3. **Read the cited works**. Funny story: I spent a few weeks desperately researching why there is a Pfirsch-Schlüter particle flux in the B2.5 continuity equation. Finally I wrote on the [SOLPS Slack](http://solps.slack.com)<span class="material-symbols-outlined">open_in_new</span> and I was directed to an article which explained it. *Then I found out it was cited in the manual in the section which gives the B2.5 continuity equation.* Don't be me. OTL
+3. **Read the cited works**. Funny story: Kateřina spent a few weeks desperately researching why there is a Pfirsch-Schlüter particle flux in the B2.5 continuity equation. Finally she wrote on the [SOLPS Slack](http://solps.slack.com)<span class="material-symbols-outlined">open_in_new</span> and she was directed to an article which explained it. *Then sje found out it was cited in the manual in the section which gives the B2.5 continuity equation.* Don't be her. OTL
 4. **`Ctrl+F` your keywords**, for example "heat flux". However, beware that your term might be called several different things (like "energy flux"). If your keyword has more than two words ("sheath heat transmission coefficient"), chances are that you won't find it using `Ctrl+F`.
 5. **`Ctrl+F` the manual source code** (`$SOLPSTOP/docs/solps/solps.tex`). This can be useful for quantity names (`q_{ax}`). Beware, this can be extra unreliable as different names and typing styles might be used each time. Try to find some part of the variable name which is hard to change (`axy` inside `D_{axy}`). Alternatively, search `axy` in the rendered PDF.
 
@@ -133,7 +128,7 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. I know 
 
 **EUROfusion Gateway** (sometimes referred to as ITM, Marconi, Marconi Gateway or a combination of the above): An Italian [computing cluster](../installing/solps-iter-codebase.md#eurofusion_gateway) where you can install and use SOLPS-ITER, a of the Marconi cluster. Most SOLPS-ITER users run their simulations on their local clusters, but some continue using Gateway.
 
-**Xavier Bonnin:** The God and Saviour of SOLPS-ITER (i.e. its RO, the Responsible Officer in the ITER Organisation). Diligent and meticulous, but has no patience with slackers.
+**Xavier Bonnin:** The Responsible Officer (RO) of SOLPS-ITER in the ITER Organisation. Diligent and meticulous.
 
 **`$SOLPSTOP` (SOLPS top)**: Name of the `tcsh` variable in the [SOLPS work environment](../installing/solps-iter-codebase.md#how-to-initiate-the-solps-iter-work-environment) which contains the path to the SOLPS-ITER installation folder. The `stop` command is a shortcut to change directories `cd $SOLPSTOP$`.
 
@@ -163,9 +158,9 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. I know 
 
 **B2plot**: A primarily plotting programme shipped directly with SOLPS-ITER. It has it own section in the manual (appendix I), can plot 2D visualisations of plasma temperature, integrate along given lines of sight, or produce text files with processed code output. It has its weaknesses (like awkward axis boundaries setting), but it remains a very powerful tool. See our [B2plot tutorial](../my_first_simulation/Processing_SOLPS-ITER_output.md#b2plot).
 
-**David Coster**: A senior researcher working at IPP Garching. One of the most experienced SOLPS-ITER users, he spends his days attending thousands of meetings.
+**David Coster**: A senior researcher working at IPP Garching. One of the most experienced SOLPS-ITER users.
 
-**Katka** and **Honza**: Postdocs working at IPP Prague, the main authors of the SOLPS wiki. They share the conviction that if they don't write it down, they will forget it.
+**Katka** (Kateřina) and **Honza**: Postdocs working at IPP Prague, the main authors of the SOLPS wiki. They share the conviction that if they don't write it down, they will forget it.
 
 **IO**: ITER Organisation.
 
@@ -177,15 +172,17 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. I know 
 
 - The source code of SOLPS-ITER, kept at GitHub. Just downloading it is not enough to make simulations with SOLPS-ITER; first you must compile the source code (see the [installation guides](../installing/solps-iter-codebase.md)).
 - This is the quickest way to get to the manual LaTEX source (`$SOLPSTOP/docs/solps/solps.tex`).
-- Includes a rival [wiki](https://github.com/iterorganization/SOLPS-ITER/wiki)<span class="material-symbols-outlined">open_in_new</span>. So far, it lists a few frequently encountered issues, such as "how are SOLPS branches called again", "why can't I name my `$SOLPSTOP`  directory `solps-iter_debug`" or "my SOLPS runs are huge and the IT guy's screaming at me, help".
-    - If you wish to contribute to the rival wiki, write to <span class="material-symbols-outlined">mail</span>[Xavier Bonnin](mailto:xavier.bonnin@iter.org). Give me your GitHub handle (so he can identify your account), and he'll grant you the necessary permissions.
+- Includes a rival [wiki](https://github.com/iterorganization/SOLPS-ITER/wiki)<span class="material-symbols-outlined">open_in_new</span>. So far, it lists a few frequently encountered issues, such as "what are SOLPS branches called again", "why can't I name my `$SOLPSTOP`  directory `solps-iter_debug`" or "my SOLPS runs are huge and the IT guy's screaming at me, help".
+    - If you wish to contribute to the rival wiki, write to <span class="material-symbols-outlined">mail</span>[Xavier Bonnin](mailto:xavier.bonnin@iter.org). Give him your GitHub handle (so he can identify your account), and he'll grant you the necessary permissions.
 
 
 **[ITER SharePoint](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General?csf=1&web=1&e=nSbYg0)**<span class="material-symbols-outlined">open_in_new</span>
 
+- Currently (August 2026) an ITER account is necessary for access. Xavier is working on making it fully open-source.
+
 - A big old pile of documentation. Highlights:
-    - The [Manuals and Documentation](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation?csf=1&web=1&e=95GSRD)<span class="material-symbols-outlined">open_in_new</span> folder (has some overlap with `$SOLPSTOP/doc`)
-    - The [SOLPS-ITER Papers](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20Sharepoint%20archive/SOLPS-ITER%20Papers?csf=1&web=1&e=1fLYEL)<span class="material-symbols-outlined">open_in_new</span> folder (has some overlap with our [Library](Library.md), contains some of the newest papers on SOLPS-ITER)
+    - The [Manuals and Documentation](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General/Manuals%20and%20Documentation?d=w7fe8c45b86bd4cc7937dbdda7ee838a2&csf=1&web=1&e=3X1UNE)<span class="material-symbols-outlined">open_in_new</span> folder (has some overlap with `$SOLPSTOP/doc`)
+    - The [SOLPS-ITER Papers](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20Papers?d=wfb1fd28e9588428eb1fcca00d79ce189&csf=1&web=1&e=yxRbAy)<span class="material-symbols-outlined">open_in_new</span> folder (has some overlap with our [Library](Library.md), contains some of the newest papers on SOLPS-ITER)
 
 
 **[SOLPS-ITER Materials](https://user.iter.org/default.aspx?uid=Q92BAQ)**<span class="material-symbols-outlined">open_in_new</span>
@@ -199,9 +196,9 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. I know 
     - [Release notes](https://confluence.iter.org/spaces/IMP/pages/178135134/SOLPS-ITER#SOLPSITER-Releasenotesanddescriptionsofimportantcodeupdates)<span class="material-symbols-outlined">open_in_new</span> of various SOLPS versions (useful for tracking new features)
     - List of [currently active SOLPS branches](https://confluence.iter.org/spaces/IMP/pages/178135134/SOLPS-ITER#SOLPSITER-Whichbranchforwhichcodeversion%3F)<span class="material-symbols-outlined">open_in_new</span>
     - [SOLPS User Forum minutes](https://confluence.iter.org/spaces/IMP/pages/178135134/SOLPS-ITER#SOLPSITER-UserForumdebriefings)<span class="material-symbols-outlined">open_in_new</span> (occasionally priceless in bug hunts)
-    - [SOLPS-ITER features wish list](https://confluence.iter.org/display/IMP/SOLPS-ITER+features+wish+list)<span class="material-symbols-outlined">open_in_new</span> (appears to have considerable overlap with Xavier's to-do list)
+    - [SOLPS-ITER features wish list](https://confluence.iter.org/display/IMP/SOLPS-ITER+features+wish+list)<span class="material-symbols-outlined">open_in_new</span>
 
-- Also contains a list of problems and bugs SOLPS-ITER users have encountered and documented. Kateřina used to write her know-how there, until she started writing the SOLPS wiki.
+- Also contains a list of problems and bugs SOLPS-ITER users have encountered and documented.
 
 **[EUROfusion wiki - training section](https://users.euro-fusion.org/tfwiki/index.php/Training)**<span class="material-symbols-outlined">open_in_new</span>
 
@@ -210,7 +207,7 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. I know 
 
 **[SOLPS Slack](http://solps.slack.com)**<span class="material-symbols-outlined">open_in_new</span>
 
--  A forum created in March 2020, when the coronavirus quarantine started. Has a Q&A section where you may pose your questions and get answers straight from Xavier without feeling too guilty. (But make sure to do thorough research before asking here! Especially consult the manual in great detail, according to the [recipe above](#rtfm).)
+-  A forum created in March 2020, when the coronavirus quarantine started. Has a Q&A section where you may pose your questions and get answers within hours or days. (But make sure to do thorough research before asking here! Especially consult the manual in great detail, according to the [recipe above](#rtfm).)
 
 **SOLPS GUI [documentation](https://static.iter.org/imas/assets/solps-iter/html/index.html)<span class="material-symbols-outlined">open_in_new</span> and [video tutorials](https://www.youtube.com/playlist?list=PLYdrXWbVnKXG6tCQQTH6Vf_TERCgzvRAv)**<span class="material-symbols-outlined">open_in_new</span>
 
@@ -221,7 +218,7 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. I know 
 
 - Created by Jan Hečko, this semi-detached part of the SOLPS wiki lists the switches of B2, their meaning and default values, in a human-readable way.
 - Switch descriptions are taken from the official SOLPS/B2.5 documentation (`$SOLPSTOP/B2.5/src/documentation/b2input.xml`).
-- Webpage is generated for several SOLPS-ITER versions and regularly updated. In case you want to use the webpage generator tool directly (e.g. to generate it from your version of SOLPS-ITER), clone the SOLPS wiki repo and refer to instructions in `solps-doc/extras/b2input/README.md`.
+- Webpage is generated for several SOLPS-ITER versions and regularly updated. In case you want to use the webpage generator tool directly (e.g. to generate it from your version of SOLPS-ITER), clone the SOLPS wiki repo and refer to instructions in `SOLPS-Wiki/extras/b2input/README.md`.
 
 **[ADAS manual](https://www.adas.ac.uk/manual.php)**<span class="material-symbols-outlined">open_in_new</span>
 
@@ -232,66 +229,133 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. I know 
 - Another rival project, generated by AI. It isn't known if it contains any useful information, but it exists.
 
 
-## Memes
+## Jokes
 
 An English proverb says: "If you can't beat them, join them."
 
-The Czech national wisdom is different. The Czech nation is small and constantly buffeted around by its more powerful neighbours. In the 18th and 19th century, it had to extend conscious effort to [keep its own language](https://en.wikipedia.org/wiki/Czech_National_Revival)<span class="material-symbols-outlined">open_in_new</span>. In consequence, Czechs have long since given up hopes that they can make a difference. They focus on surviving. Their take is: "If you can't beat them, make fun of them."
+The Czechs, a small Slavic nation in Central Europe, have a different national wisdom: "If you can't beat them, make fun of them."
 
 In the Czech spirit, this section of SOLPS-ITER user wisdom is devoted to collecting jokes.
 
+/// note | No useful physics ahead
+This is the only part of the SOLPS Wiki which does not take itself seriously at all. Everyone taps into the pit of existential despair on occasion. It's no use pretending it isn't there.
+///
+
 ***
 
-![img](../img/2B_or_not_2B.png)<br>
+![](../img/SOLPS_at_therapy.jpg)
+
+<center><i>How it feels to diagnose divergence in SOLPS-ITER.<br>
+Author: Kateřina Hromasová, based on a photo.</i></center>
+
+***
+
+![img](../img/2B_or_not_2B.png)
+
 <center><i>2B or not 2B?<br>
 Author: Jan Hečko, generated with AI.</i></center>
 
 ***
 
-![img](../img/Archiving_baserun.png)<br>
-<center><i>When you let women into fusion, part 1. I spent half an hour tweaking [Honza's script for archiving `baserun`](Remote_access.md#transfer-an-entire-case-from-one-solps-installation-to-another), only to be told it could have simply been done with the `-L` flag.<br>
-Author: Kateřina Hromasová, made with meme templates.</i></center>
+![img](../img/Priorities.jpg)
 
-***
-
-![img](../img/Converting_cv.png)<br>
-<center><i>When you let women into fusion, part 2. While writing a Python library for post-processing Wide Grids results, I spent an hour writing a script which converts cell numbers `cv` into structured grid indices [`ix`, `iy`]. When it was done, I skimmed the manual. I found that the conversion array was already in `b2fgmtry`.<br>
-Author: Kateřina Hromasová, made with meme templates.</i></center>
-
-***
-
-![img](../img/Fresh_SOLPS_simulations.png)<br>
-<center><i>Just because the IPP Prague SOLPS group has never delivered trustworthy predictive simulations of COMPASS Upgrade, doesn't mean we never will!<br>
-Author: Kateřina Hromasová, drawing found online and upscaled with AI.</i></center>
-
-***
-
-![img](../img/Priorities.jpg)<br>
 <center><i>I found some beautifully named variables in the EIRENE manual.<br>
 Author: Kateřina Hromasová, made with meme templates.</i></center>
 
 ***
 
-![img](../img/SOLPS_wiki_alternative_logo.png)<br>
+![img](../img/Archiving_baserun.png)
+<center><i>When you let women into fusion, part 1. I spent half an hour tweaking [Honza's script for archiving `baserun`](Remote_access.md#transfer-an-entire-case-from-one-solps-installation-to-another), only to be told it could simply be done with the `-L` flag.<br>
+Author: Kateřina Hromasová, made with meme templates.</i></center>
+
+***
+
+![img](../img/Converting_cv.png)
+
+<center><i>When you let women into fusion, part 2. While writing a Python library for post-processing Wide Grids results, I spent an hour writing a script which converts cell numbers `cv` into structured grid indices [`ix`, `iy`]. When it was done, I skimmed the manual. And I found that the conversion array was already in `b2fgmtry`.<br>
+Author: Kateřina Hromasová, made with meme templates.</i></center>
+
+***
+
+![img](../img/Fresh_SOLPS_simulations.png)
+
+<center><i>Just because the IPP Prague SOLPS group has never delivered trustworthy predictive simulations of COMPASS Upgrade, doesn't mean we never will!<br>
+Author: Kateřina Hromasová, drawing found online and upscaled with AI.</i></center>
+
+***
+
+![img](../img/SOLPS_wiki_alternative_logo.png)
+
 <center><i>Alternative logo of the SOLPS wiki.<br>
 Author: Kateřina Hromasová and Jan Hečko, made with meme templates.</i></center>
 
 ***
 
+![img](../img/skull_logo.png)
 
-> What do you say when someone announces they've started working with SOLPS?
-> 
-> "Deepest condolences!"
-
-***
-
-> What do you say to an ITER researcher who doesn't know when to stop talking?
->
-> "Shut up or I'll re-baseline you!"
+<center><i>Alternative logo of the SOLPS wiki.<br>
+Author: Daniel Švorc, generated with AI.</i></center>
 
 ***
 
-> There ain't no rest for the wiki...
+![SOLPS wiki logo](../img/logo/logo.png)
+
+<center><i>SOLPS wiki logo.<br>
+Author: Kateřina Hromasová, based on a photo.</i></center>
+
+**<a name="unicorn"></a>Why is the SOLPS wiki logo a supra-luminal unicorn?**
+
+1. Comprehensive SOLPS-ITER documentation is as rare as unicorns.
+
+2. SOLPS-ITER is the *workhorse* of tokamak edge modelling.
+[[1]](http://dx.doi.org/10.1016/j.jnucmat.2014.10.012) <!-- Wiesen 2015 -->
+[[2]](https://iopscience.iop.org/article/10.1088/1361-6587/ab1bba) <!-- Kukushkin 2019 -->
+[[3]](https://doi.org/10.1016/j.nme.2019.100696)  <!-- Pitts 2019 -->
+[[4]](https://infoscience.epfl.ch/entities/publication/6b5c5149-8aad-4857-87aa-e4514506f44c) <!-- Mirko Wensing PhD thesis -->
+[[5]](https://doi.org/10.1088/1741-4326/ada048)  <!-- Moscheni 2025 -->
+[[6]](https://iopscience.iop.org/article/10.1088/1741-4326/ac72b4/meta) <!-- Van Uytven 2022-->
+[[7]](https://iopscience.iop.org/article/10.1088/1741-4326/adb3bb/meta) <!-- Bryant 2025 -->
+[[8]](https://onlinelibrary.wiley.com/doi/epdf/10.1002/ctpp.202100190) <!-- Dekeyser 2022 -->
+[[9]](https://www.sciencedirect.com/science/article/pii/S2352179118302011) <!-- Dekeyser 2019 -->
+[[10]](https://iopscience.iop.org/article/10.1088/1741-4326/ae53f9/meta) <!-- Shtyrkhunov 2026 -->
+[[11]](https://pure.tue.nl/ws/portalfiles/portal/340297879/1341596_-_Kobussen_S.P._-_MSc_thesis_Thesis_-_NF.pdf) <!-- Kobussen MSc thesis -->
+[[12]](https://pure.tue.nl/ws/portalfiles/portal/389678988/1474820_-_Reinhoudt_S.P._-_MSc_thesis_report_-_MAP.pdf) <!-- Reinhoudt MSc thesis -->
+
+3. Rainbows are cool.
+
+4. And finally, everyone's favourite error message since [SOLPS-ITER 3.0.9](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER_3.0.9_and_3.1.1_Release_Notes.pdf?csf=1&web=1&e=b7caKq)<span class="material-symbols-outlined">open_in_new</span>...
+
+        *** XERRAB: program will stop. ***
+        Supra-luminal velocities !
+        Call chain follows.
+
+
+***
+
+/// tip | Hot tip
+SOLPS-ITER has an international user community, so you can use foreign curses to relieve frustration.
+
+Finnish: "Perkele!" (Evil spirit!)
+
+Hungarian: "Bassz meg!" (Fuck me!)
+
+Czech: "Do prdele!" (In the ass!)
+
+**TODO** <span class="material-symbols-outlined">construction</span>: Add your own favourite curse!
+///
+
+
+***
+
+> What do you say when someone announces they've started working with SOLPS? "Deepest condolences!"
+
+***
+
+> What do you say to an ITER researcher who doesn't know when to stop talking? "Shut up or I'll re-baseline you!"
+
+***
+
+> What does Katka say when you point out grave mistakes in the SOLPS wiki? "There ain't no rest for the wiki..."
 
 ***
 

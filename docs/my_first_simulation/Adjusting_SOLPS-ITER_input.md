@@ -13,7 +13,7 @@ This tutorial covers:
 Once you have mastered these, you can move on to features described in the Feature blog:
 
 - Overfitting [diffusion coefficients](../feature_blog/Diffusion_coefficients.md)
-- Despairing over [drifts](../feature_blog/Drifts.md)
+- Implementing [drifts](../feature_blog/Drifts.md)
 - Playing with [gas puffing and pumping](../feature_blog/Gas_puffing_and_pumping.md)
 - Adding [impurities](../feature_blog/Impurities.md)
 - Switching to [wide grids](../feature_blog/Wide_grids.md)
@@ -31,7 +31,7 @@ The simplest way to change a SOLPS input is to open the corresponding text file,
 
 ![Example b2.boundary.parameters](../img/b2.boundary.parameters_important_places.png)
 
-<center><i>Example boundary condition file `b2.boundary.parameters` with marked locations of boundary condition type (BCCON, BCENE, BCENI) and value (CONPAR, ENEPAR, ENIPAR).</i></center>
+*Example boundary condition file `b2.boundary.parameters` with marked locations of boundary condition type (BCCON, BCENE, BCENI) and value (CONPAR, ENEPAR, ENIPAR).*
 
 There have been efforts to automatise this through a more user-friendly interface, such as the [SOLPS-inputs](https://repo.tok.ipp.cas.cz/solps/solps-inputs)<span class="material-symbols-outlined">open_in_new</span> Python package written by Jan Hečko. A great progress has been made in converting the EIRENE master input file `input.dat` into the JSON format `eirene.input.json`, where a superfluous white space (such as one newline too many at the end of the file) will no longer crash your SOLPS. To start with, however, it is useful to learn working with the text files, even if they seem completely incomprehensible at first.
 
@@ -44,7 +44,7 @@ Most SOLPS inputs fall into two categories:
 
 ## Boundary conditions 101
 
-> "I've opened `b2.boundary.parameters`. It's complete gibberish. Numbers and letters. How do I work with this?"
+> "I've opened `b2.boundary.parameters`. It's just numbers and letters. How do I work with this?"
 
 B2.5, the plasma solver of SOLPS-ITER, is a [finite volume](https://en.wikipedia.org/wiki/Finite_volume_method)<span class="material-symbols-outlined">open_in_new</span> solver of the [Braginskii equations](https://ui.adsabs.harvard.edu/abs/1965RvPP....1..205B/abstract)<span class="material-symbols-outlined">open_in_new</span>. The Braginskii equations inform it about what's going on in the middle of its computational region, but it needs to be told what happens at its **boundaries**. For example, the Braginskii equations have no idea what's happening inside the electric sheath enveloping the divertor targets. Consequently, B2.5 has to be told that the sheath accelerates ions up to the sound speed (boundary condition for the momentum equation), eats up plasma energy via the sheath heat transmission coefficient (boundary condition for the electron and ion energy equations) and absorbs every plasma particle to release it as a recycled neutral (boundary condition for the continuity equation). Boundaries envelop the B2.5 computational domain from all sides, and in the structured SOLPS-ITER version (which this tutorial works with, as opposed to the [Wide Grids SOLPS](../feature_blog/Wide_grids.md)), the boundaries all have colloquial names: North, South, West and East.
 
@@ -106,7 +106,7 @@ As of February 2026, there are 28 available boundary conditions for the ion ener
 
 The boundary condition (BC) files SOLPS has [pre-generated](Creating_a_new_SOLPS-ITER_simulation.md#get-boundary-condition-files) for you contain a simple set of boundary conditions. When you first tweak a SOLPS simulation, you'll use the parameters of these boundary conditions. For example, the boundary condition for the core (South, S2) boundary of the deuterium ion continuity equation is `BCCON = 1` ("fix a certain density at this boundary") and its parameter `CONPAR` is the density to be fixed.
 
-There are **four principle SOLPS simulation inputs** which you will, one way or another, set in every simulation. These are the core density $n_{i,core}$, the input power $P_{sep}$, the particle diffusion coefficient $D_n$ and the electron and ion thermal diffusion coefficient $\chi_{e,i}$.
+There are **four principle SOLPS simulation inputs** which you will, one way or another, set in every simulation. These are the core main ion density $n_{i,core}$, the input power $P_{sep}$, the particle diffusion coefficient $D_n$ and the electron and ion thermal diffusion coefficient $\chi_{e,i}$.
 
 The **core density** $n_{i,core}$ is used with the continuity equation boundary condition `BCCON = 1` ("prescribe the value of the density") at the core (S2) boundary, species index `IS = 1` (deuterium ions). In `b2.boundary.parameters`, its value is on the line `CONPAR(0,1,1)`. Put in the required density in part/m<sup>3</sup>. Increasing the core density will make the entire plasma density rise.
 
@@ -117,31 +117,29 @@ The **particle diffusion coefficient** $D_n$ is used with the transport flag `FL
 The electron and ion **thermal diffusion coefficient** $\chi_{e,i}$ is used with the transport flags `FLAG_HCE=1` and `FLAG_HCI=1` ("transport model flag for density-driven diffusion - constant diffusivity"). In `b2.transport.parameters`, its value is given at `PARM_HCE` and `PARM_HCI`. Put in the required thermal diffusion coefficient in m<sup>2</sup>s<sup>-1</sup>, usually the same for electrons and ions. Increasing $\chi_{e,i}$ will flatten the respective temperature profile. Since the input power is fixed, this leaves the separatrix $T_{e,i,sep}$ approximately the same, increases core temperatures and decreases SOL temperatures.
 
 /// hint | Why are *these* the principle SOLPS inputs?
-Input power and plasma density (controlled by gas puff throughput) are two principle discharge controls in a real tokamak experiment. Diffusion coefficients cover a sore defficiency at the heart of SOLPS: its inability to self-consistently describe radial transport. (SOLPS is not as frightfully inept at describing parallel transport. Though wait until you hear about heat flux limiters!) Together, these four parameters determine the separatrix density $n_{e,sep}$ and temperature $T_{e,sep}$, which are the strongest drivers of edge plasma transport.
+Input power and plasma density (controlled by gas puff throughput) are two principle discharge controls in a real tokamak experiment. Diffusion coefficients cover an important deficiency at the heart of SOLPS: its inability to self-consistently describe radial transport. (If you thought SOLPS was much better at describing parallel transport, wait until you hear about heat flux limiters.) Together, these four parameters determine the separatrix density $n_{e,sep}$ and temperature $T_{e,sep}$, which are the strongest drivers of edge plasma transport.
 ///
 
 ///tip | Learn more about diffusion coefficients
-While core density $n_{i,core}$ and input power $P_{SOL}$ have straightforward values and effects, diffusion coefficients are more opaque, especially in predictive simulations. Read more about them in the feature blog entry [Diffusion coefficients](../feature_blog/Diffusion_coefficients.md).
+While core density $n_{i,core}$ and input power $P_{sep}$ have straightforward values and effects, diffusion coefficients are more opaque, especially in predictive simulations. Read more about them in the feature blog entry [Diffusion coefficients](../feature_blog/Diffusion_coefficients.md).
 ///
 
 
 ## Other input parameters of note
 
-Let us spend a few words on our favourite input parameters beside the most important ones.
 
 ### Heat flux limiters
 
 Electron and ion heat flux limiters $\alpha_e$ and $\alpha_i$ (attempt to) emulate kinetic effects in SOL parallel transport of heat. They are set in the `b2.transport.parameters` file, using the switches `cflme` and `cflmi`. The lower heat flux limiters are, the higher the corresponding parallel temperature gradient $\nabla_\parallel T$. Under fixed input power $P_{sep}$, lowering $\alpha$ will make upstream $T$ increase and target $T$ decrease. The effect is much stronger for ions than for electrons.
 
-How to set heat flux limiters:
+How to set heat flux limiters [Kateřina's article in the making]:
 
-- **I don't care, just give me a value.** Use $\alpha_e = \alpha_i = 1.5$. [[Fundamenski 2005](https://iopscience.iop.org/article/10.1088/0741-3335/47/11/R01/meta)<span class="material-symbols-outlined">open_in_new</span>] [Kateřina's article in the making]
+- **I don't care, just give me a value.** Use $\alpha_e = \alpha_i = 1.5$. [[Fundamenski 2005](https://iopscience.iop.org/article/10.1088/0741-3335/47/11/R01/meta)<span class="material-symbols-outlined">open_in_new</span>]
 - **I want to do this properly.** Make a four-point parameter scan: $[\alpha_e, \alpha_i] = [1000, 1000], [1000, 0.1], [0.1, 1000], [0.1, 0.1]$. Assess the sensitivity; it will be higher for ions and it will depend on the SOL transport regime. If the simulation is not sensitive to $\alpha$, it doesn't matter which value you choose. If it is sensitive, choose $\alpha$ in conjunction with input power split $P_{sep,i} / P_{sep,e}$ to achieve the desired upstream and target temperatures at the separatrix. In all, treat electron and ion heat flux limiters independently.
 
 /// tip | More reading
 - W. Fundamenski, [Parallel heat flux limits in the tokamak scrape-off layer](https://iopscience.iop.org/article/10.1088/0741-3335/47/11/R01/meta)<span class="material-symbols-outlined">open_in_new</span>, Plasma Physics and Controlled Fusion **47** (2005) - the best review of heat flux limiting to date
 - Kateřina's [PhD thesis](../files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">download</span>, chapter 5 *Heat flux limiting*
-- Just because Kateřina's been writing that article on heat flux limiting since 2021, doesn't mean she'll never finish it!
 ///
 
 
@@ -155,13 +153,13 @@ Currents in the edge plasma can be significantly affected depending on whether t
 The electron and ion sheath heat transmission coefficient $\gamma_e$ and $\gamma_i$ affect the amount of energy the divertor target sheath drains from the plasma. They can be partially controlled in the electron and ion energy equation boundary condition, `BCENE/I = 3, 11, 12, 15` (all variants of the sheath), using the parameter `ENE/IPAR(,1)`. Beware, the `ENE/IPAR` parameter has different meaning for each boundary condition number.
 
 /// tip | More reading
-- Interpretative simulations of COMPASS, section [Target parallel energy flux density](../feature_blog/Interpretative_simulations_of_COMPASS.md#target-parallel-energy-flux-density).
+- Interpretative simulations of COMPASS, section [Target parallel energy flux density](../feature_blog/Interpretative_simulations_of_COMPASS.md#target-parallel-energy-flux-density)
 ///
 
 
 ## Expected fidelity
 
-An important part of adjusting SOLPS-ITER simulations is knowing when to stop. You can pummel your simulation until it gives you exactly what you wanted, or you can stop at "good enough" and go for a walk in the woods.
+An important part of adjusting SOLPS-ITER simulations is knowing when to stop. You can tweak your simulation until it gives you exactly what you wanted, or you can stop at "good enough" and go for a walk in the woods.
 
 What level of fidelity you can expect from SOLPS varies greatly between upstream and target. Upstream can be easily matched to within **20 % accuracy**. The separatrix $n_{e,sep}$ and $T_{e,sep}$ directly respond to the core density $n_{i,core}$ and input power $P_{sep}$, while the shape of their profiles can be [fine-tuned](../feature_blog/Diffusion_coefficients.md) using diffusion coefficients. On the other hand, if you get the target plasma parameters within a **factor of two**, you've done a great job. Broadly speaking, if you match the qualitative measures of the SOL transport regime (pressure and power losses, parallel $T_e$ gradient, plasma radiation patterns, peak target $T_e$ and $q_\parallel$), you can pat yourself on the shoulder and say "my job here is done".
 
@@ -170,7 +168,7 @@ I always remember [that one interpretative simulation](https://www.sciencedirect
 The bar is not that high.
 
 /// tip | Bayesian inference
-A most sexy approach toward tweaking SOLPS-ITER input and gauging their uncertainties is Bayesian inference. At IPP Prague, it is currently being investigated by Jan Hečko (<span class="material-symbols-outlined">mail</span> [hecko@ipp.cas.cz](mailto:hecko@ipp.cas.cz)) and Šimon Soldát. It promises to adjust SOLPS input parameters for you automatically and to give you uncertainties of these inputs. Stay tuned for Honza's article in the making!
+A promising approach toward tweaking SOLPS-ITER input and gauging their uncertainties is Bayesian inference. At IPP Prague, it is currently being investigated by Jan Hečko (<span class="material-symbols-outlined">mail</span> [hecko@ipp.cas.cz](mailto:hecko@ipp.cas.cz)) and Šimon Soldát. It promises to adjust SOLPS input parameters for you automatically and to give you uncertainties of these inputs. Stay tuned for Honza's article in the making!
 ///
 
 

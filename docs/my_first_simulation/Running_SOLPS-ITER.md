@@ -15,7 +15,7 @@ Topics covered in this tutorial:
 
 
 ///note | More resources
-See also Questions and Answers, section [Running SOLPS-ITER](../supplementary/Questions_and_answers.md#running_solps).
+See also Q&A: [Running SOLPS-ITER](../supplementary/Questions_and_answers.md#running-solps-iter).
 ///
 
 ## Running SOLPS-ITER using `b2run`
@@ -139,6 +139,8 @@ SOLPS-ITER keeps dozens of files in the `run` directory, hundreds if you use the
 
 3. Copy all the file names from the command line into `.hidden` and distribute them one file name per line. To speed things up, use the `Find and replace` function. First, replace all blank spaces and/or tabs `\t` with newlines `\n`. (If you have blank spaces in file names, what kind of Linux user are you?) Then, replace `\n\n` with `\n` repeatedly, until there's one file name per line.
 
+    > **TODO** <span class="material-symbols-outlined">construction</span>: I'm sure this can be done with a single line from the terminal...
+
 4. Find and delete the names of the files you don't want to hide. For example, I usually keep the following files displayed:
 
         # Input files
@@ -167,7 +169,7 @@ SOLPS-ITER keeps dozens of files in the `run` directory, hundreds if you use the
 
 5. Save the text file and, in your file browser, hit `Ctrl+H` a few times. Refresh if needed.
 
-Hiding most of the SOLPS-ITER files not only saves time when you're looking for a file to open, but it also gives early warning when there are files you don't want in the `run` folder. For example, seeing the `b2ai.dat` file should sound warning bells, because it means SOLPS has [ignored `b2fstati`](../supplementary/Common_pitfalls.md#the-danger-of-timestamps) and produced the "flat profiles" solution using `b2ai`.
+Hiding most of the SOLPS-ITER files not only saves time when you're looking for a file to open, but it also gives early warning when there are files you don't want in the `run` folder. For example, seeing the `b2ai.prt` file should sound warning bells, because it means SOLPS has [ignored `b2fstati`](../supplementary/Common_pitfalls.md#the-danger-of-timestamps) and produced the "flat profiles" solution using `b2ai`.
 
 When your list of unwanted files gets larger (e.g. you've run the [`2d_profiles`](Processing_SOLPS-ITER_output.md#2d_profiles) command), repeat the procedure to add new files to `.hidden`.
 
@@ -218,7 +220,7 @@ The simulation will start from whichever plasma state is present in `b2fstati`. 
 
 ## Branching out a SOLPS-ITER run
 
-Sometimes, you'll want to see what happens when you tweak a simulation a little (e.g. trying this weird switch you've just found in [B2.5 documentation](/solps-doc/extras/b2input)), but you don't want to lose the original simulation in case something goes wrong. Other times, you'll want to conduct a parameter scan. That is when you need is branching an existing run out.
+Sometimes, you'll want to see what happens when you tweak a simulation a little (e.g. trying this weird switch you've just found in [B2.5 documentation](/solps-doc/extras/b2input)), but you don't want to lose the original simulation in case something goes wrong. Other times, you'll want to conduct a parameter scan. That is when you need to branch out an existing run.
 
 **Simple and dirty**:
 ```
@@ -339,7 +341,7 @@ This gives you access to the *time evolution of the $n_e$ profile on the outer m
 
 ![img](../img/b2time_ne_profile.png)
 
-<center><i>Time evolution of the outer midplane $n_e$ profile.</i></center>
+*Time evolution of the outer midplane $n_e$ profile.*
 
 This can be super useful when you're tuning diffusion coefficients or are investigating simulation crash. There are tons of quantities tracked in `b2time.nc`, described in the [SOLPS manual](../supplementary/Library.md#solps-manual), Appendix E *Quantities stored in b2time.nc*. The file is updated regularly as the simulation runs, so you can use it (like the `2dt` command) to monitor an ongoing simulation.
 
@@ -414,7 +416,7 @@ SOLPS can run in two modes: steady-state and time-dependent. The former comprise
 
 In steady-state simulations, the B2.5 equations feature "time derivatives" and you can set the "time step" in `b2mn.dat`, but this "time" doesn't have physical meaning. Instead, the "time evolution" is the simulation finding its way toward a solution with the smallest residuals. The lowest accessible residuals value can follow from EIRENE Monte Carlo noise (coupled simulations) or from machine precision (standalone simulations). We say a simulation has converged when its plasma state no longer changes as SOLPS is run. In practice, this is supplanted by "and the solution is physical", as SOLPS can "converge" to some pretty weird plasma states.
 
-Poor man's convergence criteria (built-in, first glance):
+**Poor man's convergence criteria** (built-in, first glance):
 
 - [Check the residuals](#residuals) of all B2.5 equations and verify they don't change.
 - [Check the separatrix parameters with `2dt`](#time-traces-in-b2timenc) and verify they don't change.
@@ -435,7 +437,7 @@ Poor man's convergence criteria (built-in, first glance):
 
     The graph is pretty messy, though.
 
-Rich man's convergence criteria (thorough, but you have to implement them yourself or steal the scripts from someone):
+**Rich man's convergence criteria** (thorough, but you have to implement them yourself or adapt the scripts from someone):
 
 - Check if the plasma parameters make sense. Look at profiles of the main plasma parameters (densities, velocities, temperatures) at the main locations (outer midplane, inner + outer target). Refer to Commmon pitfalls: [How to recognise divergence](../supplementary/Common_pitfalls.md#how-to-recognise-divergence).
 - Perform particle balance in depth using the `blnn_SPb.trc` tracing file, created using the `ank_tracing` switch in `b2mn.dat`. The goal is to verify that the particle imbalance (number of particles created or lost in the simulation region per second) is less than 1 % of the fuelling particle fluxes (gas puff and particles coming from the core). See Kateřina's [PhD thesis](../files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">download</span>, section 6.3 *Particle balance*.
@@ -445,7 +447,7 @@ Rich man's convergence criteria (thorough, but you have to implement them yourse
 - See other convergence criteria in section 4 of [[Wiesen 2015]](https://www.sciencedirect.com/science/article/pii/S0022311514006965?via%3Dihub)<span class="material-symbols-outlined">open_in_new</span>.
 
 /// note | What is the average time for a simulation to converge?
-It takes from minutes to years, depending on the simulation and how much ground it has to cover. In the best case, you have a small, sheath-limited machine with a 86*36 structured grid, simple boundary conditions, pure deuterium, no drifts, standalone B2.5, and you're tuning the diffusion coefficients in L-mode. In such a case, the simulation may converge within five minutes. In the worst case, you have a large, detached machine with a detailed Wide Grid, feedback boundary conditions, three different impurity species, drifts, EIRENE coupling, and you're converging from flat profiles. (Okay, you wouldn't use flat profiles as the initial solution in that case, but you get my point.) In such a case, the simulation may converge once you retire. Techniques to speed SOLPS-ITER up are covered in [Make SOLPS-ITER run faster](../supplementary/Common_pitfalls.md#make-solps-iter-run-faster).
+It takes from minutes to years, depending on the simulation and how much ground it has to cover. In the best case, you have a small, sheath-limited tokamak with a 86*36 structured grid, simple boundary conditions, pure deuterium, no drifts, standalone B2.5, and you're tuning the diffusion coefficients in L-mode. In such a case, the simulation may converge within five minutes. In the worst case, you have a large, detached tokamak with a detailed Wide Grid, feedback boundary conditions, three different impurity species, drifts, EIRENE coupling, and you're converging from flat profiles. (Okay, you wouldn't use flat profiles as the initial solution in that case, but you get my point.) In such a case, the simulation may converge after you retire. Techniques to speed SOLPS-ITER up are covered in [Make SOLPS-ITER run faster](../supplementary/Common_pitfalls.md#make-solps-iter-run-faster).
 ///
 
 

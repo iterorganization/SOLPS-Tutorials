@@ -84,7 +84,7 @@ eq = cudb(24300, 1.5, revision=20)  # scenario number, time in s, scenario versi
 This section is about magnetic reconstruction problems of the COMPASS tokamak. Reconstruction problems are, however, omnipresent, and their solutions are transferrable to other machines.
 ///
 
-Significant effort has gone into improving tokamak equilibrium reconstructions across the globe. As a SOLPS user, you are probably not an expert on reconstructing magnetic equilibria, but you may find yourself frustrated by the reconstructions you receive and looking for a better solution. This section describes, in brief, the equilibrium reconstruction situation for the now dead COMPASS tokamak.
+Significant effort has gone into improving tokamak equilibrium reconstructions across the globe. As a SOLPS user, you are probably not an expert on reconstructing magnetic equilibria, but you may find yourself frustrated by the reconstructions you receive and looking for a better solution. This section describes, in brief, the equilibrium reconstruction situation for the now disassembled COMPASS tokamak.
 
 ### Baseline equilibrium reconstruction
 

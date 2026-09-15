@@ -1,6 +1,6 @@
 # Processing SOLPS-ITER output
 
-Once you have a finished, hopefully converged SOLPS-ITER simulation, it is time to post-process its output and look at what you've got.
+Once you have a finished and hopefully converged SOLPS-ITER simulation, it is time to post-process its output and look at what you've got.
 
 **Built-in post-processing tools** (the list is not exhaustive):
 
@@ -10,7 +10,7 @@ Once you have a finished, hopefully converged SOLPS-ITER simulation, it is time 
 - Extracting the [EIRENE neutral energy spectrum](#eirene-neutral-spectrum)
 - [SOLPS GUI](https://static.iter.org/imas/assets/solps-iter/html/index.html)<span class="material-symbols-outlined">open_in_new</span> (Graphical User Interface)
 
-Documentation of built-in post-processing tools is fragmented, so I suspect all SOLPS users end up writing their own packages. Most of these are private and stuck at the stage "it works on one server, for one person, with one type of simulations". There are, however, shining beacons of hope.
+Documentation of built-in post-processing tools is fragmented, so many SOLPS users end up writing their own packages. Most of these are private and stuck at the stage "it works on one server, for one person, with one type of simulations". There are, however, shining beacons of hope.
 
 **User post-processing tools** (that we know of):
 
@@ -18,7 +18,7 @@ Documentation of built-in post-processing tools is fragmented, so I suspect all 
 - [Aurora](https://aurora-fusion.readthedocs.io/en/latest/tutorial.html#interfacing-with-solps-iter)<span class="material-symbols-outlined">open_in_new</span> - package focused on plasma radiation with side capability of loading SOLPS simulations
 - [Cherab](https://cherab.github.io/documentation/welcome.html)<span class="material-symbols-outlined">open_in_new</span> - package focused on tokamak spectrometry with side capability of loading SOLPS simulations
 - [ERO2.0](https://onlinelibrary.wiley.com/doi/pdf/10.1002/ctpp.201900149)<span class="material-symbols-outlined">open_in_new</span> - kinetic plasma impurity simulation code with side capability of loading SOLPS simulations
-- [EireneX](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation/EireneX.pdf?csf=1&web=1&e=xL8Bgo)<span class="material-symbols-outlined">open_in_new</span> - package for loading and processing EIRENE outputs, sadly unavailable on the author's [GitHub](https://github.com/nbb2)<span class="material-symbols-outlined">open_in_new</span>
+- [EireneX](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Manuals%20and%20Documentation/EireneX.pdf)<span class="material-symbols-outlined">open_in_new</span> - package for loading and processing EIRENE outputs, sadly unavailable on the author's [GitHub](https://github.com/nbb2)<span class="material-symbols-outlined">open_in_new</span>
  
 
 
@@ -54,11 +54,11 @@ If file size is a concern, you don't always need to copy over the entire SOLPS s
 
 ## B2plot
 
-B2plot is the go-to built-in tool for visualising SOLPS-ITER results. Over decades of refinement, it has become as buff as Arnold Schwarzenegger. It can do some really amazing things, provided you can figure out how. This sections gives a couple of tips.
+B2plot is the go-to built-in tool for visualising SOLPS-ITER results. It can do some really amazing things, provided you can figure out how. This sections gives a couple of tips.
 
 /// hint | More resources on `b2plot`
-- Questions and answers: [B2plot](../supplementary/Questions_and_answers.md#b2plot)
-- [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), appendix I *b2plot manual*.
+- Q&A: [B2plot](../supplementary/Questions_and_answers.md#b2plot)
+- [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), appendix I *b2plot manual*
 ///
 
 ### The basics
@@ -302,7 +302,7 @@ esurf
 
 **B2.5 and EIRENE computational grids**
 
-This one's tricky because `b2plot` is stupid about choosing mesh colours. As far as I can tell, the `mcol` command changes the colour of *both* the EIRENE grid (plotted by `trig` or `trigmesh`) and the B2.5 grid (plotted with `mesh`), so you can't plot them into one picture with different colours. My workaround is to plot the two grids into separate figures and overlay them in an external editor. (Or, you know... use [Quixote](https://ipar.gitlab.io/quixote/)<span class="material-symbols-outlined">open_in_new</span>.) The picture will look much better if you use the `b2plot.ps` file and a vector graphics editor (such as [Inkscape](https://inkscape.org/)<span class="material-symbols-outlined">open_in_new</span>) than if you convert the `b2plot.ps` file to a [bitmap](#saving-the-plot-results) and use a raster graphics editor (such as [GIMP](https://www.gimp.org/downloads/)<span class="material-symbols-outlined">open_in_new</span>).
+This one's tricky because I haven't been able to figure out choosing `b2plot` mesh colours. As far as I can tell, the `mcol` command changes the colour of *both* the EIRENE grid (plotted by `trig` or `trigmesh`) and the B2.5 grid (plotted with `mesh`), so you can't plot them into one picture with different colours. My workaround is to plot the two grids into separate figures and overlay them in an external editor. (Or, you know... use [Quixote](https://ipar.gitlab.io/quixote/)<span class="material-symbols-outlined">open_in_new</span>.) The picture will look much better if you use the `b2plot.ps` file and a vector graphics editor (such as [Inkscape](https://inkscape.org/)<span class="material-symbols-outlined">open_in_new</span>) than if you convert the `b2plot.ps` file to a [bitmap](#saving-the-plot-results) and use a raster graphics editor (such as [GIMP](https://www.gimp.org/downloads/)<span class="material-symbols-outlined">open_in_new</span>).
 
 ```tcsh
 # Global plot necessities: first picture

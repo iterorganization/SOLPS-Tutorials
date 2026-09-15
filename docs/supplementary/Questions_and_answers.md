@@ -32,7 +32,7 @@ See [Processing SOLPS-ITER output: B2plot](../my_first_simulation/Processing_SOL
 ///
 
 **Should I take the time to learn B2plot?**<br>
-Yes, unless you have a powerful in-house post-processing tool (such as [Quixote](https://ipar.gitlab.io/quixote/)<span class="material-symbols-outlined">open_in_new</span>) complete with a programmer ready to accommodate your needs. B2plot is useful for visualising results [while you're running a simulation](../my_first_simulation/Running_SOLPS-ITER.md#monitoring-a-solps-iter-run), its utility [`wlld`](../my_first_simulation/Processing_SOLPS-ITER_output.md#wlld) handily calculates target heat loads (though you can do that yourself if you [understand energy fluxes](../feature_blog/Energy_fluxes_deep_dive.md)), and it can perform [line-of-sight integration](../feature_blog/Interpretative_simulations_of_COMPASS.md#bolometry) (though you can do that with [Cherab](https://www.cherab.info/)<span class="material-symbols-outlined">open_in_new</span>). Just don't draw figures for articles with it. Seriously. Don't use DivGeo screenshots and B2plot pictures outside of internal presentations.
+Yes, unless you have a powerful in-house post-processing tool (such as [Quixote](https://ipar.gitlab.io/quixote/)<span class="material-symbols-outlined">open_in_new</span>) complete with a programmer ready to accommodate your needs. B2plot is useful for visualising results [while the simulation is a work in progress](../my_first_simulation/Running_SOLPS-ITER.md#monitoring-a-solps-iter-run), its utility [`wlld`](../my_first_simulation/Processing_SOLPS-ITER_output.md#wlld) handily calculates target heat loads (though you can do that yourself if you [understand energy fluxes](../feature_blog/Energy_fluxes_deep_dive.md)), and it can perform [line-of-sight integration](../feature_blog/Interpretative_simulations_of_COMPASS.md#bolometry) (though you can do that with [Cherab](https://www.cherab.info/)<span class="material-symbols-outlined">open_in_new</span>). Just don't draw figures for articles with it. Seriously. Don't use DivGeo screenshots and B2plot pictures outside of internal presentations.
 
 **The `b2plot` axes don't display properly. What do I do?**<br>
 ![](../img/bad_axes.png)
@@ -141,7 +141,9 @@ There are some built-in routines, such as [B2plot](../my_first_simulation/Proces
 It depends on the quantity. For fluxes, take the flux into the guard cell, for temperature and density take the last plasma cell. Plasma parameters inside guard cells are only useful for [two-point model formatting](https://iopscience.iop.org/article/10.1088/1361-6587/aaacf6)<span class="material-symbols-outlined">open_in_new</span>, but not while calculating e.g. momentum loss factors.
 
 **I added plot zones to an existing run, but they don't show up in the output of `echo "1111 wlld" | b2plot`.**<br>
-(Asked by Eric Emdee at the SOLPS Slack, and answered by Xavier Bonnin.) After declaring the plot zone in DivGeo, you have to `Output` the DivGeo file and re-run `Uinp`. But before you do re-run `Uinp`, you need to delete the existing files it had already created in your previous attempt. The `Uinp` screen output tells you that there are some files already found that it does not try to write again. The plot zones are, I believe, written out in `b2.neutrals.parameters` or `b2.user.parameters` (can't remember right now).
+(Asked by Eric Emdee at the SOLPS Slack, and answered by Xavier Bonnin.)
+
+> After declaring the plot zone in DivGeo, you have to `Output` the DivGeo file and re-run `Uinp`. But before you do re-run `Uinp`, you need to delete the existing files it had already created in your previous attempt. The `Uinp` screen output tells you that there are some files already found that it does not try to write again. The plot zones are, I believe, written out in `b2.neutrals.parameters` or `b2.user.parameters` (can't remember right now).
 
 **In `wlld` output, why is `Whtpl` some 30 % higher than (`fhe`+`fhi`)/`sx`?**<br>
 Because `fhe` and `fhi` aren't the only components of `Whtpl`. See the [Energy fluxes deep dive](../feature_blog/Energy_fluxes_deep_dive.md).
@@ -216,7 +218,7 @@ No, because SOLPS-ITER is inherently 2D. That means 3D effects (a single lithium
 
 ![img](../img/Radial_energy_flux_distribution.png)
 
-<center><i>Radial energy flux density distribution along SOL flux tubes. Two peaks are present near the separatrix: at the outer midplane ($s_\parallel$ = 1 m) and at the inner midplane ($s_\parallel$ = -6 m). COMPASS tokamak, SOLPS-ITER 3.0.8.</i></center>
+*Radial energy flux density distribution along SOL flux tubes. Two peaks are present near the separatrix: at the outer midplane ($s_\parallel$ = 1 m) and at the inner midplane ($s_\parallel$ = -6 m). COMPASS tokamak, SOLPS-ITER 3.0.8.*
 
 In SOLPS-ITER, the radial energy flux is governed (for the most part) by anomalous diffusion:
 
@@ -321,16 +323,3 @@ For instance, the beginning of the `b2.neutrals.parameters` file in a D+C simula
 
 It says there are 13 strata (`nstrai`): 10 associated with B2.5 grid boundaries (`W`, `E`, `S` and `N`), two volumetric sources (`V`) and one time-dependent source (`T`). The 10 boundary strata are, alternatively, deuterium (ion species 0-1) and carbon (ion species 2-8) neutral sources. The two volumetric particle sources also produce, respectively, neutral deuterium and carbon.
 
-
-**<a name="unicorn"></a>Why is the SOLPS wiki logo a supra-luminal unicorn?**
-
-We're so glad you asked!
-
-1. Comprehensive SOLPS-ITER documentation is as rare as unicorns.
-2. SOLPS-ITER is the workhorse of tokamak edge modelling.
-3. <s>We are gay</s> <s>We love phallic symbols</s> Rainbows are cool
-4. And finally, everyone's favourite error message since [3.0.9](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER_3.0.9_and_3.1.1_Release_Notes.pdf?csf=1&web=1&e=b7caKq)<span class="material-symbols-outlined">open_in_new</span>...
-
-        *** XERRAB: program will stop. ***
-        Supra-luminal velocities !
-        Call chain follows.

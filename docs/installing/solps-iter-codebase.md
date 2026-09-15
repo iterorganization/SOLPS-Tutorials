@@ -6,17 +6,17 @@ In this tutorial, you will learn:
 - [Where you should install SOLPS](#where-and-how-to-install-solps-iter)
 - [How to initiate the SOLPS work environment](#how-to-initiate-the-solps-iter-work-environment)
 - [How to update SOLPS](#how-to-update-solps-iter)
-- [The very basics of Git](#git-for-dummies)
+- [The very basics of Git](#introduction-to-git)
 
 /// tip | Official sources
-This tutorial overlaps heavily with section 1.1 *Obtaining and updating the code* of the [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) and the SOLPS-ITER repository [README](https://github.com/iterorganization/SOLPS-ITER/blob/master/README)<span class="material-symbols-outlined">open_in_new</span>.
+This tutorial overlaps with section 1.1 *Obtaining and updating the code* of the [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) and the SOLPS-ITER repository [README](https://github.com/iterorganization/SOLPS-ITER/blob/master/README)<span class="material-symbols-outlined">open_in_new</span>.
 ///
 
 ## Get access to SOLPS-ITER
 
-SOLPS-ITER is an open-source code developed by the ITER Organisation (IO) whose main responsible person is Xavier Bonnin. From spring 2026, its [source code](https://github.com/iterorganization/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span> is publicly available at GitHub. To get access to SOLPS-ITER:
+SOLPS-ITER is an open-source code developed by the ITER Organisation (IO) whose Responsible Officer (RO) is [Xavier Bonnin](https://www.researchgate.net/profile/X-Bonnin)<span class="material-symbols-outlined">open_in_new</span>. From spring 2026, its [source code](https://github.com/iterorganization/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span> is publicly available at GitHub. To get access to SOLPS-ITER:
 
-1. Write to Xavier Bonnin (<span class="material-symbols-outlined">mail</span> [xavier.bonnin@iter.org](mailto:xavier.bonnin@iter.org)) that you would like to use SOLPS-ITER. You will be added to the SOLPS mailing list (<span class="material-symbols-outlined">mail</span> [solps-iter@iter.org](mailto:solps-iter@iter.org)) and the SOLPS-ITER [Slack group](http://solps.slack.com/)<span class="material-symbols-outlined">open_in_new</span>. Believe me, you need the SOLPS community to use SOLPS-ITER.
+1. Write to Xavier Bonnin (<span class="material-symbols-outlined">mail</span> [xavier.bonnin@iter.org](mailto:xavier.bonnin@iter.org)) that you would like to use SOLPS-ITER. You will be added to the SOLPS mailing list (<span class="material-symbols-outlined">mail</span> [solps-iter@iter.org](mailto:solps-iter@iter.org)) and the SOLPS-ITER [Slack group](http://solps.slack.com/)<span class="material-symbols-outlined">open_in_new</span>.
 
 2. Check if your institution is [affiliated to EIRENE](https://eirene.de/cgi-bin/eirene/write_temp.cgi?temp_dat=Licence/licence)<span class="material-symbols-outlined">open_in_new</span> and register on the EIRENE website to be licensed to use EIRENE, the Monte Carlo neutrals solver of SOLPS-ITER.
 
@@ -36,19 +36,19 @@ SOLPS-ITER is an open-source code developed by the ITER Organisation (IO) whose 
 
     Finally, "star" the [SOLPS-ITER GitHub package](https://github.com/iterorganization/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span> by clicking the `Star` button on the top right. This will show the developers one more person cares, and you'll find the source code easier in the future.
 
-Congrats, you have the *source code* - mostly text files written in Fortran. To actually run SOLPS-ITER, you must first *compile* the source code, including all of SOLPS dependencies.
+Congratulations, you have the *source code* - mostly text files written in Fortran. To actually run SOLPS-ITER, you must first *compile* the source code, including all of SOLPS dependencies.
 
 /// tip | Tip
-Before you go on, check out our [Useful links](../supplementary/SOLPS-ITER_user_wisdom.md#useful-links) and browse the [SOLPS-ITER Confluence page](https://confluence.iter.org/spaces/IMP/pages/178135134/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span>, just so you know they exist.
+Before you go on, skim the [Useful links](../supplementary/SOLPS-ITER_user_wisdom.md#useful-links) and browse the [SOLPS-ITER Confluence page](https://confluence.iter.org/spaces/IMP/pages/178135134/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span>, just so you know they exist.
 ///
 
 
 ## Where and how to install SOLPS-ITER
 
-The SOLPS-ITER code has a convoluted list of dependencies, which makes it much too complicated for a common mortal to install. We recommend one of two options:
+The SOLPS-ITER code has a convoluted list of dependencies, which makes it complicated to install. We recommend one of two options:
 
-1. Install SOLPS-ITER at a [properly configured site](#properly-configured-site) (EUROfusion Gateway, ITER computing clusters, see the list in section 1.3 *Initial set-up* of the [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm)).
-2. Use a [container installation](installing-in-container.md), which you can run anywhere.
+1. Install SOLPS-ITER at a [properly configured site](#properly-configured-site) (EUROfusion Gateway, ITER computing clusters etc; see the list in section 1.3 *Initial set-up* of the [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm)).
+2. Use a [container installation](installing-in-container.md), which can be run anywhere.
 
 
 ### Properly configured site
@@ -87,23 +87,23 @@ A *properly configured site* is an HPC (High-Performance Computing) server where
     ...you have not correctly set up [SSH key authentication](#get-access-to-solps-iter).
     ///
 
-    /// danger | EUROfusion Gateway
-    Do not install SOLPS-ITER into your home folder but into `/pfs/work/$USER/`.
+    /// note | The SOLPS-ITER installation directory matters
+    At many servers, installing SOLPS-ITER into the `home` folder is not advisable. Computing clusters typically have a "slow memory" (`home`) which stores useful data and is backed up regularly, and a "fast memory" (`pfs`, `scratch`...) which serves for quick access to intermediate results during computation. If you install SOLPS-ITER into the "slow memory", your simulation will be slow and your IT department will be angry. Ask IT support or your colleagues for advice where best to install SOLPS-ITER.
     ///
 
-3. Enter the newly cloned `solps-iter` repository and select your code version/branch. Available branches are listed on the [SOLPS-ITER GitHub wiki](https://github.com/iterorganization/SOLPS-ITER/wiki)<span class="material-symbols-outlined">open_in_new</span>. If you don't know what these mean, use the `master` branch.
+3. Enter the newly cloned `solps-iter` repository and select your code version/branch. Available branches are listed on the [SOLPS-ITER GitHub wiki](https://github.com/iterorganization/SOLPS-ITER/wiki)<span class="material-symbols-outlined">open_in_new</span>. In case of doubt, use the `master` branch.
  
         cd solps-iter
         git checkout master  # master, develop, release/3.1.1 etc.
 
-4. Initialize and update everything.
+4. Initialise and update everything.
 
         git pull
         git submodule update --init
 
 
     /// warning | Do not check out individual submodules
-    At this point, the [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) instructs to check out individual submodules:
+    The [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) instructs to check out individual submodules:
     ```bash
     git checkout master
     cd modules/B2.5
@@ -126,7 +126,7 @@ A *properly configured site* is an HPC (High-Performance Computing) server where
         source setup.csh
 
     /// warning | Optional: first setup
-    At this point, the [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) instructs to run the command:
+    The [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) instructs to run the command:
     ```
     first_setup
     ```
@@ -140,7 +140,7 @@ A *properly configured site* is an HPC (High-Performance Computing) server where
         gmake solps
         gmake solps_mpi
 
-If everything ends without errors, congratulations, you have installed SOLPS-ITER.
+If everything ends without errors, congratulations, you have installed SOLPS-ITER!
 
 
 
@@ -166,7 +166,7 @@ The SOLPS wiki offers three installation guides in addition to [installing on a 
 - Requires application for a 9-month project
 - Servers are often upgraded, which may break things, but a container installation is resistant to this
 
-**Compiling SOLPS elsewhere**: Discouraged for beginners. If you absolutely must do it, get in touch with someone experienced (<span class="material-symbols-outlined">mail</span> [Jan Hečko](mailto:hecko@ipp.cas.cz), <span class="material-symbols-outlined">mail</span> [Xavier Bonnin](mailto:xavier.bonnin@iter.org), your local SOLPS guru). Look for the `SETUP/easybuild-local.sh` script in the SOLPS-ITER repository, which is currently the recommended tool for the job. It should install all the dependencies for you in the form of environmental modules. As for its documentation, there are comments in the script and there are a few words written about it in the [SOLPS-ITER GUI documentation](https://static.iter.org/imas/assets/solps-iter/html/howto/install.html#solps-iter-installation)<span class="material-symbols-outlined">open_in_new</span>.
+**Compiling SOLPS elsewhere**: Discouraged for beginners. You can spend a lot of time installing SOLPS-ITER when you wanted to perform simulations of the edge plasma. If you absolutely must do it, get in touch with someone experienced (<span class="material-symbols-outlined">mail</span> [Jan Hečko](mailto:hecko@ipp.cas.cz), <span class="material-symbols-outlined">mail</span> [Xavier Bonnin](mailto:xavier.bonnin@iter.org), your local SOLPS guru). Look for the `SETUP/easybuild-local.sh` script in the SOLPS-ITER repository, which is currently the recommended tool for the job. It should install all the dependencies for you in the form of environmental modules. As for its documentation, there are comments in the script and there are a few words written about it in the [SOLPS-ITER GUI documentation](https://static.iter.org/imas/assets/solps-iter/html/howto/install.html#solps-iter-installation)<span class="material-symbols-outlined">open_in_new</span>.
 
 
 
@@ -230,27 +230,23 @@ SOLPS-ITER is a living code which constantly receives tweaks and bug fixes, as e
 
 There are two ways to update the code, a simple one and a manual one. They both begin with [initiating the SOLPS work environment](#how-to-initiate-the-solps-iter-work-environment).
 
-### Simple, no-brainer version
+### Simple version
 
 > This is only available for `master` or `develop` branches.
 
-Depending on whether you want to use the `master` or `develop` branch, write the command
-
+Depending on whether you want to use the `master` or `develop` branch, [initiate the SOLPS work environment](#how-to-initiate-the-solps-iter-work-environment) and use the command
 ```
 solps-iter_update
 ```
-
 or
-
 ```
 solps-iter_update_develop
 ```
-
 and wait approx. 30 minutes. This will take care of everything, including the compilation of the newest version of the [SOLPS-ITER manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) (in `$SOLPSTOP/docs/solps/solps.pdf`). If you don't know the difference between the `master` and the `develop` branch, use the `master` branch. It is more stable, meaning it should not ever be in a broken/buggy state, and it is updated about twice a year (as of January 2026). The `develop` branch is updated more frequently, but it's usually still quite reliable.
 
 ### Advanced, high-control version
 
-> These steps are derived from the installation steps of the [properly configured site](#properly-configured-site) described above. If you want to understand what's going on here, check out [Git for dummies](#git-for-dummies).
+> These steps are derived from the installation steps of the [properly configured site](#properly-configured-site) described above. If you want to understand what's going on here, check out the [introduction to Git](#introduction-to-git).
 
 1. Check whether you have modified any source code files in the SOLPS-ITER folder and not committed them.
 
@@ -294,9 +290,9 @@ and wait approx. 30 minutes. This will take care of everything, including the co
     The complete list of available compilation targets is available by running `gmake help`.
 
 
-## Git for dummies
+## Introduction to Git
 
-If you have no idea what Git is or you were intimidated the last time you tried to find out, these are the necessary basics.
+If you don't know what Git is, these are the necessary basics.
 
 Simply put, [Git](https://git-scm.com/)<span class="material-symbols-outlined">open_in_new</span> is a version-tracking system which allows multiple users to collaborate on a single project without getting in each other's way. It is immensely complex, best used from the command line, dauntingly inscrutable at first and delightfully rewarding once you master it. The SOLPS-ITER code is developed using Git.
 
@@ -314,7 +310,7 @@ As time goes on, your local copy of SOLPS-ITER will grow outdated. Updates to th
 If something isn't working in SOLPS and you try to submit a bug report or ask about it on the [SOLPS Slack](http://solps.slack.com/)<span class="material-symbols-outlined">open_in_new</span>, the first reply will be: "Are you using the current `master` version?"
 /// 
 
-To check whether an update is available, go to your SOLPS-ITER installation directory (`$SOLPSTOP`) and run:
+To check whether an update is available, open a command line, go to your SOLPS-ITER installation directory (`$SOLPSTOP`) and run:
 
 ```
 git fetch

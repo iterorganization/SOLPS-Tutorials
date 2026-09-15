@@ -1,4 +1,4 @@
-site_name: 'SOLPS Tutorials'
+site_name: 'SOLPS wiki'
 site_url: https://solps.pages.tok.ipp.cas.cz/solps-doc/
 site_dir: public
 theme:
@@ -29,7 +29,6 @@ extra_css:
   - css/overrides.css
 nav:
   - index.md
-  - Contribute.md
   - My first SOLPS-ITER simulation:
       - 'Installing SOLPS-ITER':
           - installing/solps-iter-codebase.md
