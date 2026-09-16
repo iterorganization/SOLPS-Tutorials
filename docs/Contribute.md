@@ -8,7 +8,7 @@ To clone the [`SOLPS-Tutorials` repository](https://github.com/iterorganization/
     git clone git@github.com:iterorganization/SOLPS-Tutorials.git
 
 /// hint | Basic Git knowledge is required
-Learn more in [Git for dummies](installing/solps-iter-codebase.md#git-for-dummies),
+Learn more in [Introduction to Git](installing/solps-iter-codebase.md#introduction-to-git),
 [Git workflow for dummies](https://docs.google.com/presentation/d/1wFOoQAADQA7c4HcRa3vST2iAq2a4faZs461T9hgz9Ek/edit?slide=id.p#slide=id.p)<span class="material-symbols-outlined">open_in_new</span>,
 [CodeRefinery Git intro](https://coderefinery.github.io/git-intro/)<span class="material-symbols-outlined">open_in_new</span> or
 [Contributing to Django](https://docs.djangoproject.com/en/dev/internals/contributing/)<span class="material-symbols-outlined">open_in_new</span>.

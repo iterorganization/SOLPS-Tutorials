@@ -12,7 +12,7 @@ The SOLPS Tutorials [webpage](https://solps-tutorials.readthedocs.io/) is compil
 
 ![SOLPS Tutorials logo](img/logo/logo.png)
 
-*SOLPS Tutorials logo: a supra-luminal unicorn ([why?](supplementary/Questions_and_answers.md#unicorn))*
+*SOLPS Tutorials logo: a supra-luminal unicorn ([why?](supplementary/SOLPS-ITER_user_wisdom.md#unicorn))*
 
 
 ## Navigating the tutorials
