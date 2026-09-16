@@ -43,7 +43,7 @@ V_\perp^{(dia)} = -\frac{1}{enB} \frac{1}{h_y} \frac{\partial (nT_i)}{\partial y
 V_y^{(dia)} = \frac{B_z}{enB^2} \frac{1}{h_x} \frac{\partial (nT_i)}{\partial x}.
 $$
 
-This term is stupid when you put it inside a divergence, because first you differentiate the ion pressure $nT_i$ and then you have to differentiate it *again*. This causes numerical instabilities. Luckily, as [[Bufferand, 2016]](https://www.sciencedirect.com/science/article/pii/S2352179116301946)<span class="material-symbols-outlined">open_in_new</span> explains in formulas (11) and (12), the diamagnetic flux can be decomposed into two components: the so-called magnetization flux and the grad-B drift of the ion guiding centres. The magnetization flux divergence is, by definition, zero, and the second term in grad-B drift is usually negligible. This means that *inside the divergence*, the diamagnetic drift can be replaced by a part of the **grad-B drift**:
+This term is problematic when you put it inside a divergence, because first you differentiate the ion pressure $nT_i$ and then you have to differentiate it *again*. This causes numerical instabilities. Luckily, as [[Bufferand, 2016]](https://www.sciencedirect.com/science/article/pii/S2352179116301946)<span class="material-symbols-outlined">open_in_new</span> explains in formulas (11) and (12), the diamagnetic flux can be decomposed into two components: the so-called magnetization flux and the grad-B drift of the ion guiding centres. The magnetization flux divergence is, by definition, zero, and the second term in grad-B drift is usually negligible. This means that *inside the divergence*, the diamagnetic drift can be replaced by a part of the **grad-B drift**:
 
 $$
 \tilde{V}_\perp^{(dia)} = \frac{T_iB_z}{eb_z} \frac{1}{h_y} \frac{\partial}{\partial y} \left( \frac{1}{B^2} \right)
@@ -55,13 +55,13 @@ $$
 
 This is great news! The magnetic field $B$ derivatives don't change between time steps because SOLPS-ITER is an electrostatic code, so you can just carefully precalculate them and get rid of the double differentiation. Or so they thought... until they tried modelling H-mode.
 
-In formulas (7-9), [[Rozhansky, 2009]](https://iopscience.iop.org/article/10.1088/0029-5515/49/2/025007)<span class="material-symbols-outlined">open_in_new</span> describes the final transformation. It uses physics of the magnetic equilibrium. In a tokamak, the grad-B drift is vertical and of opposite direction for electrons and ions, so it causes vertical charge separation. The resulting electric field drives electric currents along the magnetic field lines. These are the **Pfirsch-Schlütter currents**, and their divergence is the same (taken negatively) as the divergence of the grad-B drift.
+In formulas (7-9), [[Rozhansky, 2009]](https://iopscience.iop.org/article/10.1088/0029-5515/49/2/025007)<span class="material-symbols-outlined">open_in_new</span> describes the final transformation which was needed to facilitate drift simulations. It uses physics of the magnetic equilibrium. In a tokamak, the grad-B drift is vertical and of opposite direction for electrons and ions, so it causes vertical charge separation. The resulting electric field drives electric currents along the magnetic field lines. These are the **Pfirsch-Schlütter currents**, and their divergence is the same (taken negatively) as the divergence of the grad-B drift.
 
 $\nabla( \textbf{j}_{grad-B} + \textbf{j}_{PS}) = 0$
 
-Replacing the grad-B drift with Pfirsch-Schlütter currents inside divergences improves convergence further. This is why you'll encounter terms with "PSch" labels in the B2.5 equations, and why there are tildes ($\tilde{\Gamma}$) all over the place.
+Replacing the grad-B drift with Pfirsch-Schlütter currents inside divergences improves convergence further. This is why you'll encounter terms with "PSch" labels in the B2.5 equations, and why there are tildes ($\tilde{\Gamma}$) all over the place. The more tildes, the more numerical tricks have been applied to a quantity.
 
-Agonisingly, the physical nature of these three phenomena is all different. Diamagnetic flows are cross-field and fluid, the grad-B drift is cross-field and for the guiding centre, and P-Sch currents are parallel. If you calculate them on their own, their magnitude and direction is all different. The only thing they have in common is that their *divergence* is the same. So, keep in mind: inside divergences, diamagnetic, grad-B and Pfirsch-Schlütter are interchangeable, but if you're calculating real particle fluxes (like for energy convection), you have to use the entire diamagnetic drift formula.
+Agonisingly, the physical nature of these three phenomena is all different. Diamagnetic flows are cross-field and fluid, the grad-B drift is cross-field and for the guiding centre, and Pfirsch-Schlütter currents are parallel. If you calculate them on their own, their magnitude and direction is all different. The only thing they have in common is that their *divergence* is the same (save for the sign). So, keep in mind: inside divergences, diamagnetic, grad-B and Pfirsch-Schlütter are interchangeable, but if you're calculating real particle fluxes (like for energy convection), you have to use the entire diamagnetic drift formula.
 
 
 
@@ -117,7 +117,7 @@ It's hard to say what are sensible values (1.5, 1.1, 1.0001) for any of the ramp
 
 ## Modify boundary conditions in `b2.boundary.parameters`
 
-This is the most complicated step, but at the same time, it might not be important to make the simulation stable (Honza's conjecture). It is, however, important for the simulation to be physically correct. Most of the information here is based on the documentation of the boundary conditions and on the official example `ITER_2588_Donly_standalone_drifts` from the `solps-iter/examples` directory. Refer to that example for more details. See the [B2.5 switches](/solps-doc/extras/b2input) for a documentation on the boundary conditions. The main idea is:
+This is the most complicated step, but at the same time, it might not be important to make the simulation stable (Honza's conjecture). It is, at any rate, important for the simulation to be physically correct. Most of the information here is based on the documentation of the boundary conditions and on the official example `ITER_2588_Donly_standalone_drifts` from the `solps-iter/examples` directory. Refer to that example for more details. See the [B2.5 switches](/solps-doc/extras/b2input) for a documentation on the boundary conditions. The main idea is:
 
 - There are special versions of the sheath boundary conditions that are modified to properly account for drifts.
 - It is advisable to use leakage conditions instead of decay lengths for the radial boundaries. But I'm not sure if that is important for drifts or just a good idea in general.

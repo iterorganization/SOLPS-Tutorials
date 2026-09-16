@@ -20,7 +20,7 @@ This feature blog entry covers:
 **Do you really need impurities?** Each ionisation state of the added impurity becomes an ion species to keep track of, increasing output file size, simulation complexity and runtime. Think carefully if you need the impurity.
 
 /// hint | Example impurity: tungsten
-Tungsten is a key impurity in core physics. Even a small concentration can kill a fusion reactor by decreasing the energy confinement time. The source of tungsten in tokamaks is sputtering from the walls, so one would think modelling tungsten with SOLPS-ITER is key. Not so. Tungsten concentrations in the SOL are typically so small that they don't affect the plasma solution. Tungsten has 75 charge states including neutrals, so it's quite impossible to model in SOLPS without charge bundling. And finally, tungsten concentrations/densities are so small in tokamaks that it's in the kinetic regime rather than highly collisional, so Braginskii equations are terrible at describing its transport. You are much better off describing tungsten sputtering and transport with a dedicated kinetic code such as ERO2.0. SOLPS-ITER can provide ERO with the background plasma, which does not contain tungsten, and ERO can provide SOLPS with the power radiated by tungsten in the core, which translates into decreased power crossing the separatrix $P_{sep}$.
+Tungsten is a key impurity in core physics. Even a small concentration can kill a fusion reactor by decreasing the energy confinement time. The source of tungsten in tokamaks is sputtering from the walls, so one would think modelling tungsten with SOLPS-ITER is key. Not so. Tungsten concentrations in the SOL are typically so small that they don't affect the plasma solution. Tungsten has 75 charge states including neutrals, so it's quite impossible to model in SOLPS without charge bundling. And finally, tungsten concentrations/densities are so small in tokamaks that it's in the kinetic regime rather than highly collisional, so Braginskii equations are inadequate at describing its transport. You are much better off describing tungsten sputtering and transport with a dedicated kinetic code such as ERO2.0. SOLPS-ITER can provide ERO with the background plasma, which does not contain tungsten, and ERO can provide SOLPS with the power radiated by tungsten in the core, which translates into decreased power crossing the separatrix $P_{sep}$.
 ///
 
 **Baby steps.** SOLPS-ITER works better (and faster) if the simulation complexity is increased gradually. Even when you're aiming to make a simulation with impurities from the start, begin by building a pure-D simulation. Let it converge, implement self-consistent particle balance using [gas puffing and pumping](Gas_puffing_and_pumping.md), let it converge, and only then add impurities. You'll save runtime and headache with divergence.
@@ -31,7 +31,7 @@ You can use the initial plasma solution `b2fstati` without an impurity (but othe
 
 
 /// hint | More resources
-- [SOLPS Conversion Tutorial](https://iterorganization.sharepoint.com/:w:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation/SOLPS_Conversion_tutorial.docx?d=wef2a123c427245728cf76c7b4a0b3542&csf=1&web=1&e=a7aEwQ)<span class="material-symbols-outlined">open_in_new</span>, section *Adding new species to a SOLPS-ITER run*
+- [SOLPS Conversion Tutorial](https://iterorganization.sharepoint.com/:w:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2017_Bonnin_Conversion_tutorial.docx?d=w665bc959a164494eacab09fe6b4fb948&csf=1&web=1&e=CU7cNc)<span class="material-symbols-outlined">open_in_new</span>, section *Adding new species to a SOLPS-ITER run*
 ///
 
 
@@ -89,7 +89,7 @@ Import the grids into your DivGeo file and check that they look ok. They don't n
 /// warning | Use the `stencil` boundary conditions files
 Copy over the `stencil` files generated in the `baserun` rather than boundary condition files from your old, carbon-less simulation. The number of ion species is different, and though checking the text files line by line is a drag, typing in all the new ion species is even a bigger drag.
 
-If you're using the `2*0.3` notation in `b2.transport.parameters` (see Questions and answers: [I copied `b2.transport.parameters` from the manual...](../supplementary/Questions_and_answers.md#transport-parameters-12s)), change the number before `*` accordingly. We're adding carbon here, which is 7 extra species (C<sup>0</sup>, C<sup>1+</sup>, ..., C<sup>6+</sup>), so `2` goes to `9`.
+If you're using the `2*0.3` notation in `b2.transport.parameters` (see Q&A: [I copied `b2.transport.parameters` from the manual...](../supplementary/Questions_and_answers.md#transport-parameters-12s)), change the number before `*` accordingly. We're adding carbon here, which is 7 extra species (C<sup>0</sup>, C<sup>1+</sup>, ..., C<sup>6+</sup>), so `2` goes to `9`.
 ///
 
 Make a dry run of SOLPS-ITER to check that everything is working. If no errors (especially regarding boundary condition files) appear, you're good to go and regulate the sputtering source.

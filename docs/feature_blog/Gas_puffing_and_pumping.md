@@ -343,7 +343,8 @@ Assuming a gas puff for the standalone case is implemented (see the previous sec
 At low plasma densities, enabling density control using gas puff feedback can lead to oscillations in the plasma solution:
 
 ![Sustained oscillations](../img/feedback_sustained_oscillations.png)
-<p align="center"><i>Sustained oscillations of the separatrix electron density, centered around the desired value.</i></p>
+
+<center><i>Sustained oscillations of the separatrix electron density, centered around the desired value.</i></center>
 
 This section discusses how such oscillations come to be and how to control them.
 
@@ -366,7 +367,7 @@ The exact mechanism of the non-linearity which causes this behaviour is not expl
 **How oscillatory plasma solutions look and behave**: After running a case with density control via gas puff intensity feedback, this is what you want to see (requested $n_{e,sep}=2 \times 10^{19}$ m<sup>-3</sup>):
 
 ![Damped oscillations](../img/feedback_damped_oscillations.png)
-<p align="center"><i>Nice and damped oscillations, converging toward the desired value .</i></p>
+<center><i>Nice and damped oscillations, converging toward the desired value.</i></center>
 
 The sustained oscillations shown in the beginning of this section are what you do not want to see (requested $n_{e,sep}=1.3 \times 10^{19}$ m<sup>-3</sup>).
 
@@ -381,6 +382,7 @@ Lower $\alpha$ increases the oscillations magnitude and decreases the period. At
 **How to force an oscillating solution to converge?** Start from a high-density plasma solution. Simple as that. Props to Haosheng Wu, who mentioned this solution at the SOLPS Slack (channel `q_and_a`, April 2024). Set the desired $n_{e,sep}$ to a high value, let the simulation converge, then decrease $n_{e,sep}$ step-wise.
 
 ![Feedback adjustment](../img/feedback_adjustment.png)
+
 *Three consequent simulations, gradually decreasing requested separatrix electron density. At 2.2 ms, $\alpha$ was increased from 0.1 to 1.0 to prompt faster convergence.*
 
 I am not sure how (or if) this trick gets around the non-linearity described by Kukushkin and Krasheninnikov. On occasion, relaunching a converged low-density simulation with different parameters renews the oscillations. In the worst case, always start from a high-density case.

@@ -12,17 +12,16 @@ In her [PhD thesis](../files/Hromasova_PhD_thesis.pdf)<span class="material-symb
 
 The trick to interpretative modelling is to spend a lot of time picking the right experiment and the right way to process diagnostic data. All of this is done **before** you ever start building a simulation. This tutorial covers:
 
-- Finding a discharge with the right physics
-- Finding all the available diagnostics
-- Checking if diagnostic data are good
-- Procuring a good magnetic equilibrium reconstruction
-- Matching experiment and simulation results
+- [Finding a discharge with the right physics](#find-a-discharge-with-the-right-physics)
+- [Compiling all the available diagnostics](#compile-all-available-diagnostics)
+- [Checking if diagnostic data are good](#assess-experimental-data-quality)
+- [Procuring a good magnetic equilibrium reconstruction](#procure-a-good-equilibrium-reconstruction)
+- [Matching experiment and simulation results](#match-experiment-and-simulation-results)
 
 /// hint | Resources on SOLPS simulations of COMPASS
 - [Kateřina's PhD thesis](../files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">download</span> (2025)
 - M. Komm, [Modelling of plasma interaction with castellated surfaces in fusion devices](../files/Komm_MSc_thesis.pdf)<span class="material-symbols-outlined">download</span>, chapter 5 *Fluid modeling* (2009)
 - [Interchange-turbulence-based radial transport model for SOLPS-ITER: A COMPASS case study](https://onlinelibrary.wiley.com/doi/abs/10.1002/ctpp.201900155)<span class="material-symbols-outlined">open_in_new</span>, Contributions to Plasma Physics (2020)
-- [Kateřina's PhD thesis study](../files/Katkas_PhD_thesis_study.pdf)<span class="material-symbols-outlined">download</span>, chapter 3 *Interpretative modelling results* (2021)
 - K. Hromasová, [SOLPS-ITER simulations of the COMPASS tokamak](https://info.fusion.ciemat.es/OCS/EPS2021PAP/pdf/P5.1028.pdf)<span class="material-symbols-outlined">open_in_new</span>, Proceedings of the 47th EPS conference on plasma physics (2021)
 - S. Carli, [Bayesian maximum a posteriori-estimation of κ turbulence model parameters using algorithmic differentiation in SOLPS-ITER](https://onlinelibrary.wiley.com/doi/abs/10.1002/ctpp.202100184)<span class="material-symbols-outlined">open_in_new</span>, Contributions to Plasma Physics (2021)
 - K. Hromasová, [Sensitivity of COMPASS tokamak SOLPS-ITER simulations to electron and ion heat flux limiters](https://lac913.epfl.ch/epsppd3/2023/html/Tu/Tu_MCF36_Hromasova.pdf)<span class="material-symbols-outlined">open_in_new</span>, Proceedings of the 49th EPS conference on plasma physics (2023)
@@ -83,7 +82,7 @@ A list of COMPASS diagnostics relevant to SOLPS-ITER modelling is compiled in th
 - **Thomson scattering** diagnostic (electron temperature $T_e$, electron density $n_e$) - `Te`, `ne` and their stray-light-corrected variants
 - Combined ("new") **divertor probe array** (plasma potential $\Phi$, ion saturation current $I_{sat}$ and electron temperature $T_e$) - `DIVBPP01`-`DIVBPP55`, `DIVLPA01`-`DIVLPA54` and `DIVLPB01`-`DIVLPB54`
 - **Infrared camera** (divertor heat flux $q_\parallel$) - `FIRCAM_heat_flux`
-- AXUV diode (bolometer) array (line-averaged radiated power $P_{rad}$) - `Prad` and many signals starting `AXUV`
+- AXUV diode (**bolometer**) array (line-averaged radiated power $P_{rad}$) - `Prad` and many signals starting `AXUV`
 - Horizontal **reciprocating probe** (plasma potential $\Phi$, ion saturation current $I_{sat}$ and electron temperature $T_e$) - `rcp_position_horizontal` and an array of signals depending on the probe head, such as `BPP1_floating` or `LP2_Isat_current`
 
 ![](../img/diagnostics_poloidal.png)
@@ -157,7 +156,7 @@ COMPASS had two divertor probe arrays:
 - The ["old" divertor probe array](https://wiki.tok.ipp.cas.cz/index.php/Divertor_probes)<span class="material-symbols-outlined">open_in_new</span>:  consisted of 39 Langmuir probes and was usually swept to measure the I-V characteristic (swept probe array)
 - The ["new" divertor probe array](https://iopscience.iop.org/article/10.1088/1741-4326/aa7e09)<span class="material-symbols-outlined">open_in_new</span>: consisted of three rows of ball-pen probes, floating Langmuir probes and Langmuir probes in the $I_{sat}$ regime (combined probe array)
 
-The swept array yielded $T_e$ consistently lower than the combined array, and it was a long-standing point of contention which one was actually right. [[Komm 2019]](https://iopscience.iop.org/article/10.1088/1741-4326/ac8011/meta)<span class="material-symbols-outlined">open_in_new</span> concludes the sweeping voltage extent was insufficient and that the combined array correlates better with upstream temperatures. In her [PhD thesis](../files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">open_in_new</span>, Kateřina used both arrays to get a better idea of the uncertainty. Most COMPASS experimentalists agree that the combined probe array is more trustworthy, but its responsible person is more obnoxious.
+The swept array yielded $T_e$ consistently lower than the combined array, and it was a long-standing point of contention which one was actually right. [[Komm 2019]](https://iopscience.iop.org/article/10.1088/1741-4326/ac8011/meta)<span class="material-symbols-outlined">open_in_new</span> concludes the sweeping voltage extent was insufficient and that the combined array correlates better with upstream temperatures. In her [PhD thesis](../files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">open_in_new</span>, Kateřina used both arrays to get a better idea of the uncertainty. Most COMPASS experimentalists agree that the combined probe array is more trustworthy.
 ///
 
 
@@ -199,7 +198,7 @@ Consult Martin Imríšek (<span class="material-symbols-outlined">mail</span> [i
 
 ## Procure a good equilibrium reconstruction
 
-As discussed at length in the [Magnetic equilibrium reconstructions](../feature_blog/Magnetic_equilibrium_reconstructions.md) tutorial, the magnetic equilibrium reconstructions performed by EFIT++ at COMPASS were inaccurate by 1-2 cm when it came to the separatrix position. Unfortunately, accurate separatrix position is absolutely crucial for interpretative SOLPS-ITER modelling. If EFIT misplaces the upstream separatrix by 2 cm, you won't match the Thomson scattering profiles with realistic boundary conditions and diffusion coefficients for the love of God. There are two solutions:
+As discussed at length in the [Magnetic equilibrium reconstructions](../feature_blog/Magnetic_equilibrium_reconstructions.md) feature blog entry, the magnetic equilibrium reconstructions performed by EFIT++ at COMPASS were inaccurate by 1-2 cm when it came to the separatrix position. Unfortunately, accurate separatrix position is absolutely crucial for interpretative SOLPS-ITER modelling. If EFIT misplaces the upstream separatrix by 2 cm, you won't match the Thomson scattering profiles with realistic boundary conditions and diffusion coefficients for the love of God. There are two solutions:
 
 - **Ad hoc separatrix corrections**. As argued in Kateřina's [PhD thesis](../files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">download</span> and in [[Švorc 2026 preprint](../files/Svorc_2026_preprint.pdf)<span class="material-symbols-outlined">download</span>], one can get away with mutually shifting upstream experimental and simulated profiles until a match is achieved. The main argument is that there is a trade-off between separatrix $n_{e,sep}$ and $T_{e,sep}$ (at fixed input power), and getting it wrong means matching target profiles is hopeless. The target acts as a canary in the mine: if target plasma parameters are matched, the entire simulation is working.
 - **A better equilibrium reconstruction**. This is, obviously, the superior solution. Equilibrium reconstructions [can be improved](../feature_blog/Magnetic_equilibrium_reconstructions.md#improved-equilibrium-reconstructions) in a number of ways: better magnetics input, realistic pressure profile, a different reconstruction algorithm... You can even use a simple SOLPS simulation to pinpoint the separatrix, feed it as constraint to the equilibrium reconstruction, and do your proper simulation on top of a new and better reconstruction.

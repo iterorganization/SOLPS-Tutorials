@@ -20,15 +20,15 @@ Fortunately, the new **3.2.0 SOLPS-ITER branch**, also known as the **Wide Grids
 
 ![Structured grid](../img/grid_structured.png)
 
-<center><i>Normal, structured B2.5 grid.</i> [[KU Leuven 2023]](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/20230815_carre2_presentation.pdf?csf=1&web=1&e=crfTNv)<span class="material-symbols-outlined">open_in_new</span></center>
+*Normal, structured B2.5 grid.</i> [[KU Leuven 2023]](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2024_Dekeyser_-_Extended_grids_in_SOLPS-ITER_workflow_for_case_build-up.pdf?d=w8b77074423924ac5a54225a2a7ec9321&csf=1&web=1&e=l1zqHp)<span class="material-symbols-outlined">open_in_new</span>*
 
 ![Unstructured grid, target mode](../img/grid_unstructured_target_mode.png)
 
-<center><i>Unstructured (wide) B2.5 grid, <b>target mode</b>. The grid extent is unchanged, but target cells are no longer aligned to the target, improving orthogonality.</i> [[KU Leuven 2023]](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/20230815_carre2_presentation.pdf?csf=1&web=1&e=crfTNv)<span class="material-symbols-outlined">open_in_new</span></center>
+*Unstructured (wide) B2.5 grid, <b>target mode</b>. The grid extent is unchanged, but target cells are no longer aligned to the target, improving orthogonality.</i> [[KU Leuven 2023]](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2024_Dekeyser_-_Extended_grids_in_SOLPS-ITER_workflow_for_case_build-up.pdf?d=w8b77074423924ac5a54225a2a7ec9321&csf=1&web=1&e=l1zqHp)<span class="material-symbols-outlined">open_in_new</span>*
 
 ![Unstructured grid, vessel mode](../img/grid_unstructured_vessel_mode.png)
 
-<center><i>Unstructured (wide) B2.5 grid, <b>vessel mode</b>. The grid now extends up to the wall.</i> [[KU Leuven 2023]](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/20230815_carre2_presentation.pdf?csf=1&web=1&e=crfTNv)<span class="material-symbols-outlined">open_in_new</span></center>
+*Unstructured (wide) B2.5 grid, <b>vessel mode</b>. The grid now extends up to the wall.</i> [[KU Leuven 2023]](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2024_Dekeyser_-_Extended_grids_in_SOLPS-ITER_workflow_for_case_build-up.pdf?d=w8b77074423924ac5a54225a2a7ec9321&csf=1&web=1&e=l1zqHp)<span class="material-symbols-outlined">open_in_new</span>*
 
 Building an unstructured (wide) grid can be done in two modes: target mode and vessel mode.
 
@@ -97,16 +97,16 @@ You can read more about these features below, in the [Literature](#literature) s
 **Technical sources on using Wide Grids SOLPS-ITER:**
 
 - [WG version of the SOLPS-ITER manual](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER_User_Manual_for_WG.pdf?csf=1&web=1&e=s4BQML)<span class="material-symbols-outlined">open_in_new</span>, Chapter 11: *Unstructured / Wide Grids format of B2.5*
-- [Advanced model options in extended grids version of SOLPS-ITER](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation/Documentation_wg_code_models.pdf?csf=1&web=1&e=YxhzET)<span class="material-symbols-outlined">open_in_new</span>
-- [Building extended grids cases with DivGeo-Carre2-Triang](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/Workflow_divgeo_carre2_uinp.pdf?csf=1&web=1&e=xq6zLD)<span class="material-symbols-outlined">open_in_new</span>
-- W. Van Uytven 2024, [Advanced Fluid Neutral boundary conditions: theory and implementation in SOLPS-ITER](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation/AFN_BCs_documentation.pdf?csf=1&web=1&e=wanGuh)<span class="material-symbols-outlined">open_in_new</span>
-- [ITER Sharepoint materials](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops?csf=1&web=1&e=gEgwIu)<span class="material-symbols-outlined">open_in_new</span> from Wide Grids Workshops, in particular:
-    - [Extended grids in SOLPS-ITER: general code introduction](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/20230814_extended_grids_presentation.pdf?csf=1&web=1&e=QLrjOB)<span class="material-symbols-outlined">open_in_new</span>
-    - [Extended grids in SOLPS-ITER: Carre2 workflow](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/20230815_carre2_presentation.pdf?csf=1&web=1&e=clltlt)<span class="material-symbols-outlined">open_in_new</span>
-    - [Extended grids in SOLPS-ITER: workflow for case build-up](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%202024%20Prague%20Code%20Camp/Thursday%20-%20Wide%20Grids%20%26%20Core-edge%20coupling/20241031_wg_workflow_updates.pdf?csf=1&web=1&e=Ynhus1)<span class="material-symbols-outlined">open_in_new</span>
-    - [GOAT: a Grid Optimization and Adaptation Toolbox for plasma edge simulations](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/20221104_GOAT_workshop.pdf?csf=1&web=1&e=07yIoO)<span class="material-symbols-outlined">open_in_new</span>
-    - [Modelling TCV with the Wide Grids code](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%202024%20Prague%20Code%20Camp/Thursday%20-%20Wide%20Grids%20%26%20Core-edge%20coupling/ETonello_SOLPS-ITERCodeCamp_WideGridTCV.pdf?csf=1&web=1&e=VNP76b)<span class="material-symbols-outlined">open_in_new</span>
-    - [Current status of ITER Wide Grids simulations](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%202024%20Prague%20Code%20Camp/Thursday%20-%20Wide%20Grids%20%26%20Core-edge%20coupling/Current%20status%20of%20ITER%20Wide%20Grids%20simulations.pdf?csf=1&web=1&e=YId1JP)<span class="material-symbols-outlined">open_in_new</span>
+- [Advanced model options in extended grids version of SOLPS-ITER](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Manuals%20and%20Documentation/Documentation_wg_code_models.pdf)<span class="material-symbols-outlined">open_in_new</span>
+- [Building extended grids cases with DivGeo-Carre2-Triang](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2024_Dekeyser_Building_extended_grids_cases_with_DivGeo-Carre2-Triang.pdf?d=wdd4b080d68d440b89425c0abbcbe0486&csf=1&web=1&e=nmOmS3)<span class="material-symbols-outlined">open_in_new</span>
+- W. Van Uytven 2024, [Advanced Fluid Neutral boundary conditions: theory and implementation in SOLPS-ITER](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Manuals%20and%20Documentation/AFN_BCs_documentation.pdf)<span class="material-symbols-outlined">open_in_new</span>
+- [ITER Sharepoint materials](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20meetings/SOLPS-ITER%20Extended%20Grids%20Workshops)<span class="material-symbols-outlined">open_in_new</span> from Wide Grids Workshops, in particular:
+    - [Extended grids in SOLPS-ITER: general code introduction](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20meetings/SOLPS-ITER%20Extended%20Grids%20Workshops/20230814_extended_grids_presentation.pdf)<span class="material-symbols-outlined">open_in_new</span>
+    - [Extended grids in SOLPS-ITER: Carre2 workflow](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2023_KU_Leuven_-_Extended_grids_in_SOLPS-ITER_Carre2_workflow.pdf)<span class="material-symbols-outlined">open_in_new</span>
+    - [Extended grids in SOLPS-ITER: workflow for case build-up](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2024_Dekeyser_-_Extended_grids_in_SOLPS-ITER_workflow_for_case_build-up.pdf)<span class="material-symbols-outlined">open_in_new</span>
+    - [GOAT: a Grid Optimization and Adaptation Toolbox for plasma edge simulations](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20meetings/SOLPS-ITER%20Extended%20Grids%20Workshops/20221104_GOAT_workshop.pdf)<span class="material-symbols-outlined">open_in_new</span>
+    - [Modelling TCV with the Wide Grids code](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20meetings/SOLPS-ITER%202024%20Prague%20Code%20Camp/Thursday%20-%20Wide%20Grids%20%26%20Core-edge%20coupling/ETonello_SOLPS-ITERCodeCamp_WideGridTCV.pdf)<span class="material-symbols-outlined">open_in_new</span>
+    - [Current status of ITER Wide Grids simulations](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2024_SPbPU_Team_-_Current_status_of_ITER_Wide_Grids_simulations.pdf)<span class="material-symbols-outlined">open_in_new</span>
 
 
 ## Wide Grids branch of SOLPS-ITER
@@ -347,7 +347,7 @@ triang
 
 Continue pressing `Enter` to proceed through the steps. In the best case scenario, no error messages will be printed.
 
-**If Triang fails:** Oh no. Where Carre is Neutral Good, Triang is Chaotic Evil. Tips:
+**If Triang fails:**
 
 - Get an idea for where the problem is happening. If you've found usable real-space coordinates, go to DivGeo and `Edit > Create > Point` with these coordinates in milimetres. If you've only found cell indices (e.g. `150 33`), you can find their real-space coordinates in the latest `.geo` text file. (If you're running SOLPS from a Docker container, the `.geo` files in your `baserun` are only symlinks. You will find the originals in `~/.solps_container/Carre2/meshes/COMPASS-Upgrade`.) If you've only found cell face labels, Daniel (<span class="material-symbols-outlined">mail</span> [svorc@ipp.cas.cz](mailto:svorc@ipp.cas.cz)) knows what to do.
 - The most common problem is connectivity, i.e. finding which cell has which neighbour. Possible culprits of bad connectivity are:
@@ -364,17 +364,6 @@ rm -rf b2*
 rm fort.*
 triang
 ```
-
-
-/// tip | Hot tip
-You can use foreign curses to relieve frustration.
-
-Finnish: "Perkele!" (Evil spirit!)
-
-Hungarian: "Bassz meg!" (Fuck me!)
-
-Czech: "Do prdele!" (In the ass!)
-///
 
 
 ### Step 4: Test run
@@ -442,7 +431,7 @@ After nearly two years of using Wide Grids SOLPS-ITER to model the COMPASS Upgra
     # (unstructured format; same machine assumed)
     ```
 
-- Standalone B2.5: try initially solving only the neutral atom continuity equation according to section *Tips to resolve convergence issues* of [Hands-on session AFN for AUG case](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/AFN%20handson%20session.pdf?csf=1&web=1&e=q0Sf1Y)<span class="material-symbols-outlined">open_in_new</span>.
+- Standalone B2.5: try initially solving only the neutral atom continuity equation according to section *Tips to resolve convergence issues* of [Hands-on session AFN for AUG case](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2023_Horsten_-_Hands-on_session_AFN_for_AUG_case.pdf)<span class="material-symbols-outlined">open_in_new</span>.
 - A common divergence cause is that some fluid species (usually one with locally low density, such as impurities or in the far SOL) gets accelerated to high velocity and subsequently produces major viscous heating due to friction. This can drive high ion temperatures in the SOL or blow up the calculation straight away (supra-luminal velocities, faulty aresco). Remedies include:
     - Increasing initial ion density in the flat profiles solution (`naini` in `b2ai.dat`)
     - Increasing minimum allowed ion density (`b2mndr_na_min` in `b2mn.dat`)
@@ -602,7 +591,7 @@ To build a structured grid just like in the old version, use the default configu
 
 Make sure to still properly specify `Midplane definition` and assign `fcLbl` indexes to all structure elements. Other than that, follow the standard steps from the old DivGeo tutorial.
 
-**Target mode:** Target mode is not described here at this moment. Refer to [Building extended grids cases with DivGeo-Carre2-Triang](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/Workflow_divgeo_carre2_uinp.pdf?csf=1&web=1&e=Tf5aVX)<span class="material-symbols-outlined">open_in_new</span>. In general, the approach is similar to the vessel mode. Configuration of `Variables > Carre2 setup`:
+**Target mode:** Target mode is not described here at this moment. Refer to [Building extended grids cases with DivGeo-Carre2-Triang](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2024_Dekeyser_Building_extended_grids_cases_with_DivGeo-Carre2-Triang.pdf)<span class="material-symbols-outlined">open_in_new</span>. In general, the approach is similar to the vessel mode. Configuration of `Variables > Carre2 setup`:
 
 - `carreMode=3` (or `carreMode=2`, but that yields worse results))
 - `gridExtensionMode=1` (target mode)

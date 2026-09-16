@@ -17,7 +17,7 @@ This tutorial will take you through creating a new SOLPS-ITER simulation. The si
 8. [Run SOLPS-ITER](Running_SOLPS-ITER.md)
 
 /// hint | Alternative resources
-This tutorial borrows heavily from the [DivGeo tutorial](../files/DivGeo_tutorial.pdf)<span class="material-symbols-outlined">download</span>, one of the few helpful, upfront tutorials which SOLPS-ITER had before the SOLPS wiki started.
+This tutorial borrows heavily from the [DivGeo tutorial](../files/DivGeo_tutorial.pdf)<span class="material-symbols-outlined">download</span>.
 
 <span class="material-symbols-outlined">construction</span> **TODO:** Eventually, we would like to merge this tutorial with the DivGeo tutorial.
 ///
@@ -38,7 +38,10 @@ In the folder `solps-iter/runs/`, create a folder naming your simulation, say, `
 - Boundary condition files can be stored in `baserun` or in `run`. If they are specified in `run`, they will override whatever is in `baserun`.
 - `run` contains inputs and outputs of individual simulation runs.
 
-Important: The `baserun` folder must be called `baserun` and nothing else! There may be only one `baserun` folder per simulation, but there may be multiple `run` folders per simulation, which can be called whatever you like (`run1`, `n_3.0_PSOL_200`, `the_best_run` etc.). Since `baserun` is what holds the simulation geometry (including grids, meshes, pumping and puffing positions etc.), all the runs in one simulation share the same grid. If you wish to create a run with a different grid, you must create a whole new simulation folder.
+
+/// note | The `baserun` is special
+The `baserun` folder must be called `baserun` and nothing else. There may be only one `baserun` folder per simulation, but there may be multiple `run` folders per simulation, which can be called whatever you like (`run1`, `n_3.0_PSOL_200`, `the_best_run` etc.). Since `baserun` is what holds the simulation geometry (including grids, meshes, pumping and puffing positions etc.), all the runs in one simulation share the same grid. If you wish to create a run with a different grid, you must create a whole new simulation folder.
+///
 
 
 ## Get the `.ogr` and `.equ` files
@@ -100,12 +103,13 @@ Experiment until you have a suitable `.equ` file to build grids upon.
 
 Finally, copy both the `.ogr` and the `.equ` file into the `baserun` folder. Name them something descriptive (wall outline version, what shot and time the equilibrium comes from) so your future self can figure out which geometry you used.
 
+
 ## Create the geometry file `.dg` with DivGeo
 
 DivGeo is a graphical programme which sets up the simulation geometry. With it, you will specify the SOLPS grid extent, its resolution (number of cells), how the cells should be spaced, where the gas puff is and what it puffs, what the walls are made of and how many particles they recycle, and much more.
 
 /// tip | Resources
-**This part of the tutorial rests entirely on the [DivGeo tutorial](../files/DivGeo_tutorial.pdf)<span class="material-symbols-outlined">download</span>**. While going through its steps, refer to our tips below and through the other resources:
+**This part of the tutorial rests entirely on the [DivGeo tutorial](../files/DivGeo_tutorial.pdf)<span class="material-symbols-outlined">download</span>**. While going through its steps, refer to our tips below and in the other resources:
 
 - The [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) appendix L, *DG manual: Version 2.10*
 - X. Bonnin, S. Lisgo: [DG input: important points](https://user.iter.org/?uid=R657FE)<span class="material-symbols-outlined">open_in_new</span>
@@ -152,14 +156,14 @@ The `.ogr` file will probably have a much higher element resolution than necessa
 The "narrow grids" SOLPS version we are working with in this tutorial can have one particular drawback: insufficient SOL grid extent. As detailed in [[Wiesen 2018]](https://www.sciencedirect.com/science/article/pii/S2352179118301248?via%3Dihub)<span class="material-symbols-outlined">open_in_new</span>, in transport modelling the SOL grid has to wide enough to contain several fall-off lengths, of which the widest tends to be the density fall-off length $\lambda_n$. If the SOL is too thin compared to $\lambda_n$, the far SOL (North) boundary condition is too close to the separatrix, parallel transport doesn't have enough time/space to do its thing and the simulation results will be wrong.
 
 /// danger | IPP Prague
-Insufficient SOL grid extent was a killing problem for simulations of COMPASS Upgrade with "narrow grids" SOLPS-ITER. The COMPASS-U divertor is closed and its outer baffle protrudes far into the SOL in standard scenarios. Only a narrow grid can fit inside its opening. As a result, 25-75 % of the input power escaped the simulation domain through the far SOL (North) boundary and never made it to the divertor. The simulations were completely detached, even though there were little power and pressure losses in the divertor volume. This problem had no solution, save for moving the baffle out of the way, which we didn't want to do. In the end, we had to switch to [wide grids](../feature_blog/Wide_grids.md).
+Insufficient SOL grid extent was an insurmountable problem for simulations of COMPASS Upgrade with "narrow grids" SOLPS-ITER. The COMPASS-U divertor is closed and its outer baffle protrudes far into the SOL in standard scenarios. Only a narrow grid can fit inside its opening. As a result, 25-75 % of the input power escaped the simulation domain through the far SOL (North) boundary and never made it to the divertor. The simulations were completely detached, even though there were little power and pressure losses in the divertor volume. This problem had no solution, save for moving the baffle out of the way, which we didn't want to do. In the end, we had to switch to [wide grids](../feature_blog/Wide_grids.md).
 ///
 
 **Predict the SOL extent before building it:** Switch your middle button to `Add surface`, click and drag and observe the flux surface. What limits it? A wall? Another X-point? Knowing this in advance can save you a lot of redoing.
 
 **Explain the generated SOL extent:** If the SOL created in DivGeo seems too narrow to you (like it only spans 1 cm at the outer midplane), go to `Edit > Create > Surfaces` and press `Bounding element`. This will show you what's stopping your SOL from being thicker.
 
-**Expanding the target to carry a wider SOL:** The inner divertor of the COMPASS tokamak is really small, so it can only "support” a narrow SOL grid. To allow for a wider SOL grid, we include a part of the first wall in the inner target, like so:
+**Expand the target to carry a wider SOL:** The inner divertor of the COMPASS tokamak is really small, so it can only "support” a narrow SOL grid. To allow for a wider SOL grid, we include a part of the first wall in the inner target, like so:
 
 ![](../img/Creating_a_new_SOLPS-ITER_run-image1.png)
 
@@ -197,7 +201,7 @@ After you define the flux surfaces, check that they intersect the targets on the
 
 ### TRIA-EIRENE values
 
-Setting correct TRIA-EIRENE values is crucial for triangulation to succeed. Since this always gives me an enormous headache, here's a recap of what TRIA-EIRENE value each segment should have:
+Setting correct TRIA-EIRENE values is crucial for triangulation to succeed. To recap what TRIA-EIRENE value each segment should have:
 
 - **-1**: the main wall (above targets) including the "SOL edge” element of the targets
 - **-2**: the private flux region (between targets) including the "PFR edge” element of the targets
@@ -213,9 +217,9 @@ While setting and debugging TRIA-EIRENE values, keep in mind:
 
 ### Other
 
-- Caution! When you make changes to your wall (like add a segment here and there), this messes up all your variable assignments (`Structure` for instance). When making changes like these, always check and re-define all the variables!
+- When you make changes to your wall (like add a segment here and there), this messes up all your variable assignments (`Structure` for instance). When making changes like these, always check and re-define all the variables.
 - If you use the same amount of flux surface, grid point etc. as in the DivGeo tutorial, over and over again, all your simulations will be mesh-compatible. That will mean you'll be able to adopt already converged solutions from other geometries without using `b2yt` to interpolate the results to the new grid. In practice, just copy the `b2fstate` file into the new simulation.
-- When running the `lns` command, don't include the `.dg` extension!
+- When running the `lns` command, don't include the `.dg` extension.
 - Choose the general triangle size according to your machine. For example, 10 is too big for COMPASS. Check the triangular mesh by importing it to DivGeo, and if you don't like its resolution, change the general triangle size in DivGeo, rerun `triang` and import the mesh again.
 
 
@@ -225,7 +229,7 @@ Keep following the [DivGeo tutorial](../files/DivGeo_tutorial.pdf)<span class="m
 
 /// tip | Resources
 - Marchand 1995: [CARRE: a quasi-orthogonal mesh generator for 2D edge plasma modelling](https://www.sciencedirect.com/science/article/pii/0010465596000525)<span class="material-symbols-outlined">open_in_new</span> - explanation of Carre parameters such as `pasmin` and `rlcept`
-- ITER Organisation: [Carre User Notes](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER_Release_Workshop_13-17.04.2015/15.04_Wednesday/SOLPS-ITER_CARRE_User_notes.pdf?csf=1&web=1&e=UY9tW4)<span class="material-symbols-outlined">open_in_new</span>
+- ITER Organisation: [Carre User Notes](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2015_ITER_Organization_-_CARRE_User_Notes.pdf)<span class="material-symbols-outlined">open_in_new</span>
 - [SOLPS-ITER Confluence page](https://confluence.iter.org/display/IMP/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span> - several documented and explained errors
 ///
 
@@ -251,7 +255,7 @@ Keep following the [DivGeo tutorial](../files/DivGeo_tutorial.pdf)<span class="m
 
 Triang has a defined maximum number of elements (wall segments) it can handle, by default 300. If this number is exceeded, it will complain of "too many elements".
 
-**Solution 1** ("I don't have that many elements!"): **Renumber elements**
+**Solution 1** ("I don't have *that* many elements!"): **Renumber elements**
 
 - When you perform `Commands > Simplify > Merge/Split Elements` to reduce the amount of wall elements, the numbers which label the elements aren't updated automatically. Check `Window > Statistics` to display the now unused numbers. Triang refers to the higher present element number to gauge if the amount of elements is acceptable, so the remnant high element numbers will trigger it.
 - Renumber the elements from 1 onward using `Commands > Renumber Elements`.
@@ -305,8 +309,7 @@ SOLPS-ITER input files are the text files you will edit while running your simul
 **Boundary conditions**
 
 - [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm) - section 3.5.2 *b2.boundary.parameters*, section 3.5.3 *b2.transport.parameters*, appendix D *Boundary conditions in B2.5*
-- [Kateřina's PhD thesis study](../files/Katkas_PhD_thesis_study.pdf)<span class="material-symbols-outlined">download</span>, section 2.1.2 *Boundary conditions*
-- Questions and answers, section [Input files and boundary conditions](../supplementary/Questions_and_answers.md#input-files-and-boundary-conditions)
+- Q&A, section [Input files and boundary conditions](../supplementary/Questions_and_answers.md#input-files-and-boundary-conditions)
 ///
 
 ///warning | Copy using the `cp` command, not `Ctrl+C`
@@ -346,9 +349,9 @@ cp b2.boundary.parameters.stencil ../run/b2.boundary.parameters
 cp b2.neutrals.parameters.stencil ../run/b2.neutrals.parameters
 cp input.dat ../run/input.dat
 ```
-The `b2.xxx.parameters` files contain the "physics" BCs, how the mesh edge behaves and how the B2.5 neutrals behave (or how B2.5 should communicate with EIRENE), while `input.dat` is automatically generated EIRENE input. The last file of the "physics" boundary conditions, `b2.transport.parameters`, does not have a stencil automatically generated. You can use the example file from the [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), section 5.1.8. Refer also to Questions and answers: [I copied the `b2.transport.parameters` file from the manual. What do all the 12s stand for?](../supplementary/Questions_and_answers.md#transport-parameters-12s)
+The `b2.xxx.parameters` files contain the "physics" BCs, how the mesh edge behaves and how the B2.5 neutrals behave (or how B2.5 should communicate with EIRENE), while `input.dat` is automatically generated EIRENE input. The last file of the "physics" boundary conditions, `b2.transport.parameters`, does not have a stencil automatically generated. You can use the example file from the [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), section 5.1.8. Refer also to Q&A: [I copied the `b2.transport.parameters` file from the manual. What do all the 12s stand for?](../supplementary/Questions_and_answers.md#transport-parameters-12s)
 
-/// tip | SOLPS input priority
+/// note | SOLPS input priority
 1. Boundary conditions defined in `b2ah.dat` will be overriden by `b2.boundary.parameters`, which will be overriden by `b2mn.dat`.
 2. Anything in `baserun` will be overriden by that same thing in `run`.
 
@@ -359,13 +362,13 @@ Usually, you'll have `b2ah.dat` in the `baserun` and `b2mn.dat`, `b2.boundary.pa
 
 `b2mn.dat` is the B2.5 master control file and it has no pre-generated stencil.
 
-/// hint | Funny story
-According to Xavier Bonnin, the lack of `b2mn.dat` stencil forces users to build their master control file from scratch, rather than blindly use the default file. I think he underestimated my laziness. I built my first SOLPS-ITER simulation at the 2018 SOLPS training, using the `b2mn.dat` which my mentor Stefano Carli gave me. For the next five years, I used that file without knowing what switches were inside it. As the saying goes, if it works, it ain't broke.
+/// hint | Funny story from Kateřina
+`b2mn.dat.stencil` is not generated so that users are forced to build their master control file from scratch, rather than blindly use the default file. This underestimates my laziness. I built my first SOLPS-ITER simulation at the 2018 SOLPS training, using the `b2mn.dat` which my mentor gave me. For the next five years, I used that file without knowing what switches were inside it. As the saying goes, if it works, it ain't broke.
 ///
 
 We recommend starting from our [annotated basic `b2mn.dat`](../files/annotated_basic_b2mn.dat)<span class="material-symbols-outlined">download</span>. The annotations explain what the switches mean and what their default values are. Note that this was made for SOLPS version 3.0.6. You may be running a newer version, where some of the listed switches are obsolete.
 
-To learn more about B2.5 switches, peruse our [B2 switches documentation](/solps-doc/extras/b2input). I've compiled the [switches I found interesting](../files/annotated_interesting_switches_in_b2mn.dat)<span class="material-symbols-outlined">download</span> on my October 2023 read-through.
+To learn more about B2.5 switches, peruse our [B2 switches documentation](/solps-doc/extras/b2input). Kateřina has compiled the [switches she found interesting](../files/annotated_interesting_switches_in_b2mn.dat)<span class="material-symbols-outlined">download</span> on her October 2023 read-through.
 
 An important part of `b2mn.dat` is switching between the "standard” and "physics” boundary conditions. To use `b2.boundary.parameters` instead of `b2ah.dat` etc., paste these line into `b2mn.dat`:
 ```

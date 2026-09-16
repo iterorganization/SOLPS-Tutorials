@@ -1,11 +1,11 @@
 # Common pitfalls
 
-While running SOLPS-ITER, some complex problems are encountered repeatedly in many forms. For example, `faulty aresco`, `supra-luminal velocities` and `bad value during integer read` are all error messages signifying a simulation crash. But what do they mean and where do they come from? One needs in-depth understanding, not just a bag of tricks. (Though, honestly, a bag of tricks would be most useful in some situations!)
+While running SOLPS-ITER, some complex problems are encountered repeatedly in varying forms. For example, `faulty aresco`, `supra-luminal velocities` and `bad value during integer read` are all error messages signifying a simulation crash. But what do they mean and where do they come from? One needs in-depth understanding, not just a bag of tricks. (Though, honestly, a bag of tricks would be useful in many situations.)
 
 Pitfalls covered here:
 
 - [The danger of timestamps](#the-danger-of-timestamps), or "Why did my simulation jump to the flat profiles state?"
-- [Divergence](#divergence), or "Why the hell is separatrix temperature 5 keV?"
+- [Divergence](#divergence), or "Why is the separatrix temperature 5 keV?"
 - [Make SOLPS-ITER run faster](#make-solps-iter-run-faster), or "I only have four years for my PhD, how am I supposed to model DEMO with impurities and drifts?" 
 
 /// warning | Your expertise is needed!
@@ -121,10 +121,10 @@ This section will tell you how to [recognise](#how-to-recognise-divergence), [di
 
 
 /// hint | Some reading on divergence remedies
-- E. Kaveeva, [Modification of pressure perturbation correction](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation/Pressure_correction_speed-up.pdf?csf=1&web=1&e=xqZ7No)<span class="material-symbols-outlined">open_in_new</span>
-- W. Dekeyser 2016, [SOLPS-ITER modeling of C-Mod](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20Sharepoint%20archive/Various%20other%20presentations/Dekeyser%20-%20SOLPS-ITER%20modeling%20of%20C-Mod%20v1.pdf?csf=1&web=1&e=KNn6jI)<span class="material-symbols-outlined">open_in_new</span>
-- W. Dekeyser 2024, [Extended grids in SOLPS-ITER: workflow for case build-up](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%20Extended%20Grids%20Workshops/20241031_wg_workflow_updates.pdf?csf=1&web=1&e=4R2owR)<span class="material-symbols-outlined">open_in_new</span>
-- M. Carpita 2024, [Updates on the SPC SOLPS-ITER modellers' workflow](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/SOLPS-ITER%202024%20Prague%20Code%20Camp/Wednesday%20-%20Drifts/Carpita_DriftWorkflow_30Oct2024.pdf?csf=1&web=1&e=EKRyUh)<span class="material-symbols-outlined">open_in_new</span>
+- E. Kaveeva, [Modification of pressure perturbation correction](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Manuals%20and%20Documentation/Pressure_correction_speed-up.pdf)<span class="material-symbols-outlined">open_in_new</span>
+- W. Dekeyser 2016, [SOLPS-ITER modeling of C-Mod](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Various%20other%20presentations/Dekeyser%20-%20SOLPS-ITER%20modeling%20of%20C-Mod%20v1.pdf)<span class="material-symbols-outlined">open_in_new</span>
+- W. Dekeyser 2024, [Extended grids in SOLPS-ITER: workflow for case build-up](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2024_Dekeyser_-_Extended_grids_in_SOLPS-ITER_workflow_for_case_build-up.pdf)<span class="material-symbols-outlined">open_in_new</span>
+- M. Carpita 2024, [Updates on the SPC SOLPS-ITER modellers' workflow](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20meetings/SOLPS-ITER%202024%20Prague%20Code%20Camp/Wednesday%20-%20Drifts/Carpita_DriftWorkflow_30Oct2024.pdf)<span class="material-symbols-outlined">open_in_new</span>
 ///
 
 
@@ -135,7 +135,7 @@ This section will tell you how to [recognise](#how-to-recognise-divergence), [di
 
 ![img](../img/fluctuating_resall.png)
 
-<center><i>Fluctuating residuals (`resall_D`) indicate an unstable simulation.</i></center>
+*Fluctuating residuals (`resall_D`) indicate an unstable simulation.*
 
 **Inspect the time evolution using [`b2time.nc` time traces](../my_first_simulation/Running_SOLPS-ITER.md#time-traces-in-b2timenc).** For example, if the outer midplane separatrix electron temperature (`2dt tesepm`) is 5 keV and rising, your simulation is probably diverging. If it's fluctuating wildly, ditto. Again, this can be done while the simulation is running.
 
@@ -191,7 +191,7 @@ touch b2mn.exe.dir/.quit
 
 ![](../img/2dt_tesepm_crash.png)
 
-<p align="center"><i>I think something went wrong here.</i></p>
+<center><i>I think something went wrong here.</i></center>
 
 If more than two symptoms are present, in all likelikood your simulation has crashed. That's unfortunate, because you have lost runtime and now must figure out why the crash happened, if it's reproducible and how to avoid it in the next run.
 
@@ -203,12 +203,6 @@ If you have a diverging run on your hands, you must answer two big questions:
 
 1. What's going wrong, where, and why?
 2. How do I fix it?
-
-SOLPS-ITER is inscrutable when it comes to the first question, and worse than a toddler matching shapes to holes when it comes to the second question. I wish it had a [square hole](https://knowyourmeme.com/memes/the-square-hole)<span class="material-symbols-outlined">open_in_new</span>. It feels more like it has a thousand holes, twenty shapes, and the holes bite you if you touch them.
-
-![](../img/SOLPS_at_therapy.jpg)
-
-<center><i>Kateřina's rendition of diagnosing divergence in SOLPS-ITER.</i></center>
 
 **Breadth-first approach:** <a name="2D_residuals"></a> Look at profiles of plasma parameters and their 2D maps. This generally requires a `b2fstate` file, so it can't be used after a crash. Relaunch the simulation and [soft-land](#soft-landing) it shortly before the crash. For example, a 2D map of residuals can be plotted with
 ```bash
@@ -282,7 +276,7 @@ Note that in all cases, the residuals of the neutral carbon C<sup>0</sup> contin
 
 ![img](../img/D+C_10min_resco_dt_100e-6.png)
 
-<center><i>Residuals of C<sup>0</sup> stop evolving in an coupled run (`resco`).</i></center>
+*Residuals of C<sup>0</sup> stop evolving in an coupled run (`resco`).*
 
 The first ominous sign was that, after a certain amount of iterations, the neutral carbon density residuals stopped evolving with time. A while longer, and the simulation crashed. I decreased the time step, thinking my usual $dt = 10^{-4}$ s was too much for simulations with impurities. It increased the amount of iterations until the flattening occurred, but the crash happened all the same.
 
@@ -358,7 +352,7 @@ My point is: **Take heart**. You will find a solution to your divergence eventua
 
 ![](../img/2dt_tesepm_crash.png)
 
-<center><i>Time evolution of electron temperature on the outer midplane (`2dt tesepm`). There is convergence at the beginning, followed by a sudden jump and a crash.</i></center>
+*Time evolution of electron temperature on the outer midplane (`2dt tesepm`). There is convergence at the beginning, followed by a sudden jump and a crash.*
 
 I looked to the end of `run.log` and saw this:
 
@@ -387,7 +381,7 @@ Relaunching the parameter scan again and again, I discovered that this error hap
 
 ![](../img/restart_after_crash_2.png)
 
-<center>*Time evolution of outer midplane electron density (`2dt nesepm`). The simulation starts in the upper left corner, runs for about a day and is restarted at $t$ = 1.269 s. At $t$ = 1.278 s, it crashes (vertical line) and is relaunched from the previous `b2fstati` (diagonal line). It continues running for another day without a problem, roughly reproducing the previous convergence path.*</center>
+*Time evolution of outer midplane electron density (`2dt nesepm`). The simulation starts in the upper left corner, runs for about a day and is restarted at $t$ = 1.269 s. At $t$ = 1.278 s, it crashes (vertical line) and is relaunched from the previous `b2fstati` (diagonal line). It continues running for another day without a problem, roughly reproducing the previous convergence path.*
 
 I settled into a daily routine where I ran the 25 simulations for 20 hours at a time and checked on them in the morning. If they had converged, great. If they weren't converged yet, I restarted them from their `b2fstate`. If they had crashed, I either restarted from `b2fstati` or, believing the solution to be corrupted in some way, seeded them from a nearby converged `b2fstate`.
 
@@ -395,7 +389,7 @@ I settled into a daily routine where I ran the 25 simulations for 20 hours at a 
 
 <center><i>Morning check-up on the parameter scan. Green tick = converged. Blue circle = pending, to be resubmitted. Red cross = crashed.</i></center>
 
-In the meantime, I scoured the SOLPS documentation, looking for what the numbers in `tflux` meant. They were fluxes for some strata, but what were strata? The research eventually yielded a [dictionary entry](SOLPS-ITER_user_wisdom.md#stratum) and the Q&A [What is a "stratum"?](Questions_and_answers.md#what-is-a-stratum). The `flux` values which most commonly went haywire represented the neutral fluxes from the `W` and `E` boundary. That is, there was a huge influx of neutrals from the divertor targets, especially the inner one. The rest of `run.log` was the code complaining there were NaNs everywhere. Just prior to the `tflux` printout, the log said:
+In the meantime, I scoured the SOLPS documentation, looking for what the numbers in `tflux` meant. They were fluxes for some strata, but what were strata? The research eventually yielded a [dictionary entry](SOLPS-ITER_user_wisdom.md#stratum) and the Q&A [What is a "stratum"?](Questions_and_answers.md#stratum). The `flux` values which most commonly went haywire represented the neutral fluxes from the `W` and `E` boundary. That is, there was a huge influx of neutrals from the divertor targets, especially the inner one. The rest of `run.log` was the code complaining there were NaNs everywhere. Just prior to the `tflux` printout, the log said:
 ```
 b2stbc: wrong_flow returned from b2stbc_phys
 ```
@@ -422,9 +416,9 @@ In hindsight, I still don't know what cause the sudden crashes or what the error
 Here tips and tricks for accelerating SOLPS-ITER runs are given. Some have been tried, others are (sadly) still theoretical.
 
 /// hint | References on SOLPS-ITER speed-up
-- D. Coster 2019, [SOLPS speed-up](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/EU_Training_session/SOLPS-ITER_speed-up.pdf?csf=1&web=1&e=oU03qB)<span class="material-symbols-outlined">open_in_new</span>
+- D. Coster 2019, [SOLPS speed-up](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER%20meetings/EU_Training_session/SOLPS-ITER_speed-up.pdf)<span class="material-symbols-outlined">open_in_new</span>
 - E. Kaveeva 2018, [Speed-up of SOLPS-ITER code for tokamak edge modeling](https://iterorganization.sharepoint.com/:p:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/EU_Training_session/Speed_UP_SOLPS-ITER_14-11-2018.pptx?d=wbf9bbdb6447244f1afb17a68449dbb3b&csf=1&web=1&e=MGldng)<span class="material-symbols-outlined">open_in_new</span> - speed-up chemes
-- M. Baelmans 2019, [Error assessment and code speed-up for SOLPS-ITER](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/Manuals%20and%20Documentation/SOLPS-ITER_Eirene_averaging.pdf?csf=1&web=1&e=9EBdyy)<span class="material-symbols-outlined">open_in_new</span> - EIRENE averaging schemes
+- M. Baelmans 2019, [Error assessment and code speed-up for SOLPS-ITER](https://iterorganization.sharepoint.com/:b:/r/sites/SOLPS-ITER/Shared%20Documents/General/Manuals%20and%20Documentation/SOLPS-ITER_Eirene_averaging.pdf)<span class="material-symbols-outlined">open_in_new</span> - EIRENE averaging schemes
 ///
 
 **Tailor the convergence path**. Cases with fewer ion species and without drifts are more stable, can endure higher time step and solve fewer equations. Cases with low density are better behaved than cases with high density, presumably because atomic physics is less complicated at high temperatures. Cases which are already converged for some input parameters are better behaved than the flat profile solution. Introducing changes step-wise carries less chance of divergence than jumping straight from start to finish. Another version of this trick can be used while branching out runs, for instance while making parameter scans. First, procure a converged case in the centre of the parameter space, and branch it out to seed the other runs.

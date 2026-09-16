@@ -1,6 +1,6 @@
 # Installing SOLPS-ITER in a container
 
-In its essence, a container is a tiny virtual computer which contains nothing but the software you wish to run (here SOLPS-ITER) and the libraries you need to run it, exactly in the form and version you need. Like a parasite, it uses another machine's computational power to run its software, while being completely isolated from the mother organism save for CPU power. It is the perfect microcosm to nourish the beast which is SOLPS-ITER.
+In its essence, a container is a tiny virtual computer which contains nothing but the software you wish to run (here SOLPS-ITER) and the libraries you need to run it, exactly in the form and version you need. Like a parasite, it uses another machine's computational power to run its software, while being completely isolated from the mother organism save for CPU power. It is the perfect microcosm to nourish SOLPS-ITER.
 
 ///error | Proper container definition
 A container is a **virtual Operating System (OS)**. It is isolated from the host OS, but it **uses the host OS's kernel**, i.e. the guardian of the hardware components. It is a form of virtualization, but much leaner than an actual virtual machine. In case of Linux, the OS part (= the specific Linux distribution) is nothing more than bunch of system executables, libraries, and configurations in `/bin`, `/lib`, `/etc` and so on. Container is a process like any other, but it is started with a "different view" of the filesystem, where the root `/` directory points to the prepared container image, which can be based on an entirely different Linux distribution.
@@ -9,7 +9,7 @@ A container is a **virtual Operating System (OS)**. It is isolated from the host
 The IPP Prague in-house expert on SOLPS containers is Jan Hečko (<span class="material-symbols-outlined">mail</span> [hecko@ipp.cas.cz](mailto:hecko@ipp.cas.cz)), author of the package [SOLPS-container](https://repo.tok.ipp.cas.cz/solps/solps-container)<span class="material-symbols-outlined">open_in_new</span>.
 
 ///warning | Alternative sources
-Our tutorials are just dumbed-down versions of the official [SOLPS-container](https://repo.tok.ipp.cas.cz/solps/solps-container)<span class="material-symbols-outlined">open_in_new</span> READMEs. **They are the primary, up-to-date reference material.**
+Our tutorials are just dumbed-down versions of the official [SOLPS-container](https://repo.tok.ipp.cas.cz/solps/solps-container)<span class="material-symbols-outlined">open_in_new</span> READMEs. **The READMEs are the primary, up-to-date reference material.**
 ///
 
 There are two options of using Honza's SOLPS container:

@@ -1,6 +1,6 @@
 # Remote access
 
-This document is concerned with connecting to and running SOLPS-ITER on remote servers. When one needs a lot of runtime (small time step, lots of impurities, parameter scans...) which cannot be provided by the home institute, one runs SOLPS on high-performance clusters instead. The question then arises how to shuffle SOLPS data around.
+This document is concerned with connecting to and running SOLPS-ITER on remote servers. When one needs a lot of runtime (small time step, lots of impurities, parameter scans...) which cannot be provided by the home institute, one runs SOLPS on high-performance clusters instead. The question then arises how to transfer SOLPS data.
 
 Topics covered here:
 
@@ -36,7 +36,7 @@ Which method you'll grow to prefer depends on how you interact with SOLPS-ITER. 
 
 > "A virtual private network (VPN) is an overlay network that uses network virtualization to extend a private network across a public network, such as the Internet, via the use of encryption and tunneling protocols." [[Wikipedia]](https://en.wikipedia.org/wiki/Virtual_private_network)<span class="material-symbols-outlined">open_in_new</span>
 
-A VPN is a way to pretend you are somewhere else. The fun way is to pretend you are in the USA to [watch American shows on Netflix](https://cyberinsider.com/vpn/best/netflix/us-american/)<span class="material-symbols-outlined">open_in_new</span>. The boring way is to pretend you are sitting at your workstation so you can access internal services of your institute, such as the intranet, wiki or the tokamak discharge database. **It is advisable to hide inside a VPN before you connect via [SSH](#ssh-secure-shell) or any other method.** In some cases (like on IPP Prague), SSH will not work before a VPN connection is established, which makes VPN the make-or-break point of remote access.
+A VPN is a way to pretend you are somewhere else. The fun way is to pretend you are in the USA to [watch American shows on Netflix](https://cyberinsider.com/vpn/best/netflix/us-american/)<span class="material-symbols-outlined">open_in_new</span>. The boring way is to pretend you are sitting at your workstation so you can access internal services of your institute, such as the intranet, wiki or the tokamak discharge database. **It is advisable to activate a VPN before you connect via [SSH](#ssh-secure-shell) or any other method.** In some cases (like on IPP Prague), SSH will not work before a VPN connection is established, which makes VPN the make-or-break point of remote access.
 
 There are many softwares providing VPN services and each institute has its own favourite one. Instructions how to set up a VPN are given individually below.
 
@@ -219,7 +219,7 @@ Katka reconfigures her VPN connection every six months, because it stops working
 ```
 proto tcp    # previously: proto udp
 ```
-The TCP protocol was, however, slow as hell (as the COMPASS wiki [VPN tutorial](https://wiki.tok.ipp.cas.cz/index.php/Openvpn)<span class="material-symbols-outlined">open_in_new</span> warns). What fixed it was decreasing the maximum packet size to 1400 bytes using this line in the VPN configuration file:
+The TCP protocol was, however, very slow (as the COMPASS wiki [VPN tutorial](https://wiki.tok.ipp.cas.cz/index.php/Openvpn)<span class="material-symbols-outlined">open_in_new</span> warns). What fixed it was decreasing the maximum packet size to 1400 bytes using this line in the VPN configuration file:
 ```
 tun-mtu 1400
 ```
@@ -340,11 +340,11 @@ sshfs -o transform_symlinks username@toki01.bc.rzg.mpg.de:/ '/path/to/mount/poin
 
 ### Remote desktop on IPP Garching
 
-You have two options: one that is great (or "adequate" depending on your standards) and one that sucks (by all standards). The first one the [ThinLinc Client](https://www.aug.ipp.mpg.de/foswiki/bin/view/AUG/ThinLincClients)<span class="material-symbols-outlined">open_in_new</span>, the other is the [Oracle Virtual Desktop](https://www.aug.ipp.mpg.de/wwwaug/documentation/computerIT/Downloads.html)<span class="material-symbols-outlined">open_in_new</span>. Both of these links are exhaustive installation tutorials. In the case of the ThinLinc Client though, just be careful to download the ThinLinc *client* and not the *server*. In my case the client didn't show up among installed applications right away, so I ran it from the command line:
+You have two options: an adequate one ([ThinLinc Client](https://www.aug.ipp.mpg.de/foswiki/bin/view/AUG/ThinLincClients)<span class="material-symbols-outlined">open_in_new</span>) and a bad one ([Oracle Virtual Desktop](https://www.aug.ipp.mpg.de/wwwaug/documentation/computerIT/Downloads.html)<span class="material-symbols-outlined">open_in_new</span>). Both of these links are exhaustive installation tutorials. In the case of the ThinLinc Client though, just be careful to download the ThinLinc *client* and not the *server*. In my case the client didn't show up among installed applications right away, so I ran it from the command line:
 ```bash
 tlclient
 ```
-There are many reasons why the Oracle Virtual Desktop sucks. It doggedly thinks that your keyboard has the weird layout used in AUG work stations. It doesn't support copy-paste between the remote desktop and your own desktop. It has Solaris, which is ugly. All in all, the only reason I write about it here is that it is an option.
+There are many reasons why the Oracle Virtual Desktop isn't very good. It doggedly thinks that your keyboard has the weird layout used in AUG work stations. It doesn't support copy-paste between the remote desktop and your own desktop. It has Solaris, which is plain. All in all, the only reason I write about it here is that it is an option.
 
 Note, again, that to connect to the remote desktop, you need to have an active [VPN connection](#vpn-connection-to-ipp-garching) first.
 
@@ -522,4 +522,4 @@ The following materials concern `b2yt`:
 
 - [SOLPS manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), section 3.14 *b2yt, changing from one grid size and species set to another*. Pretty informative in the large picture, but doesn't provide step-by-step instructions.
 - ITER Organisation: [Converting or resizing a case: b2yt](https://user.iter.org/?uid=R7T2P2)<span class="material-symbols-outlined">open_in_new</span>. Describes a few steps in greater detail, but doesn't give the whole process either.
-- [Conversion tutorial](https://iterorganization.sharepoint.com/:w:/r/sites/SOLPS-ITER/Shared%20Documents/General/SOLPS-ITER/US_GA_Workshop/SOLPS_Conversion_tutorial.docx?d=w9af0422060384998ab872bc47a3e9226&csf=1&web=1&e=S1ATX3)<span class="material-symbols-outlined">open_in_new</span>
+- [Conversion tutorial](https://iterorganization.sharepoint.com/:w:/r/sites/SOLPS-ITER/Shared%20Documents/General/Tutorials/2017_Bonnin_Conversion_tutorial.docx?d=w665bc959a164494eacab09fe6b4fb948&csf=1&web=1&e=2CbX8L)<span class="material-symbols-outlined">open_in_new</span>
