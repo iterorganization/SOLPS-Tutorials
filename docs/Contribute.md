@@ -1,8 +1,8 @@
 # Contribute
 
-SOLPS Tutorials is an open, collaborative project between SOLPS-ITER users. Contributions are welcome, whether they be individual fixes, tutorial expansions or entirely new tutorials.
+SOLPS Tutorials is an open, collaborative project between SOLPS-ITER users. Contributions are warmly welcome, whether they be individual fixes, tutorial expansions or entirely new tutorials.
 
-To clone the [`SOLPS-Tutorials` repository](https://github.com/iterorganization/SOLPS-Tutorials)<span class="material-symbols-outlined">open_in_new</span>d to your local machine:
+To clone the [`SOLPS-Tutorials` repository](https://github.com/iterorganization/SOLPS-Tutorials)<span class="material-symbols-outlined">open_in_new</span> to your local machine:
 
     cd /new/home/for/solps/documentation
     git clone git@github.com:iterorganization/SOLPS-Tutorials.git
@@ -41,24 +41,24 @@ Our tutorials are written in [Markdown](https://www.markdownguide.org/cheat-shee
 - **Respect the existing documentation structure.** Before you write a tutorial, figure out if an equivalent is already present, and amend that if necessary.
     - *My first SOLPS-ITER simulation*: A beginner's first contact with SOLPS-ITER, step-by-step instructions toward creating one's first SOLPS-ITER simulation with the narrow grids version. Keep it simple. Document frequently encountered problems, but don't explain anything in depth. If needed, describe the issue at length elsewhere (e.g. in [Common pitfalls](supplementary/Common_pitfalls.md)) and link to it.
     - *Feature blog*: Largely independent ways to make a SOLPS simulation more complicated. Explain why one would want to adopt a particular feature, what are the benefits and costs, and how to do it. You can go into detail, but don't paraphrase or copy-paste existing documentation. Link to it instead.
-    - *Supplementary*: Everything that didn't fit in the first two categories. 
+    - *Supplementary material*: Everything that didn't fit in the first two categories. 
 
-- **Do not duplicate.** If something is explained elsewhere (SOLPS manual, ITER SharePoint...) and you find yourself paraphrasing it, link to it instead.
+- **Do not duplicate.** If something is explained elsewhere (SOLPS manual, ITER SharePoint...) and you find yourself paraphrasing it or, God forbid, copy-pasting it, link to it instead.
 
 - **Kateřina's three postulates for writing SOLPS Tutorials:**
     1. You will forget everything you don't write down.
-    2. You can't keep any notes other than those in the SOLPS Tutorials.
-    3. Someone else will read the SOLPS Tutorials.
+    2. You can't keep any notes other than SOLPS Tutorials.
+    3. Someone else will read SOLPS Tutorials.
 
 - Use [admonitions](#markdown-extensions) (colour boxes) for information outside the main tutorial flow.
 
 - Use [in-text icons](#icons) for external links, downloadable files, email addresses and "under construction" warnings.
 
-- Keep lists short. (They turn up as long paragraphs in the search bar, clogging the output.)
+- Keep lists short. (They turn up as long paragraphs in the search bar, clogging the output. This list is borderline.)
 
 - All the `.md` files have to be accessible from the navigation sidebar. Put new files into `mkdocs.yml`.
 
-- Use the [mother tongue](https://serendipstudio.org/sci_cult/leguin/)<span class="material-symbols-outlined">open_in_new</span>. Read the instructions aloud, and see if they flow off the tongue or make you choke. Write as if you were explaining it to a confused student. Sounding too familiar is better than sounding stiff.
+- Use the [mother tongue](https://serendipstudio.org/sci_cult/leguin/)<span class="material-symbols-outlined">open_in_new</span>. Read the instructions aloud and see if they flow off the tongue or make you choke. Write as if you were explaining it to a confused student. Sounding too familiar is better than sounding too stiff.
 
 
 
