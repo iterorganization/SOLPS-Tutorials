@@ -41,7 +41,7 @@ Our tutorials are written in [Markdown](https://www.markdownguide.org/cheat-shee
 - **Respect the existing documentation structure.** Before you write a tutorial, figure out if an equivalent is already present, and amend that if necessary.
     - *My first SOLPS-ITER simulation*: A beginner's first contact with SOLPS-ITER, step-by-step instructions toward creating one's first SOLPS-ITER simulation with the narrow grids version. Keep it simple. Document frequently encountered problems, but don't explain anything in depth. If needed, describe the issue at length elsewhere (e.g. in [Common pitfalls](supplementary/Common_pitfalls.md)) and link to it.
     - *Feature blog*: Largely independent ways to make a SOLPS simulation more complicated. Explain why one would want to adopt a particular feature, what are the benefits and costs, and how to do it. You can go into detail, but don't paraphrase or copy-paste existing documentation. Link to it instead.
-    - *Supplementary material*: Everything that didn't fit in the first two categories. 
+    - *Supplementary material*: Everything that didn't fit in the first two categories.
 
 - **Do not duplicate.** If something is explained elsewhere (SOLPS manual, ITER SharePoint...) and you find yourself paraphrasing it or, God forbid, copy-pasting it, link to it instead.
 
@@ -69,7 +69,7 @@ First, clean your local copy of SOLPS Tutorials.
     cd SOLPS-Tutorials
     git fetch
     git status
-    
+
 If you see you're up-to-date with `master`, you're good to go. If you are on `master` but you're missing the last updates, download them to your local copy.
 
     git pull
@@ -80,16 +80,16 @@ Usually I find myself a different, long-forgotten branch, from the last time I w
     git clone git@github.com:iterorganization/SOLPS-Tutorials.git
 
 Then proceed according to the instructions below. At the point where you're supposed to start writing your contributions, copy over the files from your old folder `SOLPS-Tutorials_definitely_not`. More on that below.
-    
+
 Once you are on the latest update of the `master` branch, your work table is clean. You can start on your latest contribution.
-    
+
 1. Visit the [list of `SOLPS-Tutorials` branches](https://github.com/iterorganization/SOLPS-Tutorials/branches)<span class="material-symbols-outlined">open_in_new</span> on its GitHub page. On the upper right, click `New branch`. Select `master` as the source. Name the branch using the [common conventions](https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534)<span class="material-symbols-outlined">open_in_new</span>, using branch prefixes such as `feature/`, `fix/` or `refactor/`.
 
 2. Switch to the new branch on your local machine.
 
         git fetch  # this downloads the information that there is a new remote branch
         git checkout -b feature/my_new_branch origin/feature/my_new_branch
-    
+
     The `-b` will create your own local branch which tracks the remote branch. It prevents the detached HEAD state.
 
 3. If you have any accumulated past changes, integrate them. Simply copy all the contents of `SOLPS-Tutorials_definitely_not` and paste them into your new shiny `SOLPS-Tutorials`. **Immediately** after that, resolve conflicts/deletions. The `Source Control` tab in our editor of choice, [Visual Studio Code](#recommended-editors), works well. Compare your old files with the newest `master`, get familiar with what has been done while you were sleeping and modify your past contributions accordingly. Use the `Revert` button/option to undo your "deletions". You don't want to overwrite any work others have done in the meantime. I know you're impatient to get started on the actual work, but if you postpone dealing with the conflicts, they will become a headache. You'll invest effort into rewriting documentation that's out-of-date. At the end of it, when you're making your commits and merging into `master`, you will have to deal with the conflicts anyway. And it will be harder, because you've *just* polished your contribution, you want to send it out there already, and now not only you are bogged down by Git conflicts, but you also have to rewrite your contribution to accommodate the work of others.
@@ -110,7 +110,7 @@ Once you are on the latest update of the `master` branch, your work table is cle
 6. Once you have a series of commits, ideally acknowledging all the changes you've made to the tutorials, upload them to the central GitLab repository.
 
         git push
-    
+
     (You can also do this in Visual Studio Code `Source Control` tab.)
 
 7. On the [`SOLPS-Tutorials` GitHub page](https://github.com/iterorganization/SOLPS-Tutorials/pulls)<span class="material-symbols-outlined">open_in_new</span>, create a new pull request which merges your new branch back into `master`. Add Katka as a reviewer so she can check the changes and give you a deserved pat on the back. Expect a response within 3 days.
@@ -119,7 +119,7 @@ Once you are on the latest update of the `master` branch, your work table is cle
 
         git checkout master
         git pull
-    
+
     Thank you for contributing to SOLPS Tutorials!
 
 
@@ -350,13 +350,11 @@ Katka's PhD thesis
 ```
 
 
-## Render SOLPS Tutorials locally with MkDocs
+## Preview your changes to SOLPS Tutorials
 
-Quick edits of SOLPS Tutorials are best done in a [Markdown editor](#recommended-editors), which will render the files in real time. However, most of the fancy [extensions](#markdown-extensions) will not be rendered in that way. There are two options to view the final result before it goes live with a Git pull request into the `master` branch:
+Quick edits of SOLPS Tutorials are best done in a [Markdown editor](#recommended-editors), which will render the files in real time. However, most of the fancy [extensions](#markdown-extensions) will not be rendered in that way. There are two options to view the final result before it goes live after merging a pull request into the `master` branch:
 
-> **TODO** <span class="material-symbols-outlined">construction</span>: Update the pipeline artifact information.
-
-- A complete build of pages is generated after each push as a downloadable artifact in the automatic [Pipelines](https://repo.tok.ipp.cas.cz/solps/solps-doc/-/pipelines)<span class="material-symbols-outlined">open_in_new</span> (see download button on the right).
+- A complete webpage preview is generated once you open a [pull request](https://github.com/iterorganization/SOLPS-Tutorials/pulls)<span class="material-symbols-outlined">open_in_new</span> to `master`. Simply wait a couple of minutes for the ReadTheDocs bot to post the link in the pull request's thread.
 
 - Build the pages locally:
 
