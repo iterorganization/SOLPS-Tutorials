@@ -44,7 +44,7 @@ python fetch_b2input_xml_files.py --help
 ```
 
 ```bash
-python fetch_b2input_xml_files.py --token $MY_SECRET_TOKEN versions.yaml
+python fetch_b2input_xml_files.py versions.yaml
 ```
 
 Now, instead of passing one file, one can pass a directory with multiple suffixed `b2input.xml` files as produced by `fetch_b2input_xml_files.py`. This will generate a webpage for multiple SOLPS-ITER versions, similar to what is found at [https://solps-tutorials.readthedocs.io/extras/b2input/].
