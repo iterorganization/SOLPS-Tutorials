@@ -341,7 +341,7 @@ Written like this, the divergence hunt seems like a logical progression of steps
 
 Browsing my notes from 2021, I see mentions of diverging carbon simulations from May to August. There is a detailed study of B2.5 boundary conditions (but no sputtering switches), repeated calls to contact Fabio Subba (which I never did), and a list of thirteen measures to fix the simulation (of which I tried nine, to no effect). 95 % of the notes concern other things. Then there's a one-month break... and the issue of diverging carbon simulation vanishes.
 
-My point is: **Take heart**. You will find a solution to your divergence eventually, even if it's "I don't need carbon *that* badly". And if you uncover the root of the problem and are able to address it, [write about it here](https://repo.tok.ipp.cas.cz/solps/solps-doc#solps-doc)<span class="material-symbols-outlined">open_in_new</span>! The leads I should have followed are more apparent in hindsight. Hopefully, by accumulating stories of mending divergence, we can distill rules of thumb to shorten the Brownian fumbling.
+My point is: **Take heart**. You will find a solution to your divergence eventually, even if it's "I don't need carbon *that* badly". And if you uncover the root of the problem and are able to address it, [write about it here](../Contribute.md)! The leads I should have followed are more apparent in hindsight. Hopefully, by accumulating stories of mending divergence, we can distill rules of thumb to shorten the Brownian fumbling.
 ///
 
 

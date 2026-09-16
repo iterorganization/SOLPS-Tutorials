@@ -65,7 +65,7 @@ SOLPS-ITER is a suite of codes (B2.5, EIRENE, DivGeo, Carre...) which performs 2
 
 
 /// tip | Your documentation could be here!
-Although SOLPS Tutorials does not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](https://repo.tok.ipp.cas.cz/solps/solps-doc#solps-doc)<span class="material-symbols-outlined">open_in_new</span> or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
+Although SOLPS Tutorials does not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](Contribute.md) or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
 ///
 
 ## Contributors
