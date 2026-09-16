@@ -23,7 +23,7 @@ SOLPS Tutorials are sorted into three basic categories parts:
 
 2. **Feature blog**, or making your SOLPS simulation more complex. This includes [diffusion coefficients](feature_blog/Diffusion_coefficients.md), [gas puffing and pumping](feature_blog/Gas_puffing_and_pumping.md), [impurities](feature_blog/Impurities.md), [drifts](feature_blog/Drifts.md), [wide grids](feature_blog/Wide_grids.md), and deep dives on [magnetic equilibrium reconstructions](feature_blog/Magnetic_equilibrium_reconstructions.md), [energy fluxes](feature_blog/Energy_fluxes_deep_dive.md) and [interpretative simulations](feature_blog/Interpretative_simulations_of_COMPASS.md).
 
-3. **Supplementary material**, which helps you use SOLPS aside from the physics. This includes [SOLPS-ITER user wisdom](supplementary/SOLPS-ITER_user_wisdom.md), a [library](supplementary/Library.md), [remote access](supplementary/Remote_access.md), [common pitfalls](supplementary/Common_pitfalls.md), [questions and answers](supplementary/Questions_and_answers.md) and [B2.5 switch documentation](/solps-doc/extras/b2input).
+3. **Supplementary material**, which helps you use SOLPS aside from the physics. This includes [SOLPS-ITER user wisdom](supplementary/SOLPS-ITER_user_wisdom.md), a [library](supplementary/Library.md), [remote access](supplementary/Remote_access.md), [common pitfalls](supplementary/Common_pitfalls.md), [questions and answers](supplementary/Questions_and_answers.md) and [B2.5 switch documentation](/extras/b2input).
 
 When contributing to the tutorials, please respect this underlying structure.
 
@@ -65,7 +65,7 @@ SOLPS-ITER is a suite of codes (B2.5, EIRENE, DivGeo, Carre...) which performs 2
 
 
 /// tip | Your documentation could be here!
-Although SOLPS Tutorials does not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](https://repo.tok.ipp.cas.cz/solps/solps-doc#solps-doc)<span class="material-symbols-outlined">open_in_new</span> or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
+Although SOLPS Tutorials does not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](Contribute.md) or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
 ///
 
 ## Contributors
@@ -81,7 +81,7 @@ Katka was two years into her PhD on SOLPS-ITER when she got married, agreed on t
 /// hint | Jan Hečko <a href="https://orcid.org/0000-0002-7696-3626"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"></a>
 *"The smaller and easier a task is, the lower it is on my to-do list."*
 
-Honza has awesome superpowers, such as being one with the source code. He is responsible for the [installation tutorials](installing/solps-iter-codebase.md), the [B2.5 switch documentation](/solps-doc/extras/b2input) and the website formatting. He also wrote most of the [Gas puffing and pumping](feature_blog/Gas_puffing_and_pumping.md) and [Drifts](feature_blog/Drifts.md) tutorials, and he got the [Wide grids](feature_blog/Wide_grids.md) tutorial started.
+Honza has awesome superpowers, such as being one with the source code. He is responsible for the [installation tutorials](installing/solps-iter-codebase.md), the [B2.5 switch documentation](/extras/b2input) and the website formatting. He also wrote most of the [Gas puffing and pumping](feature_blog/Gas_puffing_and_pumping.md) and [Drifts](feature_blog/Drifts.md) tutorials, and he got the [Wide grids](feature_blog/Wide_grids.md) tutorial started.
 ///
 
 Other major contributors to the Tutorials are:

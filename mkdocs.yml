@@ -1,5 +1,5 @@
 site_name: 'SOLPS Tutorials'
-site_url: https://solps.pages.tok.ipp.cas.cz/solps-doc/
+site_url: https://solps-tutorials.readthedocs.io/
 site_dir: public
 theme:
   name: material
@@ -55,4 +55,4 @@ nav:
       - supplementary/Remote_access.md
       - supplementary/Common_pitfalls.md
       - supplementary/Questions_and_answers.md
-      - 'B2.5 switches': /solps-doc/extras/b2input
+      - 'B2.5 switches': /extras/b2input

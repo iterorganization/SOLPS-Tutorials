@@ -19,7 +19,7 @@ Once you have mastered these, you can move on to features described in the Featu
 - Switching to [wide grids](../feature_blog/Wide_grids.md)
 
 /// tip | Input parameter overview
-To look up information on boundary conditions and SOLPS-ITER input parameters, use our [B2.5 switch database](https://solps.pages.tok.ipp.cas.cz/solps-doc/extras/b2input/). It has colours and a search function.
+To look up information on boundary conditions and SOLPS-ITER input parameters, use our [B2.5 switch database](/extras/b2input/). It has colours and a search function.
 ///
 
 
@@ -74,7 +74,7 @@ It's important to know the colloquial names for B2.5 boundaries because they are
  bcend= 65, 36, 36, 17, 84, 84,
 ```
 
-These lines mean that wherever boundary conditions are listed for all B2.5 boundaries, there will be **6 numbers** and they will correspond, respectively, to boundaries S2 (core), W (outer target), E (inner target), S1 and S3 (PFR) and N (far SOL). You can tell the difference between the three South boundaries using the indices. Perusing the [B2.5 switch documentation](/solps-doc/extras/b2input)<span class="material-symbols-outlined">open_in_new</span> for the meaning of `BCPOS`, `BCSTART` and `BCEND`, you can learn that the S2 (core) boundary has the $y$ (radial) index -1 and poloidally (in $x$) spans from cell 18 to 65, that is, from inner X-point to outer X-point.
+These lines mean that wherever boundary conditions are listed for all B2.5 boundaries, there will be **6 numbers** and they will correspond, respectively, to boundaries S2 (core), W (outer target), E (inner target), S1 and S3 (PFR) and N (far SOL). You can tell the difference between the three South boundaries using the indices. Perusing the [B2.5 switch documentation](/extras/b2input)<span class="material-symbols-outlined">open_in_new</span> for the meaning of `BCPOS`, `BCSTART` and `BCEND`, you can learn that the S2 (core) boundary has the $y$ (radial) index -1 and poloidally (in $x$) spans from cell 18 to 65, that is, from inner X-point to outer X-point.
 
 Knowing the number of boundaries is useful for orientation in SOLPS input files. Wherever indices run from 1 to 6, you can be pretty sure they're listing the individual B2.5 boundaries in the order given by `BCCHAR`. Besides the 6 B2.5 boundaries, another recurring list that you'll encounter in the example `b2.boundary.parameters` file runs from 1 to 2. This is the **list of all ion species**. Its index is usually denoted `is` (Index of Species) and in this example file, it includes two "ion" species only: deuterium atom neutrals and deuterium (singly charged) ions. (Molecules are not covered by B2.5, only by EIRENE.) The boundary conditions of the continuity and momentum equation are given separately for every ion species. That's why you have:
 
@@ -95,7 +95,7 @@ Knowing the number of boundaries is useful for orientation in SOLPS input files.
  mompar(0,3,2)=  0.00    ,  0.00    ,
 ```
 
-`BCMOM` is given on 6 lines (corresponding to each of the 6 B2.5 boundaries) and each line has 2 values (corresponding to D<sup>0</sup> and D<sup>+</sup>). Perusing the description of `BCMOM = 2` in the [B2.5 switch documentation](/solps-doc/extras/b2input)<span class="material-symbols-outlined">open_in_new</span>, you will find this boundary condition only has one free parameter: `MOMPAR(,,1)`. However, boundary condition `BCMOM = 3` has two free parameters: `MOMPAR(,,1)` and `MOMPAR(,,2)`. That is why there are 8 lines for `MOMPAR`: 6 of them list `MOMPAR(,,1)` and 2 of them list `MOMPAR(,,2)`. Reading the indices in the brackets, you can find the exact place where you need to edit a number to change a SOLPS input.
+`BCMOM` is given on 6 lines (corresponding to each of the 6 B2.5 boundaries) and each line has 2 values (corresponding to D<sup>0</sup> and D<sup>+</sup>). Perusing the description of `BCMOM = 2` in the [B2.5 switch documentation](/extras/b2input)<span class="material-symbols-outlined">open_in_new</span>, you will find this boundary condition only has one free parameter: `MOMPAR(,,1)`. However, boundary condition `BCMOM = 3` has two free parameters: `MOMPAR(,,1)` and `MOMPAR(,,2)`. That is why there are 8 lines for `MOMPAR`: 6 of them list `MOMPAR(,,1)` and 2 of them list `MOMPAR(,,2)`. Reading the indices in the brackets, you can find the exact place where you need to edit a number to change a SOLPS input.
 
 /// tip | There are many available boundary conditions
 As of February 2026, there are 28 available boundary conditions for the ion energy equation `BCENI` in the "structured grids" SOLPS-ITER 3.0.9, and the list is growing. You can prescribe the sheath (`BCENI=3`), you can prescribe the sheath but different (`BCENI=11,12`), you can prescribe the sheath but compatible with drifts (`BCENI=15`)... At this point, as you read this introductory tutorial, don't worry about all of these options and stick to the default ones, which were pre-generated in the `stencil` files. But later, once you've mastered the basics and you move on to the Feature blog, you will study this list of boundary conditions and choose the best one for your simulation.

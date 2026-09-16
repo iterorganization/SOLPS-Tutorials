@@ -301,8 +301,8 @@ SOLPS-ITER input files are the text files you will edit while running your simul
 /// tip | Resources
 **`b2mn.dat`**
 
-- `$SOLPSTOP/modules/B2.5/src/documentation/b2input.xml` - mother source of B2.5 switch descriptions 
-- [B2.5 switches](/solps-doc/extras/b2input) - our pretty, searchable viewport of the `b2input.xml` file, also great for browsing boundary conditions
+- `$SOLPSTOP/modules/B2.5/src/documentation/b2input.xml` - mother source of B2.5 switch descriptions
+- [B2.5 switches](/extras/b2input) - our pretty, searchable viewport of the `b2input.xml` file, also great for browsing boundary conditions
 
 **`input.dat`** - [EIRENE manual](https://eirene.de/Documentation/eirene.pdf)<span class="material-symbols-outlined">open_in_new</span>
 
@@ -368,7 +368,7 @@ Usually, you'll have `b2ah.dat` in the `baserun` and `b2mn.dat`, `b2.boundary.pa
 
 We recommend starting from our [annotated basic `b2mn.dat`](../files/annotated_basic_b2mn.dat)<span class="material-symbols-outlined">download</span>. The annotations explain what the switches mean and what their default values are. Note that this was made for SOLPS version 3.0.6. You may be running a newer version, where some of the listed switches are obsolete.
 
-To learn more about B2.5 switches, peruse our [B2 switches documentation](/solps-doc/extras/b2input). Kateřina has compiled the [switches she found interesting](../files/annotated_interesting_switches_in_b2mn.dat)<span class="material-symbols-outlined">download</span> on her October 2023 read-through.
+To learn more about B2.5 switches, peruse our [B2 switches documentation](/extras/b2input). Kateřina has compiled the [switches she found interesting](../files/annotated_interesting_switches_in_b2mn.dat)<span class="material-symbols-outlined">download</span> on her October 2023 read-through.
 
 An important part of `b2mn.dat` is switching between the "standard” and "physics” boundary conditions. To use `b2.boundary.parameters` instead of `b2ah.dat` etc., paste these line into `b2mn.dat`:
 ```

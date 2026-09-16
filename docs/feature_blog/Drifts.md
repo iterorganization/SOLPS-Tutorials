@@ -117,7 +117,7 @@ It's hard to say what are sensible values (1.5, 1.1, 1.0001) for any of the ramp
 
 ## Modify boundary conditions in `b2.boundary.parameters`
 
-This is the most complicated step, but at the same time, it might not be important to make the simulation stable (Honza's conjecture). It is, at any rate, important for the simulation to be physically correct. Most of the information here is based on the documentation of the boundary conditions and on the official example `ITER_2588_Donly_standalone_drifts` from the `solps-iter/examples` directory. Refer to that example for more details. See the [B2.5 switches](/solps-doc/extras/b2input) for a documentation on the boundary conditions. The main idea is:
+This is the most complicated step, but at the same time, it might not be important to make the simulation stable (Honza's conjecture). It is, at any rate, important for the simulation to be physically correct. Most of the information here is based on the documentation of the boundary conditions and on the official example `ITER_2588_Donly_standalone_drifts` from the `solps-iter/examples` directory. Refer to that example for more details. See the [B2.5 switches](/extras/b2input) for a documentation on the boundary conditions. The main idea is:
 
 - There are special versions of the sheath boundary conditions that are modified to properly account for drifts.
 - It is advisable to use leakage conditions instead of decay lengths for the radial boundaries. But I'm not sure if that is important for drifts or just a good idea in general.
