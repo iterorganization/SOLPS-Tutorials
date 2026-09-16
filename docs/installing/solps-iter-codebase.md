@@ -146,7 +146,7 @@ If everything ends without errors, congratulations, you have installed SOLPS-ITE
 
 ### Installation guides
 
-The SOLPS wiki offers three installation guides in addition to [installing on a properly configured site](#properly-configured-site):
+SOLPS Tutorials offer three installation guides in addition to [installing on a properly configured site](#properly-configured-site):
 
 **[Installing SOLPS in a container](installing-in-container.md) - recommended**
 

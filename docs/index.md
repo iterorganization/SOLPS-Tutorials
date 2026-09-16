@@ -7,12 +7,12 @@ The SOLPS Tutorials [webpage](https://solps-tutorials.readthedocs.io/) is compil
 
 ![SOLPS Tutorials logo](img/logo/logo.png)
 
-*SOLPS wiki logo: a supra-luminal unicorn ([why?](supplementary/Questions_and_answers.md#unicorn))*
+*SOLPS Tutorials logo: a supra-luminal unicorn ([why?](supplementary/Questions_and_answers.md#unicorn))*
 
 
-## Navigating the wiki
+## Navigating the tutorials
 
-The SOLPS wiki has three basic parts:
+SOLPS Tutorials are sorted into three basic categories parts:
 
 1. **My first SOLPS simulation**. This includes [installing SOLPS](installing/solps-iter-codebase.md), [creating a simulation](my_first_simulation/Creating_a_new_SOLPS-ITER_simulation.md), [running the simulation](my_first_simulation/Running_SOLPS-ITER.md), [processing its output](my_first_simulation/Processing_SOLPS-ITER_output.md) and [adjusting its input](my_first_simulation/Adjusting_SOLPS-ITER_input.md).
 
@@ -20,12 +20,12 @@ The SOLPS wiki has three basic parts:
 
 3. **Supplementary material**, which helps you use SOLPS aside from the physics. This includes [SOLPS-ITER user wisdom](supplementary/SOLPS-ITER_user_wisdom.md), a [library](supplementary/Library.md), [remote access](supplementary/Remote_access.md), [common pitfalls](supplementary/Common_pitfalls.md), [questions and answers](supplementary/Questions_and_answers.md) and [B2.5 switch documentation](/solps-doc/extras/b2input).
 
-When contributing to the wiki, please respect this underlying structure.
+When contributing to the tutorials, please respect this underlying structure.
 
 
 ## First steps
 
-To familiarise yourself with SOLPS-ITER and this wiki, you can do the following:
+To familiarise yourself with SOLPS-ITER and SOLPS Tutorials, you can do the following:
 
 - To learn what SOLPS-ITER is and what it's for, read the [brief introduction to SOLPS-ITER](#brief_introduction) and skim the references therein (SOLPS-related theses and articles).
 
@@ -60,7 +60,7 @@ SOLPS-ITER is a suite of codes (B2.5, EIRENE, DivGeo, Carre...) which performs 2
 
 
 /// tip | Your documentation could be here!
-Although the SOLPS wiki does not aim to substitute existing SOLPS documentation, it does aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to the SOLPS wiki](https://repo.tok.ipp.cas.cz/solps/solps-doc#solps-doc)<span class="material-symbols-outlined">open_in_new</span> or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
+Although SOLPS Tutorials does not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](https://repo.tok.ipp.cas.cz/solps/solps-doc#solps-doc)<span class="material-symbols-outlined">open_in_new</span> or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
 ///
 
 ## Contributors
@@ -69,17 +69,17 @@ Although the SOLPS wiki does not aim to substitute existing SOLPS documentation,
 
 *"If you don't write it down, you'll forget it."*
 
-Katka was two years into her PhD on SOLPS-ITER when she got married, agreed on three kids, and realised she'd better get started. To avoid forgetting everything, she began writing down all she knew. She shared her notes with her colleagues, got help putting them up on the internet, realised people outside IPP Prague actually read them, rewrote them to pretend she was a professional... and that's how the SOLPS wiki was born.
+Katka was two years into her PhD on SOLPS-ITER when she got married, agreed on three kids, and realised she'd better get started. To avoid forgetting everything, she began writing down all she knew. She shared her notes with her colleagues, got help putting them up on the internet, realised people outside IPP Prague actually read them, rewrote them to pretend she was a professional... and that's how SOLPS Tutorials were born.
 ///
 
 
 /// hint | Jan Hečko <a href="https://orcid.org/0000-0002-7696-3626"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"></a>
 *"The smaller and easier a task is, the lower it is on my to-do list."*
 
-Honza has awesome superpowers, such as being one with the source code. He is responsible for the [installation tutorials](installing/solps-iter-codebase.md), the [B2.5 switch documentation](/solps-doc/extras/b2input) and the wiki formatting. He also wrote most of the [Gas puffing and pumping](feature_blog/Gas_puffing_and_pumping.md) and [Drifts](feature_blog/Drifts.md) tutorials, and he got the [Wide grids](feature_blog/Wide_grids.md) tutorial started.
+Honza has awesome superpowers, such as being one with the source code. He is responsible for the [installation tutorials](installing/solps-iter-codebase.md), the [B2.5 switch documentation](/solps-doc/extras/b2input) and the website formatting. He also wrote most of the [Gas puffing and pumping](feature_blog/Gas_puffing_and_pumping.md) and [Drifts](feature_blog/Drifts.md) tutorials, and he got the [Wide grids](feature_blog/Wide_grids.md) tutorial started.
 ///
 
-Other major contributors to the SOLPS wiki are:
+Other major contributors to the Tutorials are:
 
 - **Aleš Podolník** <a href="https://orcid.org/0000-0003-1237-8812"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"></a> - wrote the [Energy fluxes deep dive](feature_blog/Energy_fluxes_deep_dive.md)
 

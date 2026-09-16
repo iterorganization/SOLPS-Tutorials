@@ -43,7 +43,7 @@ In Kateřina's experience, about half of SOLPS work is being stuck on a problem 
 
 ### I wish I could just Google this
 
-SOLPS-ITER is developed by brilliant people with excellent memory who don't take career breaks to have kids. In consequence, writing a publicly available knowledge base is near the bottom of the list of SOLPS priorities. As of June 2026, when you google "SOLPS-ITER", the first result is *this wiki*. The second is the source code of SOLPS-ITER. (We are proud and horrified.) SOLPS lore is so well hidden, not even [AI with direct access to its source code](https://deepwiki.com/iterorganization/SOLPS-ITER/1-overview)<span class="material-symbols-outlined">open_in_new</span> can tell you what heat flux limiters are. The only semi-usable SOLPS-ITER search engines are [Google Scholar](https://scholar.google.com/)<span class="material-symbols-outlined">open_in_new</span> for articles, conference proceedings and theses, and the SOLPS wiki search toolbar (upper right corner).
+SOLPS-ITER is developed by brilliant people with excellent memory who don't take career breaks to have kids. In consequence, writing a publicly available knowledge base cannot compete with other SOLPS priorities. As of June 2026, when you google "SOLPS-ITER", the first result is *SOLPS Tutorials* (or SOLPS-doc, their earlier permutation hosted by IPP Prague). The second is the source code of SOLPS-ITER. (We are proud and horrified.) SOLPS lore is so well hidden, not even [AI with direct access to its source code](https://deepwiki.com/iterorganization/SOLPS-ITER/1-overview)<span class="material-symbols-outlined">open_in_new</span> can tell you what heat flux limiters are. The only semi-usable SOLPS-ITER search engines are [Google Scholar](https://scholar.google.com/)<span class="material-symbols-outlined">open_in_new</span> for articles, conference proceedings and theses, and SOLPS Tutorials search toolbar (upper right corner).
 
 If you compiled all of these sources and made them fully searchable, you'd get a half-decent knowledge base:
 
@@ -160,7 +160,7 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. It's te
 
 **David Coster**: A senior researcher working at IPP Garching. One of the most experienced SOLPS-ITER users.
 
-**Katka** (Kateřina) and **Honza**: Postdocs working at IPP Prague, the main authors of the SOLPS wiki. They share the conviction that if they don't write it down, they will forget it.
+**Katka** (Kateřina) and **Honza**: Postdocs working at IPP Prague, the main authors of SOLPS Tutorials. They share the conviction that if they don't write it down, they will forget it.
 
 **IO**: ITER Organisation.
 
@@ -172,8 +172,9 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. It's te
 
 - The source code of SOLPS-ITER, kept at GitHub. Just downloading it is not enough to make simulations with SOLPS-ITER; first you must compile the source code (see the [installation guides](../installing/solps-iter-codebase.md)).
 - This is the quickest way to get to the manual LaTEX source (`$SOLPSTOP/docs/solps/solps.tex`).
-- Includes a rival [wiki](https://github.com/iterorganization/SOLPS-ITER/wiki)<span class="material-symbols-outlined">open_in_new</span>. So far, it lists a few frequently encountered issues, such as "what are SOLPS branches called again", "why can't I name my `$SOLPSTOP`  directory `solps-iter_debug`" or "my SOLPS runs are huge and the IT guy's screaming at me, help".
-    - If you wish to contribute to the rival wiki, write to <span class="material-symbols-outlined">mail</span>[Xavier Bonnin](mailto:xavier.bonnin@iter.org). Give him your GitHub handle (so he can identify your account), and he'll grant you the necessary permissions.
+- Includes the [SOLPS wiki](https://github.com/iterorganization/SOLPS-ITER/wiki)<span class="material-symbols-outlined">open_in_new</span>. So far, it lists a few frequently encountered issues, such as "what are SOLPS branches called again", "why can't I name my `$SOLPSTOP`  directory `solps-iter_debug`" or "my SOLPS runs are huge and the IT guy's screaming at me, help".
+    - If you wish to contribute to the SOLPS wiki, write to <span class="material-symbols-outlined">mail</span>[Xavier Bonnin](mailto:xavier.bonnin@iter.org). Give him your GitHub handle (so he can identify your account), and he'll grant you the necessary permissions.
+    - This wiki is the reason SOLPS Tutorials are not called the SOLPS wiki.
 
 
 **[ITER SharePoint](https://iterorganization.sharepoint.com/:f:/r/sites/SOLPS-ITER/Shared%20Documents/General?csf=1&web=1&e=nSbYg0)**<span class="material-symbols-outlined">open_in_new</span>
@@ -216,9 +217,9 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. It's te
 
 **[B2.5 switches documentation](/solps-doc/extras/b2input)**
 
-- Created by Jan Hečko, this semi-detached part of the SOLPS wiki lists the switches of B2, their meaning and default values, in a human-readable way.
+- Created by Jan Hečko, this semi-detached part of SOLPS Tutorials lists the switches of B2, their meaning and default values, in a human-readable way.
 - Switch descriptions are taken from the official SOLPS/B2.5 documentation (`$SOLPSTOP/B2.5/src/documentation/b2input.xml`).
-- Webpage is generated for several SOLPS-ITER versions and regularly updated. In case you want to use the webpage generator tool directly (e.g. to generate it from your version of SOLPS-ITER), clone the SOLPS wiki repo and refer to instructions in `SOLPS-Wiki/extras/b2input/README.md`.
+- Webpage is generated for several SOLPS-ITER versions and regularly updated. In case you want to use the webpage generator tool directly (e.g. to generate it from your version of SOLPS-ITER), clone the `SOLPS-Tutorials` repo and refer to instructions in `SOLPS-Tutorials/extras/b2input/README.md`.
 
 **[ADAS manual](https://www.adas.ac.uk/manual.php)**<span class="material-symbols-outlined">open_in_new</span>
 
@@ -238,7 +239,7 @@ The Czechs, a small Slavic nation in Central Europe, have a different national w
 In the Czech spirit, this section of SOLPS-ITER user wisdom is devoted to collecting jokes.
 
 /// note | No useful physics ahead
-This is the only part of the SOLPS Wiki which does not take itself seriously at all. Everyone taps into the pit of existential despair on occasion. It's no use pretending it isn't there.
+This is the only part of SOLPS Tutorials which does not take itself seriously in the slightest. Everyone taps into the pit of existential despair on occasion. It's no use pretending it isn't there.
 ///
 
 ***
@@ -286,24 +287,24 @@ Author: Kateřina Hromasová, drawing found online and upscaled with AI.</i></ce
 
 ![img](../img/SOLPS_wiki_alternative_logo.png)
 
-<center><i>Alternative logo of the SOLPS wiki.<br>
+<center><i>Alternative logo of SOLPS Tutorials, back when they were supposed to be called the SOLPS wiki.<br>
 Author: Kateřina Hromasová and Jan Hečko, made with meme templates.</i></center>
 
 ***
 
 ![img](../img/skull_logo.png)
 
-<center><i>Alternative logo of the SOLPS wiki.<br>
+<center><i>Alternative logo of SOLPS Tutorials, back when they were supposed to be called the SOLPS wiki.<br>
 Author: Daniel Švorc, generated with AI.</i></center>
 
 ***
 
-![SOLPS wiki logo](../img/logo/logo.png)
+![SOLPS Tutorials logo](../img/logo/logo.png)
 
-<center><i>SOLPS wiki logo.<br>
+<center><i>SOLPS Tutorials logo.<br>
 Author: Kateřina Hromasová, based on a photo.</i></center>
 
-**<a name="unicorn"></a>Why is the SOLPS wiki logo a supra-luminal unicorn?**
+**<a name="unicorn"></a>Why is the SOLPS Tutorials logo a supra-luminal unicorn?**
 
 1. Comprehensive SOLPS-ITER documentation is as rare as unicorns.
 
@@ -355,7 +356,7 @@ Czech: "Do prdele!" (In the ass!)
 
 ***
 
-> What does Katka say when you point out grave mistakes in the SOLPS wiki? "There ain't no rest for the wiki..."
+> What does Katka say when you point out grave mistakes in SOLPS Tutorials? "There ain't no rest for the wiki..."
 
 ***
 

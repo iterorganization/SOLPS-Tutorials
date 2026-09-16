@@ -10,7 +10,7 @@ This document records the questions we've had about SOLPS-ITER and their answers
 - [Miscellaneous](#miscellaneous)
 
 /// tip | Avoid duplication
-You are welcome to submit new questions and answers, but first peruse the wiki search bar. The answers of many questions are already covered in standalone tutorials, and we wish to avoid duplication.
+You are welcome to submit new questions and answers, but first peruse the search bar on the upper right. The answers of many questions are already covered in standalone tutorials, and we wish to avoid duplication.
 ///
 
 ## Unanswered questions
@@ -27,7 +27,7 @@ What is the difference between sheaths in boundary conditions `3` and `12`?
 
 ## B2plot
 
-/// hint | The SOLPS wiki covers this
+/// hint | SOLPS Tutorials cover this
 See [Processing SOLPS-ITER output: B2plot](../my_first_simulation/Processing_SOLPS-ITER_output.md#b2plot).
 ///
 
@@ -75,7 +75,7 @@ The numbers can be found in `b2pl.exe.dir/b2plot.write`.
 
 ## Input files and boundary conditions
 
-/// hint | The SOLPS wiki covers this
+/// hint | SOLPS Tutorials cover this
 See [Creating a new SOLPS-ITER simulation: Procure input files](../my_first_simulation/Creating_a_new_SOLPS-ITER_simulation.md#procure-input-files) and [Adjusting SOLPS-ITER input](../my_first_simulation/Adjusting_SOLPS-ITER_input.md).
 ///
 
@@ -130,7 +130,7 @@ So you can write comments there in any way you wish (starting the line with \#, 
 
 ## Post-processing SOLPS-ITER results
 
-/// hint | The SOLPS wiki covers this
+/// hint | SOLPS Tutorials cover this
 See [Processing SOLPS-ITER output](../my_first_simulation/Processing_SOLPS-ITER_output.md).
 ///
 
@@ -152,7 +152,7 @@ Because `fhe` and `fhi` aren't the only components of `Whtpl`. See the [Energy f
 
 ## Running SOLPS-ITER
 
-/// hint | The SOLPS wiki covers this
+/// hint | SOLPS Tutorials cover this
 See [Running SOLPS-ITER](../my_first_simulation/Running_SOLPS-ITER.md).
 ///
 

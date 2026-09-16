@@ -10,7 +10,7 @@ This document collects reading materials on SOLPS-ITER, mostly articles, and the
 [**SOLPS-ITER manual**](SOLPS-ITER_user_wisdom.md#rtfm)
 
 - Continually updated to reflect recent changes in SOLPS; find the version relevant to your installation in `$SOLPSTOP/docs/solps/solps.pdf`
-- For convenience, the [3.0.9 manual](../files/SOLPS-ITER_manual_3.0.9.pdf)<span class="material-symbols-outlined">download</span> from December 2025 is shipped with the SOLPS wiki
+- For convenience, the [3.0.9 manual](../files/SOLPS-ITER_manual_3.0.9.pdf)<span class="material-symbols-outlined">download</span> from December 2025 is shipped with SOLPS Tutorials
 
 **[DivGeo tutorial](../files/DivGeo_tutorial.pdf)**<span class="material-symbols-outlined">download</span>
 
