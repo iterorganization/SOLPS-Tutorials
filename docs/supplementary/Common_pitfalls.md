@@ -6,7 +6,7 @@ Pitfalls covered here:
 
 - [The danger of timestamps](#the-danger-of-timestamps), or "Why did my simulation jump to the flat profiles state?"
 - [Divergence](#divergence), or "Why is the separatrix temperature 5 keV?"
-- [Make SOLPS-ITER run faster](#make-solps-iter-run-faster), or "I only have four years for my PhD, how am I supposed to model DEMO with impurities and drifts?" 
+- [Make SOLPS-ITER run faster](#make-solps-iter-run-faster), or "I only have four years for my PhD, how am I supposed to model DEMO with impurities and drifts?"
 
 /// warning | Your expertise is needed!
 Ever since the IPP Prague team switched from modelling the COMPASS tokamak to COMPASS Upgrade, divergence and infinite runtime has been our bane. Your expertise is especially welcome in *Common pitfalls*!
@@ -307,13 +307,13 @@ echo "phys te 0.0 fmin 40.0 fmax surf" | b2plot
 
 Carbon ionisation energy is 11.16 eV (as stated in the `b2plot` output), so there should have been some neutral carbon surviving in the PFR at least. Why was there none?
 
-I tried breaking the simulation up into smaller parts and drawing the results in individual time snaps. It turned out that C<sup>0</sup> density fell with every iteration, from 10<sup>15</sup> m<sup>-3</sup> (flat profiles solution) to what you see above. The moment it hit 10<sup>4</sup> m<sup>-3</sup>, the C<sup>0</sup> continuity equation residuals stopped evolving. It seemed like there was a floor limit to how low a density can get? Eventually, I discovered the B2.5 switch `b2mndr_na_min` (see its description in our [B2.5 switch documentation viewer](/solps-doc/extras/b2input)), which sets the minimum ion species density. Its default value is 10<sup>4</sup> m<sup>-3</sup>.
+I tried breaking the simulation up into smaller parts and drawing the results in individual time snaps. It turned out that C<sup>0</sup> density fell with every iteration, from 10<sup>15</sup> m<sup>-3</sup> (flat profiles solution) to what you see above. The moment it hit 10<sup>4</sup> m<sup>-3</sup>, the C<sup>0</sup> continuity equation residuals stopped evolving. It seemed like there was a floor limit to how low a density can get? Eventually, I discovered the B2.5 switch `b2mndr_na_min` (see its description in our [B2.5 switch documentation viewer](/extras/b2input)), which sets the minimum ion species density. Its default value is 10<sup>4</sup> m<sup>-3</sup>.
 
 So! It appeared that neutral carbon was depleted from the simulation domain, globally hit the minimum density, and its solution stopped evolving with time. Where did it go? And why was there still plenty of ionised carbon remaining? The question how the crash happened receded into the background, because I *wanted* neutral carbon in my simulation. Fixing that took priority before finding the physical nature of the crash.
 
 Since neutral carbon should have been produced by sputtering, I searched how sputtering was controlled. The manual confused me initially. In reality, there are two sets of sputtering switches:
 
-- A group of "sputtering model switches" in `b2mn.dat`, all beginning with `b2stbr`. These control sputtering in B2.5 calculations, that is, in standalone simulations. See them in the [B2.5 switch documentation viewer](/solps-doc/extras/b2input).
+- A group of "sputtering model switches" in `b2mn.dat`, all beginning with `b2stbr`. These control sputtering in B2.5 calculations, that is, in standalone simulations. See them in the [B2.5 switch documentation viewer](/extras/b2input).
 - Paragraph *\*\*\* 6B. Data for local reflection and sputtering models* in `input.dat`, most importantly switches `ILSPT`, `ISRS` and `ISRC`. These control sputtering in EIRENE calculations, that is, in coupled simulations. See the [EIRENE manual](https://eirene.de/Documentation/eirene.pdf)<span class="material-symbols-outlined">open_in_new</span>, section *Input data for surface interaction models*.
 
 The SOLPS manual doesn't say that these are independent groups of inputs which come into effect depending on who's handling the neutrals. Eventually, I gathered as much from the SOLPS Slack and experience. I zeroed in on the EIRENE input file, `input.dat`.

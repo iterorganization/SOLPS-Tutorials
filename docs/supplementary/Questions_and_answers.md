@@ -239,9 +239,9 @@ Internally, SOLPS-ITER doesn't use the parallel coordinate at all. All calculati
 The figures show a B2.5 grid based on a COMPASS equilibrium, field lines traced using PLEQUE from the outer target cell centres (red dots) and the connection length from the OMP to the inner and outer target. Two observations can be made:
 
 1. The poloidal cell rows follow PLEQUE field lines, but the field lines do not necessarily pass through the cell centres. This is most readily seen in the top left part of the equilibrium, but it is also true at the outer midplane (OMP). The takeaways are:
-    
+
     1. Poloidal cell rows in B2.5 truly constitute **flux tubes**, and the transport through them is purely parallel transport.
-    
+
     2. If, nevertheless, you want to trace field lines from the cell centres with PLEQUE, don't start from the OMP. You will follow a field line which does not pass through the poloidal cell row.
 
 2. The discretised calculation of `b2plot`, SOLPSpy and SOLPS-postproc is, to a large degree, **accurate**. The only sizable deviation is seen near the separatrix, where the connection length goes to infinity near the X-point. This is a pretty good result for such coarse discretisation.
@@ -305,7 +305,7 @@ Refer to the tutorial [installing SOLPS-ITER on a properly configured site](../i
 **What is a "stratum"?** <a name='stratum'></a><br>
 A stratum (plural strata) is a neutral particle source of (in some regard) homogeneous properties. When sampling Monte Carlo neutrals whose trajectories it will follow, EIRENE splits its total neutral particle source into strata according to their origin - mostly "originating on a plasma boundary" or "volumetric neutral particle source". If it samples, say, 7000 neutral particles for each stratum, it achieves lower statistical variance than if it sampled from the total neutral particle source at random. This is because stratified sampling provides more representative samples of neutral particles in each EIRENE run.
 
-More information can be found via Google (general understanding of stratified sampling in Monte Carlo techniques), in the EIRENE manual, sections *1.3.3.2 Stratified Source Sampling* (particular implementation of stratified sampling in EIRENE) and *2.7 Input data for Initial Distribution of Test Particles* (description of block 7 in `input.dat`, where strata description is given), and `b2.neutrals.parameters` along with the [description of its switches](https://solps.pages.tok.ipp.cas.cz/solps-doc/extras/b2input/b2.parameters.html#b2.neutrals.parameters).
+More information can be found via Google (general understanding of stratified sampling in Monte Carlo techniques), in the EIRENE manual, sections *1.3.3.2 Stratified Source Sampling* (particular implementation of stratified sampling in EIRENE) and *2.7 Input data for Initial Distribution of Test Particles* (description of block 7 in `input.dat`, where strata description is given), and `b2.neutrals.parameters` along with the [description of its switches](/extras/b2input/develop/b2.parameters.html#b2.neutrals.parameters).
 
 For instance, the beginning of the `b2.neutrals.parameters` file in a D+C simulation reads:
 

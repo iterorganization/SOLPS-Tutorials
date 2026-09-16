@@ -54,14 +54,14 @@ If you compiled all of these sources and made them fully searchable, you'd get a
 - Our [Library](Library.md), especially if you're looking for physics understanding.
 - History of the [SOLPS Slack](http://solps.slack.com)<span class="material-symbols-outlined">open_in_new</span>. Lamentably, you need a paid Slack account to see the entire history. However, searching for keywords in the `solps-iter`, `q_and_a`, `beginner-advice` and `general` channels should be a gold mine for solutions.
 - The [SOLPS User Forum minutes](https://confluence.iter.org/spaces/IMP/pages/178135134/SOLPS-ITER#SOLPSITER-UserForumdebriefings)<span class="material-symbols-outlined">open_in_new</span>. Often you'll find mentions of recent updates and bugfixes relevant to your problems.
-- The [SOLPS-ITER source code](https://github.com/iterorganization/SOLPS-ITER/tree/master/modules)<span class="material-symbols-outlined">open_in_new</span>. To view and search its content, use a high-level code editor such as [Visual Studio Code](https://code.visualstudio.com/)<span class="material-symbols-outlined">open_in_new</span>. This allows, for instance, searching for keywords across multiple files using `Ctrl+Shift+F`. 
+- The [SOLPS-ITER source code](https://github.com/iterorganization/SOLPS-ITER/tree/master/modules)<span class="material-symbols-outlined">open_in_new</span>. To view and search its content, use a high-level code editor such as [Visual Studio Code](https://code.visualstudio.com/)<span class="material-symbols-outlined">open_in_new</span>. This allows, for instance, searching for keywords across multiple files using `Ctrl+Shift+F`.
 
     - SOLPS routine description (e.g. `b2stbc`): Search for the keyword. In the best case, you'll find docstrings. In a worse case, you can inspect the Fortran code line by line to figure out what the simulation actually does.
     - Some DivGeo documentation: `$SOLPSTOP/modules/DivGeo/equtrn/doxygen/refman.pdf`
 
 - [Useful links](#useful-links) below.
 - To find out what B2.5 switches do:
-    - Search them in our [B2.5 switch documentation](/solps-doc/extras/b2input). Be sure to use the correct SOLPS version, as some switches may be recently added.
+    - Search them in our [B2.5 switch documentation](/extras/b2input). Be sure to use the correct SOLPS version, as some switches may be recently added.
     - The [SOLPS GUI](https://static.iter.org/imas/assets/solps-iter/html/index.html)<span class="material-symbols-outlined">open_in_new</span> includes an `Input` tab which not only collapses `input.dat` into individual sections but also automatically displays switch descriptions upon clicking/hovering. Charming!
 
 
@@ -215,7 +215,7 @@ Follow the instructions in this order and don't go straight to `Ctrl+F`. It's te
 - Created by Leon Kos, the SOLPS-ITER GUI (Graphical User Interface) aims to make SOLPS-ITER more user-friendly.
 - Even if you do not plan to use the tool itself, the documentation provides nicely written (but often brief) guides and overviews such as [SOLPS Structure](https://static.iter.org/imas/assets/solps-iter/html/introduction.html#solps-structure)<span class="material-symbols-outlined">open_in_new</span> and [SOLPS-ITER installation with `easybuild-local.sh`](https://static.iter.org/imas/assets/solps-iter/html/howto/install.html#solps-iter-installation)<span class="material-symbols-outlined">open_in_new</span>.
 
-**[B2.5 switches documentation](/solps-doc/extras/b2input)**
+**[B2.5 switches documentation](/extras/b2input)**
 
 - Created by Jan Hečko, this semi-detached part of SOLPS Tutorials lists the switches of B2, their meaning and default values, in a human-readable way.
 - Switch descriptions are taken from the official SOLPS/B2.5 documentation (`$SOLPSTOP/B2.5/src/documentation/b2input.xml`).

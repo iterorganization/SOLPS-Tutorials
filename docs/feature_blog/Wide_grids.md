@@ -438,7 +438,7 @@ After nearly two years of using Wide Grids SOLPS-ITER to model the COMPASS Upgra
     - Limiting maximum allowed velocities (`b2npmo_ion_vlct_restrict` and `b2npmo_ion_vlct_restrict_M` in `b2mn.dat`)
     - Decreasing or turning off viscous heating (`b2sihs_phm0`-`b2sihs_phm8` in `b2mn.dat`)
 
-**Switches in `b2mn.dat` relevant to divergence** (find their meaning in our [B2.5 switch documentation](https://solps.pages.tok.ipp.cas.cz/solps-doc/extras/b2input/)):
+**Switches in `b2mn.dat` relevant to divergence** (find their meaning in our [B2.5 switch documentation](/extras/b2input/)):
 
 - Decrease time step.
 

@@ -150,7 +150,7 @@ Deuterium is just the most common main ion species in SOLPS-ITER simulations.
 If one has [implemented a pump](#gas-pumping), the lost particles must be compensated for. Under default boundary conditions, where the plasma density is controlled by the D<sup>1+</sup> density at the core boundary $n_{i,core}$ (`BCCON = 1`), this refuelling is done mainly through the particle flux from the core. The flux is automatically adjusted to such a value that matches the density required in `CONPAR`. To get a proper particle balance, however, one needs to control the plasma density is through the *gas puff throughput* $\Gamma_{\text{puff}}$.
 
 /// tip | When gas puff is off in experiment
-In short, low-density tokamak discharges, experimental density feedback system can find that it does not need to puff gas into the plasma to maintain the desired plasma density. Recycling is sustained by the pre-filled particles and pumping only removes them slowly (due to low neutral pressure). In the corresponding interpretative SOLPS-ITER simulation, gas puff throughput should still be non-zero. Even though your experimental plasma was not entirely steady-state, your simulation is. If you turn the gas puff off and introduce no additional fuelling, the particle content in your simulation will go down over time and you won't achieve convergence. 
+In short, low-density tokamak discharges, experimental density feedback system can find that it does not need to puff gas into the plasma to maintain the desired plasma density. Recycling is sustained by the pre-filled particles and pumping only removes them slowly (due to low neutral pressure). In the corresponding interpretative SOLPS-ITER simulation, gas puff throughput should still be non-zero. Even though your experimental plasma was not entirely steady-state, your simulation is. If you turn the gas puff off and introduce no additional fuelling, the particle content in your simulation will go down over time and you won't achieve convergence.
 ///
 
 
@@ -273,7 +273,7 @@ Examples of gas puff feedback schemes among the SOLPS examples include:
 - `ITER_2588_D+He+N`: feedback on the deuterium gas puff intensity to preserve "the total particle content for that species" (not clear whether deuterium ions or neutrals) summed over a given rectangle of B2.5 cells
 - `ITER_2308_Honly_20MW`: feedback on the core boundary hydrogen particle (not clear whether neutrals or ions) flux to preserve the neutral hydrogen particle flux through the core boundary
 
-All available feedback schemes are documented primarily in the description of switches specified in the `b2.feedback_control.parameters` file (refer to the [B2.5 switch database](/solps-doc/extras/b2input)<span class="material-symbols-outlined">open_in_new</span>).
+All available feedback schemes are documented primarily in the description of switches specified in the `b2.feedback_control.parameters` file (refer to the [B2.5 switch database](/extras/b2input)<span class="material-symbols-outlined">open_in_new</span>).
 
 /// warning | The NEW and OLD feedback scheme switches
 Historically, there are two ways how to set up feedback schemes. You might run into a number of switches in `b2mn.dat`, which are documented as "feedback switches", e.g. `b2stbc_isfeedback` - those are the old-style switches and they are redundant in SOLPS-ITER 3.0.8+. The new-style configuration of feedback is done almost entirely in the `b2.feedback_control.parameters` file.
@@ -348,7 +348,7 @@ At low plasma densities, enabling density control using gas puff feedback can le
 
 This section discusses how such oscillations come to be and how to control them.
 
-**Feedback formula example**: Using `NA_FEEDBACK_OPTION = 1` in `b2.feedback_control.parameters` (see the [switch description](/solps-doc/extras/b2input/b2.parameters.html#b2.feedback_control.parameters)) translates into the following formula:
+**Feedback formula example**: Using `NA_FEEDBACK_OPTION = 1` in `b2.feedback_control.parameters` (see the [switch description](/extras/b2input/develop/b2.parameters.html#b2.feedback_control.parameters)) translates into the following formula:
 
 $$\Gamma_{\text{puff,new}} = \Gamma_{\text{puff,old}} \cdot \frac{1 + \alpha \cdot \frac{\text{target } n_{e,sep}}{\text{current } n_{e,sep}}}{1 + \alpha}$$
 

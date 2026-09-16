@@ -150,7 +150,7 @@ SOLPS-ITER keeps dozens of files in the `run` directory, hundreds if you use the
         b2.neutrals.parameters
         input.dat                 # or eirene.input.json
         b2.transport.inputfile    # and other input files
-        
+
         # For spotting unwanted reversal to flat profiles
         b2ai.dat
         b2ar.dat
@@ -165,7 +165,7 @@ SOLPS-ITER keeps dozens of files in the `run` directory, hundreds if you use the
         # Other
         b2fplasmf
         b2plot.ps
-        
+
 
 5. Save the text file and, in your file browser, hit `Ctrl+H` a few times. Refresh if needed.
 
@@ -201,7 +201,7 @@ To restart a simulation:
 
     /// warning | Remove `b2mn.prt`, not `b2mn.dat`
     Everyone raise your hand if you once didn't pay attention and by mistake removed the B2.5 master control file `b2mn.dat` instead of `b2mn.prt`... OTL
-    ///    
+    ///
 
 4. Rewrite  `b2fstati` (`i` for "initial" plasma state) with `b2fstate` (`e` for "end" plasma state).
 
@@ -214,13 +214,13 @@ The simulation will start from whichever plasma state is present in `b2fstati`. 
 
 - **Create a checkpoint** of the simulation state so you can come back to it later: `cp b2fstate b2fstate_before_gas_puff` (You can archive EIRENE results as well (files `fort.13`, `14`, `15`, `44` and `46`), but only `b2fstate` is essential.)
 - **Return to a checkpoint**: `cp b2fstate_before_gas_puff b2fstati`
-- **Adopt a completely different solution** (with the same geometry/number of cells): `cp ../another_run/b2fstate b2fstati` 
+- **Adopt a completely different solution** (with the same geometry/number of cells): `cp ../another_run/b2fstate b2fstati`
 ///
 
 
 ## Branching out a SOLPS-ITER run
 
-Sometimes, you'll want to see what happens when you tweak a simulation a little (e.g. trying this weird switch you've just found in [B2.5 documentation](/solps-doc/extras/b2input)), but you don't want to lose the original simulation in case something goes wrong. Other times, you'll want to conduct a parameter scan. That is when you need to branch out an existing run.
+Sometimes, you'll want to see what happens when you tweak a simulation a little (e.g. trying this weird switch you've just found in [B2.5 documentation](/extras/b2input)), but you don't want to lose the original simulation in case something goes wrong. Other times, you'll want to conduct a parameter scan. That is when you need to branch out an existing run.
 
 **Simple and dirty**:
 ```
@@ -274,7 +274,7 @@ This will end the simulation after the current iteration is finished, write the 
 
 ## Defining how long SOLPS-ITER should run
 
-SOLPS-ITER keeps running until one of its stops is pulled. All of them are defined in `b2mn.dat`. Browse them in [B2.5 switches](/solps-doc/extras/b2input).
+SOLPS-ITER keeps running until one of its stops is pulled. All of them are defined in `b2mn.dat`. Browse them in [B2.5 switches](/extras/b2input).
 
 Set the number of iterations (iteration = 1 EIRENE call + several B2.5 calls):
 ```
@@ -375,7 +375,7 @@ When you compute the left-hand side for each cell of the B2.5 grid, you get some
 
 <center><i>2D maps of residuals of individual B2.5 equations. Standalone run, Wide Grids, COMPASS Upgrade. Red = positive residuals, blue = negative residuals.</i></center>
 
-You can reduce these 2D maps to a single number if you take the absolute value in each cell and sum them all (see section C.10 of the manual). Such residual sums are periodically saved to the `b2fstrace` file by SOLPS-ITER. The *absolute value* of residuals is usually inconsequential. (There are `b2mn.dat` [switches](/solps-doc/extras/b2input) which stop the calculation once a certain residuals value is reached, such as `b2mndr_min_areshe`. Their usefulness is, however, limited.) Generally, you are interested in *relative values* of residual sums, and whether they are going down with subsequent iterations. To plot the time evolution of residuals (can be done while the simulation is running):
+You can reduce these 2D maps to a single number if you take the absolute value in each cell and sum them all (see section C.10 of the manual). Such residual sums are periodically saved to the `b2fstrace` file by SOLPS-ITER. The *absolute value* of residuals is usually inconsequential. (There are `b2mn.dat` [switches](/extras/b2input) which stop the calculation once a certain residuals value is reached, such as `b2mndr_min_areshe`. Their usefulness is, however, limited.) Generally, you are interested in *relative values* of residual sums, and whether they are going down with subsequent iterations. To plot the time evolution of residuals (can be done while the simulation is running):
 
 ```
 resall_D  # all residuals of fluid D0 and D1
