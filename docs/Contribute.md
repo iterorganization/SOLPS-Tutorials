@@ -390,8 +390,6 @@ module load python/3.8-anaconda-2021.05
 
 `Ctrl + right click` on the link on the last line of the command line output, and a live preview of SOLPS Tutorials will open in your web browser. Every time you save a file, its preview will be updated on the page.
 
->**TODO** <span class="material-symbols-outlined">construction</span>: Update for GitHub configuration.
->
 > Sub-pages located in `./extras` may be handled differently. Refer to corresponding readmes in the `./extras` folder for build instructions and/or check the definition of automated pipeline in `.gitlab-ci.yml` file.
 
 
