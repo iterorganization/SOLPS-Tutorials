@@ -1,9 +1,5 @@
 # SOLPS Tutorials
 
-**Warning: This is the beta version of SOLPS Tutorials.**
-
-Until this warning text disappears, it is possible that the documentation won't work correctly. Everything should be fixed at latest for the SOLPS Code Camp on 19-23 October 2026.
-
 Read SOLPS-ITER documentation for beginners here: https://solps-tutorials.readthedocs.io/
 
 ---
