@@ -1,10 +1,5 @@
 # Introduction
 
-/// warning | This is the beta version of SOLPS Tutorials
-Until this warning box disappears, it is possible that the documentation won't work correctly. Everything should be fixed at latest for the SOLPS Code Camp on 19-23 October 2026.
-///
-
-
 Welcome to **SOLPS Tutorials**, home to step-by-step guides on using the [SOLPS-ITER](https://github.com/iterorganization/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span> transport code! Accessible documentation for beginners is our goal. As the main author, Kateřina Hromasová, says:
 > "I want tutorials that are so easy to understand that I'll be able to use them out of the box after I come back from a three-year maternity leave."
 
@@ -65,7 +60,7 @@ SOLPS-ITER is a suite of codes (B2.5, EIRENE, DivGeo, Carre...) which performs 2
 
 
 /// tip | Your documentation could be here!
-Although SOLPS Tutorials does not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](Contribute.md) or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
+Although SOLPS Tutorials do not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](Contribute.md) or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
 ///
 
 ## Contributors
