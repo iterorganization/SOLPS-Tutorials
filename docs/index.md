@@ -83,4 +83,4 @@ Other major contributors to the Tutorials are:
 
 - **Aleš Podolník** <a href="https://orcid.org/0000-0003-1237-8812"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"></a> - wrote the [Energy fluxes deep dive](feature_blog/Energy_fluxes_deep_dive.md)
 
-We would also like to thank, in alphabetic order, Xavier Bonnin, Irina Borodkina, David Coster, Michael Komm, Lukáš Kripner, Diana Naydenkova, Jakub Seidl, Oleg Shyshkin, Daniel Švorc, Matěj Tomeš, David Tskhakaya, and Sven Wiesen.
+We would also like to thank, in alphabetic order, Xavier Bonnin, Irina Borodkina, David Coster, Lukáš Kripner, Jakub Seidl, Oleg Shyshkin, Daniel Švorc, Matěj Tomeš, David Tskhakaya, and Sven Wiesen.

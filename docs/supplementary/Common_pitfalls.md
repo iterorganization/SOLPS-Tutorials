@@ -8,6 +8,11 @@ Pitfalls covered here:
 - [Divergence](#divergence), or "Why is the separatrix temperature 5 keV?"
 - [Make SOLPS-ITER run faster](#make-solps-iter-run-faster), or "I only have four years for my PhD, how am I supposed to model DEMO with impurities and drifts?"
 
+/// note | More resources
+Many common pitfalls are covered on the SOLPS GitHub wiki, page [Problem solving tips](https://github.com/iterorganization/SOLPS-ITER/wiki/Problem-solving-tips)<span class="material-symbols-outlined">open_in_new</span>.
+///
+
+
 /// warning | Your expertise is needed!
 Ever since the IPP Prague team switched from modelling the COMPASS tokamak to COMPASS Upgrade, divergence and infinite runtime has been our bane. Your expertise is especially welcome in *Common pitfalls*!
 ///
