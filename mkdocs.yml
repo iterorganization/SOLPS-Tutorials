@@ -8,6 +8,7 @@ theme:
   features:
     - navigation.sections
   logo: img/logo/logo.png
+  favicon: img/logo/logo.png
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
