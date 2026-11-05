@@ -45,8 +45,8 @@ Building an unstructured (wide) grid can be done in two modes: target mode and v
 /// tip | More info
 The Wide Grids version includes several other interesting additions from the KU Leuven group that are not discussed here, namely:
 
-- K-model (K = turbulent energy) for self-consistent estimation of anomalous transport coefficients within the simulation, where the dominating turbulent transport is assumed to be the interchange instability
-- Algorithmic differentiation (AD) optimization method for input parameters
+- [$\kappa$-model](AD_and_model_calibration.md#the-k-model) ($\kappa$ = turbulent kinetic energy) for self-consistent estimation of anomalous transport coefficients within the simulation, where the dominating turbulent transport is assumed to be the interchange instability
+- [Algorithmic differentiation](AD_and_model_calibration#algorithmic-differentiation) (AD) optimization method for input parameters
 - Hybrid neutrals model, i.e. applying kinetic neutrals only where needed
 - Advanced fluid neutrals (AFN) model, i.e. more accurate standalone runs
 
