@@ -47,6 +47,7 @@ nav:
       - feature_blog/Impurities.md
       - feature_blog/Drifts.md
       - feature_blog/Wide_grids.md
+      - feature_blog/AD_and_model_calibration.md
       - feature_blog/Magnetic_equilibrium_reconstructions.md
       - feature_blog/Energy_fluxes_deep_dive.md
       - feature_blog/Interpretative_simulations_of_COMPASS.md
