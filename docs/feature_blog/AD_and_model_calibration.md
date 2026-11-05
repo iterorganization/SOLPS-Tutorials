@@ -77,9 +77,11 @@ The real implementation is, of course, more complicated. It involves uncertainty
 - You need to have an already existing case which is converging or converged, i.e. residuals decrease towards machine precision. If your case has high, stagnating residuals, you can probably still use the AD code but be aware that the adjoint mode will likely not work as expected so better use the tangent one.
 - At the moment (October 2026), for truly unstructured grids coming from GOAT, the cost function definition needs to be adjusted/verified
 
-What I also suggest to do before doing your own optimization is to read [Carli 2026](https://arxiv.org/abs/2609.27435)<span class="material-symbols-outlined">open_in_new</span> and try to understand one of the example cases in `$SOLPSTOP/runs/examples/COMPASS_optimization`.
+## Tips to set up and run your optimization
 
-## Tips to setup and run your optimization
+/// tip | Get started
+Step-by-step instructions how to set up and run AD and model calibration are given in the [SOLPS-ITER manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), chapter 10 *Sensitivity calculation and optimization in B2.5*. This tutorial contains comments and tips on the workflow therein.
+///
 
 The experimental data for the cost function needs to be ‘cut’ so that no points lie outside of the related SOLPS-ITER mesh domain, otherwise the code will stop with error. If you chose to map target quantities to the OMP, this is done using $\psi$ and not the radial coordinate.
 
