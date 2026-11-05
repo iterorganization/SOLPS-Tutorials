@@ -1,8 +1,72 @@
 # AD and model calibration
 
 /// warning | This feature blog entry introduces advanced concepts
-The reader is assumed to know how its way in the [Wide Grids SOLPS-ITER version](./Wide_grids.md).
+The reader is assumed to know their way around the [Wide Grids SOLPS-ITER version](./Wide_grids.md).
 ///
+
+
+## Motivation
+
+SOLPS-ITER simulations (and users) suffer, among others, from two distinct problems:
+
+1. SOLPS-ITER does not know the physics behind cross-field transport in the tokamak edge plasma. Instead, it assumes that the cross-field transport is purely diffusive (with a possible convective component) and that the user knows best which diffusion coefficients $D_\perp$, $\chi_e$ and $\chi_i$ to use.
+2. SOLPS-ITER users usually achieve the desired simulation results, such as a match with experimental measurements, by iterating "run simulation - adjust inputs - run simulation". Finding the best set of input parameters is tedious, especially in H-mode. And then someone looks at your hard-won simulation and asks: "Okay, you used $D_\perp = 0.3$ m<sup>2</sup>s<sup>-1</sup>. But what if you changed that to $D_\perp = 0.6$ m<sup>2</sup>s<sup>-1</sup>? Would that still work? What are the uncertainties of your inputs?"
+
+Let's call these problems the *diffusive ansatz* (choosing anomalous diffusion coefficients) and the *inverse problem* (choosing the best simulation inputs based on the desired solution).
+
+The good news is that, one, a lot of people are tackling the inverse problem [[Carli 2026 preprint](https://arxiv.org/pdf/2609.27435)<span class="material-symbols-outlined">open_in_new</span>, Sec. 2.1], and two, a particular branch of SOLPS-ITER takes on both problems at once. This is the **algorithmic differentiation (AD) branch `feature/ad-wg`**. This tutorial is about using this branch to make SOLPS-ITER simulations.
+
+/// hint | Further reading
+- S. Carli, [Calibration of cross-field transport models in SOLPS-ITER on the TCV-X21 case](https://arxiv.org/pdf/2609.27435)<span class="material-symbols-outlined">open_in_new</span>, preprint
+- [SOLPS-ITER manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), chapter 10 *Sensitivity calculation and optimization in B2.5*
+///
+
+
+## Introduction
+
+### The K-model
+
+The $\kappa$-model is a fully fledged alternative to the diffusive ansatz. It supplements the set of B2.5 equations with a new equation, which solves for a new plasma parameter: the turbulent kinetic energy $\kappa$. This new basic plasma parameter is, like density or temperature, defined on the entire 2D grid of B2.5. It captures the average strength of turbulence passing through each cell and can be used to calculate diffusion coefficients. For example,
+
+$$D_\perp = C_D \frac{\kappa / m_i}{\sqrt{\kappa/m_i}/\rho_L + C_S \left|S_{mean}\right|} + D_{min}$$
+
+where $m_i$ is the ion mass, $\rho_L$ is the local Larmor radius, $S_{mean} = \nabla_r V_{E \times B, \perp}$ is the radial shear of the diamagnetic $E \times B$ velocity... and $C_D$ and $C_S$ are free parameters.
+
+Yeah, it isn't for free. You've just got rid of free parameters $D_\perp$, $\chi_e$ and $\chi_i$, and you're already saddled with *ten* new free parameters: $C_D$, $C_S$, $C_{\chi,e}$, $C_{\chi,i}$, $C_\nu$, $C_\kappa$, $C_{ie}$, $C_{\sigma_\parallel,1}$, $C_{\sigma_\parallel,2}$ and $C_\eta$. At least these are constants, while diffusivities often vary radially. And at any rate, you don't need to worry about setting their values. The built-in algorithmic differentiation and model calibration will do it for you!
+
+/// hint | Further reading
+- R. Coosemans et al, [A new mean-field plasma edge transport model based on turbulent kinetic energy and enstrophy](https://onlinelibrary.wiley.com/doi/abs/10.1002/ctpp.201900156)<span class="material-symbols-outlined">open_in_new</span>, Contributions to Plasma Physics **60** (2020) e201900156
+- R. Coosemans et al, [Turbulent kinetic energy in 2D isothermal interchange-dominated scrape-off layer ExB drift turbulence: Governing equation and relation to particle transport](https://pubs.aip.org/aip/pop/article/28/1/012302/1032004)<span class="material-symbols-outlined">open_in_new</span>, Physics of Plasmas **28** (2021) 012302
+- R. Coosemans et al, [Bayesian analysis of turbulent transport coefficients in 2D interchange dominated ExB turbulence involving flow shear](https://iopscience.iop.org/article/10.1088/1742-6596/1785/1/012001/meta)<span class="material-symbols-outlined">open_in_new</span>, Journal of Physics: Conference Series **1785** (2021) 012001
+- R. Coosemans et al, [A self-consistent mean-field model for turbulent particle and heat transport in 2D interchange-dominated electrostatic ExB turbulence in a sheath-limited scrape-off layer](https://onlinelibrary.wiley.com/doi/abs/10.1002/ctpp.202100193)<span class="material-symbols-outlined">open_in_new</span>, Contributions to Plasma Physics **62** (2022) e202100193
+- W. Dekeyser et al, [A self-consistent K-model for anomalous transport due to electrostatic, interchange-dominated ExB drift turbulence in the scrape-off layer and implementation in SOLPS-ITER](https://onlinelibrary.wiley.com/doi/abs/10.1002/ctpp.202100190)<span class="material-symbols-outlined">open_in_new</span>, Contributions to Plasma Physics (2022) e202100190
+- R. Coosemans et al, [Mean-field transport equations and energy theorem for plasma edge turbulent transport](https://doi.org/10.1017/S0022377824000163)<span class="material-symbols-outlined">open_in_new</span>, Journal of Plasma Physics **90** (2024) 905900202
+///
+
+
+### Algorithmic differentiation and model calibration
+
+Algorithmic differentiation and model calibration is a method to formalise and automatise the iterative search for optimal simulation inputs. It involves differentiating the SOLPS-ITER equations using an automatic algorithm, hence algorithmic differentiation, and calibrating input parameters of the SOLPS model of plasma, hence model calibration.
+
+When a SOLPS-ITER user is gauging the match of their simulation outputs to experimental data, they usually use the metric of the eye. In Czech, it's called "kouknu, vidim" ("I look, I see"). It's cheap and easy, but only qualitative. A more rigorous approach is to use a **cost function**. A cost function compares experimental and simulation data and mashes them all together to produce a number, for example by calculating the root mean square. The lower this number is, the better the simulation matches the experiment. Thus, searching for the optimal SOLPS inputs becomes *finding a minimum of the cost function*.
+
+Say you already have an initial SOLPS simulation, the first converged solution with rough guesses for densities, powers and diffusivities. In the manual tuning approach, you'd pick one or two input parameters and adjust them according to your intuition. For example:
+
+> "The target temperature is high. I'll raise the separatrix density by 10 % to increase the target density and decrease the target temperature. I'll also increase $D_\perp$ by 50 % to have a flatter upstream $n_e$ profile".
+
+AD does something similar, except it orients itself with the **gradient of the cost function**. The gradient can calculated with the so-called *adjoint method* or the *tangent method*, in both cases using a Jacobian of the B2.5 equations themselves. Esentially, the algorithm differentiates each equation in the code with regard to each SOLPS input parameter. When this Jacobian is evaluated at the point of your initial simulation, it tells you how to change the inputs so that the new solution has a lower cost function value (moving down the gradient). The Jacobian is huge, but it only need be calculated once for a given set of equations. Then, the algorithm automatically iterates "run simulation - adjust inputs so cost function value falls - run simulation" until you have a solution that matches the experimental data as well as it can.
+
+The real implementation is, of course, more complicated. It involves uncertainty quantification (UQ), so if you know the uncertainty of your diagnostics measurements, you get errorbars not only on simulation inputs but also on its results. You can choose which parameters to optimise for and which to keep constant, since some may compensate for each other. You can choose which diagnostics to compare against, and what weight you'll give to each measurement. But the essential thing to remember about AD is that it helps you find the optimal input parameters to match the desired plasma solution, and it does so by differentiating the B2.5 equations.
+
+/// hint | Further reading
+- M. Baelmans et al, [Efficient parameter estimation in 2D transport models based on an adjoint formalism](https://iopscience.iop.org/article/10.1088/0741-3335/56/11/114009/meta)<span class="material-symbols-outlined">open_in_new</span>, Plasma Physics and Controlled Fusion **56** (2014) 114009
+- S. Carli et al, [Bayesian MAP-estimation of turbulence model parameters using Algorithmic Differentiation in SOLPS-ITER](https://www.researchgate.net/profile/Stefano-Carli-2/publication/357363647_Bayesian_maximum_a_posteriori-estimation_of_k_turbulence_model_parameters_using_algorithmic_differentiation_in_SOLPS-ITER/links/61dc0c7b323a2268f99462dc/Bayesian-maximum-a-posteriori-estimation-of-k-turbulence-model-parameters-using-algorithmic-differentiation-in-SOLPS-ITER.pdf)<span class="material-symbols-outlined">open_in_new</span>, preprint
+- S. Carli et al, [Algorithmic Differentiation for adjoint sensitivity calculation in plasma edge codes](https://www.sciencedirect.com/science/article/pii/S0021999123004989)<span class="material-symbols-outlined">open_in_new</span>, Journal of Computational Physics **491** (2023) 112403
+- S. Carli et al, [Sensitivity analysis of plasma edge code parameters through algorithmic differentiation](https://www.sciencedirect.com/science/article/pii/S2352179118302321)<span class="material-symbols-outlined">open_in_new</span>, Nuclear Materials and Energy **18** 6-11
+- N. Horsten et al, [Sensitivity calculation for Monte Carlo particle simulations of neutrals in the plasma edge](https://onlinelibrary.wiley.com/doi/abs/10.1002/ctpp.202300138)<span class="material-symbols-outlined">open_in_new</span>, Contributions to Plasma Physics **64** (2024) e202300138
+///
+
+
 
 ## What you need to know before starting
 
