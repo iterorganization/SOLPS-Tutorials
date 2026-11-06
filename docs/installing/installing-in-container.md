@@ -101,7 +101,7 @@ solps-container/3.1.1
     If you're using a manually compiled SOLPS container, replace this with:
 
         module load solps-container/userdefined
-        export SOLPS_CONTAINER=/path/to/your/container/
+        export SOLPS_CONTAINER=/path/to/container/
 
 
 <a name="qsub"></a>
@@ -217,7 +217,7 @@ This option is for those who need to adjust the SOLPS source code, or who need a
 
 1. Log into the Soroban front.
 
-        ssh -X username@soroban.tok.ipp.cas.cz if needed
+        ssh -X username@soroban.tok.ipp.cas.cz
 
 2. In a somewhat free Soroban node (check [soroban:44444](http://soroban.tok.ipp.cas.cz:44444)<span class="material-symbols-outlined">open_in_new</span>), create an interactive QSUB job, so you have your own computational space. **Do not use `soroban-node-01`**.
 
@@ -230,33 +230,57 @@ This option is for those who need to adjust the SOLPS source code, or who need a
 4. Check which containers Honza has prepared.
 
         find $SOLPS_IMAGES
-        # /ansys/fast/solps/solps_images/singularity/solps-iter@3.0.8.sif
-        # /ansys/fast/solps/solps_images/singularity/solps-iter@3.1.0.sif
+        # /compass/Shared/Common/IT/projects/solps/images/apptainer//
+        # /compass/Shared/Common/IT/projects/solps/images/apptainer//solps-iter-3.0.9e-497-g6b9b52ba.sif
         # ...
 
-5. Build a container in your directory of choice, for example `/scratch/$USER/solps-3.0.8-container`. Do not access another Soroban node through `/net`.
+5. Pick a directory where you will build your container. It should be in the fast memory of the Soroban node picked in step 2 (`/scratch/$USER`). Do not use a directory on a different Soroban node, referenced through `/net`. Then, build the container. Modify the `singularity` command below with your directory and container image of choice.
 
-        singularity build --sandbox /scratch/jirakova/solps-3.0.8-container /ansys/fast/solps/solps_images/singularity/solps-iter@3.0.8-29-gf89a6a23.sif
+        # General command structure
+        singularity build --sandbox /path/to/container container_image.sif
 
-    The process should take only a few minutes. If it's taking hours, you're probably writing to another Soroban node or the Soroban front.
+        # Example command
+        singularity build --sandbox /scratch/jirakova/solps-3.0.9-container /compass/Shared/Common/IT/projects/solps/images/apptainer//solps-iter-3.0.9e-497-g6b9b52ba.sif
+
+    The process should take only a few seconds to minutes. If it's taking hours, you're probably writing to another Soroban node or the Soroban front.
 
 6. Create a mount point for your home directory inside the container.
 
-        mkdir -p /scratch/jirakova/solps-docker$HOME
+        mkdir -p /path/to/container$HOME
 
     This will not only allow you to store your runs in your home directory (where they are backed up), but it will also link the SOLPS installation to `~/.ssh`, where your SSH keys are very probably located. This will allow you to use SOLPS Git without needing to punch in a username and password every time.
 
-7. If you like, you can now move the entire container (here called `solps-3.0.8-container`) around. You can put it on another Soroban node. You can send it to the EUROfusion Gateway. The process will take a while, though; the entire pre-compiled SOLPS is pretty big. If you move the container outside Soroban, be aware that the module `solps-container/userdefined` and its handy commands such as `solps_tcsh` will become unavailable. In that case, refer to the original [SOLPS-container package](https://repo.tok.ipp.cas.cz/solps/solps-container)<span class="material-symbols-outlined">open_in_new</span> for instructions.
+7. If you like, you can now move the entire container (in the example, the directory `solps-3.0.9-container`) around. You can put it on another Soroban node. You can send it to the EUROfusion Gateway. The process will take a while, though; the entire pre-compiled SOLPS is pretty big. If you move the container outside Soroban, be aware that the module `solps-container/userdefined` and its handy commands such as `solps_tcsh` will become unavailable. In that case, refer to the original [SOLPS-container package](https://repo.tok.ipp.cas.cz/solps/solps-container)<span class="material-symbols-outlined">open_in_new</span> for instructions.
 
 8. Tell the shell where to look for your SOLPS container.
 
-        export SOLPS_CONTAINER=/scratch/jirakova/solps-3.0.8-container
+        export SOLPS_CONTAINER=/path/to/container
 
 9. Open the SOLPS-ITER work environment inside the container.
 
         solps_tcsh
 
     You are now inside a fully functional installation of SOLPS-ITER. Refer to the read-only container tutorials for instructions how to work with it.
+
+/// hint | Opening a command line inside the container
+Occasionally, for debugging purposes, it's useful to unpack the `solps_tcsh` wrapper/command. To open a command line in the mini-computer inside the container:
+
+```bash
+# Make sure you've completed the initial setup
+export SOLPS_CONTAINER=/path/to/container
+module load solps-container/userdefined
+
+# Open the command line inside the container
+apptainer run /path/to/container
+```
+
+You can now [initiate the SOLPS work environment](solps-iter-codebase.md#how-to-initiate-the-solps-iter-work-environment) manually:
+```bash
+cd /opt/solps-iter
+tcsh
+source setup.csh
+```
+///
 
 
 ### Switch to another SOLPS-ITER version

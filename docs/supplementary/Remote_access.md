@@ -24,12 +24,104 @@ This is how the *Remote access* document came to be.
 
 ## Basic techniques
 
+First, if you've never worked with a Linux [command line](#command-line), now is the time to start.
+
 After you set up a [VPN](#vpn-virtual-private-network), there are two main ways to connect to remote servers:
 
 - [SSH](#ssh-secure-shell): fast, baggage-free, only command line
 - [Remote desktop](#remote-desktop): possibly laggy, but full graphical desktop (e.g. for the [SOLPS GUI](https://static.iter.org/imas/assets/solps-iter/html/index.html)<span class="material-symbols-outlined">open_in_new</span>)
 
 Which method you'll grow to prefer depends on how you interact with SOLPS-ITER. To start with, set them both up and see which one you like better. You may find yourself alternating between them depending on what you need to do.
+
+
+### Command line
+
+> "A command-line interface (CLI), also known as a command-line shell, is a means of interacting with software via commands – each formatted as a line of text." [[Wikipedia]](https://en.wikipedia.org/wiki/Command-line_interface)<span class="material-symbols-outlined">open_in_new</span>
+
+Sane parents teach their children how to use computers with desktops and touch screens. SOLPS-ITER is not a sane parent. It knows only one language: the command line. ([Exceptions](../my_first_simulation/Creating_a_new_SOLPS-ITER_simulation.md#create-the-geometry-file-dg-with-divgeo) prove the [rule](https://static.iter.org/imas/assets/solps-iter/html/index.html)<span class="material-symbols-outlined">open_in_new</span>.) Or a shell. Or a terminal. Or a CLI. Or a console. [Whatever you feel like calling it today](https://www.freecodecamp.org/news/command-line-for-beginners/)<span class="material-symbols-outlined">open_in_new</span>.
+
+![img](../img/command_line.png)
+
+*A freshly opened terminal with a winking `bash` command line.*
+
+Command lines differ across operating systems, so you need to figure out how to open one on your own. Try looking up a programme called "terminal" or pressing `Ctrl + Alt + T`. High-performance computation cluster tend to have Linux installed and the SOLPS-ITER work environment uses the `tcsh` shell. That will be the focus of this tutorial.
+
+To get a feel for the command line:
+
+1. Click on the terminal window and write something, then **press `Enter`**. If it makes sense to the command line, it will be executed. If it doesn't, you'll see something like:
+
+    ```bash
+    hromasova-Latitude-5540:~> yo hello
+    yo: Command not found.
+    ```
+
+2. If you make a typo while writing a command, you can **delete text** using `Backspace` or **move the cursor** there and back with the `Left` and `Right` keys. The cursor highlights one character instead of being between characters, so you'll take a while to get a feel for its location. If you press `Enter` anywhere in the line, the line will executed as it is.
+
+3. There are **no paragraph breaks** in a command line. If you want paragraphs, write a [command line script](https://www.freecodecamp.org/news/command-line-for-beginners/)<span class="material-symbols-outlined">open_in_new</span>. You can **chain** multiple commands in one line by separating them with a semicolon `;`.
+
+4. To **repeat** an earlier command, press the `Up` arrow to prefill earlier commands. The `Up` arrow moves further into history, the `Down` arrow moves closer to the present. Again, you can edit the prefilled commands using the `Left` and `Right` arrows.
+
+5. Command lines have **autofill**. Type the beginning of a command, file name, option etc. and press `Tab`. If there is only one sensible option, it will be autofilled. If there are several, press `Tab` twice to see them all.
+
+6. **Copying text** from and to the command line works weird because the normal `Ctrl + C` command is reserved for "terminate the current execution". In Linux systems, if you click and drag with your mouse to select some text, it will be moved to a separate clipboard which can be accessed using the middle mouse button. You can also left click + Copy/Paste. `Shift + Insert` sometimes works for pasting.
+
+/// hint | Blank spaces are not welcome
+Generally, commands begin with the command name and follow up with arguments and options, separated by blank spaces. That is why Linux users hate blank spaces in the names of files and folders. It forces them either to wrap paths and file names in quotation marks or put escape characters `\` in front of spaces. You, too, will begin to use underscores `_` wherever you can.
+///
+
+The following commands come up so often you might as well memorise them.
+
+**Change directory (`cd`)**: By default, a new command line opens in your home directory, whose full path is usually something like `/home/username/`. Its short alias is `~`. It often matters which directory you execute a command in, so the first command you need to learn is moving between directories. That's what the `cd` command is for.
+
+```tcsh
+# Move (from the home directory) to the Documents subdirectory
+cd Documents
+
+# Move from Documents back into its parent directory
+cd ..
+
+# Move along a compound relative path
+cd ../../usr/share
+
+# Move to an absolute path
+cd /home/hromasova/Documents
+```
+
+**List (`ls`)**: To see what's in the current directory:
+
+```tcsh
+hromasova-Latitude-5540:~> ls 
+ COMPASS			     Templates
+ Desktop			     thunderbird
+ Documents			    'Traumerei cello+piano 1.png'
+ Downloads			    'Traumerei cello+piano 2.png'
+ Music				    'Traumerei cello+piano 3.png'
+ Pictures			     Videos
+ Public
+```
+
+**Copy (`cp`)**:
+
+```tcsh
+# Copy and paste inside the current directory
+cp input.dat input.dat_does_not_work
+
+# Copy and paste across directories (either path can be relative or absolute)
+cp /home/username/Pictures/picture_of_Richard.png for_my_boy.png
+```
+
+**Remove (`rm`)**:
+
+```tcsh
+# Do not remove b2mn.dat please
+rm b2mn.prt
+```
+
+/// warning | Beware
+The `rm` command will **not** move your file to the Trash folder. It will delete them without a trace. Be safe.
+///
+
+See more commands in [Antonello Zito's notes](../files/Antonello_Zito_notes.pdf)<span class="material-symbols-outlined">download</span>, section 3 *Basic UNIX commands and computing*.
 
 
 ### VPN (Virtual Private Network)
@@ -46,7 +138,7 @@ There are many softwares providing VPN services and each institute has its own f
 
 > "The Secure Shell Protocol (SSH Protocol) is a cryptographic network protocol for operating network services securely over an unsecured network." [[Wikipedia]](https://en.wikipedia.org/wiki/Secure_Shell)<span class="material-symbols-outlined">open_in_new</span>
 
-You know how you can open a [terminal/command line](https://en.wikipedia.org/wiki/Command-line_interface)<span class="material-symbols-outlined">open_in_new</span> on your computer and command it to do all sorts of wild stuff? SSH lets you open a command line on a remote server. And then you can do all sorts of wild stuff *there*! Like run SOLPS-ITER!
+You know how you can open a [command line](#command-line) on your computer and command it to do all sorts of wild stuff? SSH lets you open a command line on a remote server. And then you can do all sorts of wild stuff *there*! Like run SOLPS-ITER!
 
 To open a remote command line using SSH, open a command line at your home computer and run:
 
@@ -192,7 +284,7 @@ To set up a VPN connection, you need the certificates located in the folder `/co
 
 1. Check your version of OpenVPN.
 
-           openvpn --version
+        openvpn --version
 
     If the version is above 2.4.4 and the OpenSSL version is above 1.0.2m, you're good to go.
 
@@ -307,6 +399,10 @@ Note that your home folder has limited disk space (50 GB), which means you can't
 First of all, you need access to the **IPP Garching intranet**. If you have visited AUG, you may already have an account there. If not, write to Marion Berger (<span class="material-symbols-outlined">mail</span> [sekmst@ipp.mpg.de](mailto:sekmst@ipp.mpg.de)), the MST secretary at AUG and ask her to confirm your request for a "real" user ID at the AUG computer system. You can submit the request [here](https://www.mpcdf.mpg.de/secure/registrieren/antrag.php?deisa=0&inst=IPP&projekt=MST-AUG&lang=en)<span class="material-symbols-outlined">open_in_new</span>. Fill in "Marion Berger" as your supervisor/project manager. (I'm assuming that if you're working with SOLPS, you are part of MST1.)
 
 Login rights to the [**TOK clusters**](https://tok.ipp.mpg.de/wiki/TOK/index.php/Computing-LinuxClusters)<span class="material-symbols-outlined">open_in_new</span> (TOK-I, TOK-S, TOK-P... ) usually don't come automatically with intranet access. To get access, write to David Coster (<span class="material-symbols-outlined">mail</span> [David.Coster@ipp.mpg.de](mailto:David.Coster@ipp.mpg.de)).
+
+/// hint | More resources
+- [Antonello Zito's notes](../files/Antonello_Zito_notes.pdf)<span class="material-symbols-outlined">download</span>, section 3 *Basic UNIX commands and computing*
+///
 
 ### SSH connection to IPP Garching
 
