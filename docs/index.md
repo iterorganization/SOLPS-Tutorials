@@ -210,5 +210,8 @@ Honza has awesome superpowers, such as being one with the source code. He is res
 Other major contributors to the Tutorials are:
 
 - **Aleš Podolník** <a href="https://orcid.org/0000-0003-1237-8812"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"></a> - wrote the [Energy fluxes deep dive](feature_blog/Energy_fluxes_deep_dive.md)
+<!---
+- **Stefano Carli** <a href="https://orcid.org/0000-0001-6581-2745"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"></a> - wrote the [AD and model calibration](feature_blog/AD_and_model_calibration.md) tutorial
+--->
 
-We would also like to thank, in alphabetic order, Xavier Bonnin, Irina Borodkina, David Coster, Lukáš Kripner, Jakub Seidl, Oleg Shyshkin, Daniel Švorc, Matěj Tomeš, David Tskhakaya, and Sven Wiesen.
+We would also like to thank, in alphabetic order, Xavier Bonnin, Irina Borodkina, David Coster, Lukáš Kripner, Jakub Seidl, Sjoerd Reinhoudt, Oleg Shyshkin, Daniel Švorc, Matěj Tomeš, David Tskhakaya, Sven Wiesen and Antonello Zito.
