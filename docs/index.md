@@ -22,12 +22,17 @@ SOLPS Tutorials are sorted into three basic categories parts:
 
 When contributing to the tutorials, please respect this underlying structure.
 
+/// tip | Your documentation could be here!
+Although SOLPS Tutorials do not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](Contribute.md) or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
+///
+
+
 
 ## First steps
 
 To familiarise yourself with SOLPS-ITER and SOLPS Tutorials, you can do the following:
 
-- To learn what SOLPS-ITER is and what it's for, read the [brief introduction to SOLPS-ITER](#brief_introduction) and skim the references therein (SOLPS-related theses and articles).
+- To learn what SOLPS-ITER is and what it's for, read the [introduction to SOLPS-ITER](#brief_introduction) and skim the references therein.
 
 - To become familiar with SOLPS-ITER jargon, skim [SOLPS-ITER user wisdom](supplementary/SOLPS-ITER_user_wisdom.md), particularly the [Dictionary](supplementary/SOLPS-ITER_user_wisdom.md#dictionary).
 
@@ -183,19 +188,16 @@ In general, grid resolution should be higher where strong gradients in plasma pa
 
 - [[Schneider 2006]](https://onlinelibrary.wiley.com/doi/abs/10.1002/ctpp.200610001)<span class="material-symbols-outlined">open_in_new</span> - old but gentle and extensive review article
 - [[Braginskii 1965]](https://static.ias.edu/pitp/2016/sites/pitp/files/braginskii_1965-1.pdf)<span class="material-symbols-outlined">open_in_new</span> - Braginskii equations are the beating heart of SOLPS-ITER
-- [PhD thesis](https://www.researchgate.net/publication/376610776_Experimental_and_numerical_investigation_of_helium_exhaust_at_the_ASDEX_Upgrade_tokamak_with_full-tungsten_wall)<span class="material-symbols-outlined">open_in_new</span> of Antonello Zito
-- [PhD thesis](files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">download</span> of Kateřina Hromasová
+- [PhD thesis](https://www.researchgate.net/publication/376610776_Experimental_and_numerical_investigation_of_helium_exhaust_at_the_ASDEX_Upgrade_tokamak_with_full-tungsten_wall)<span class="material-symbols-outlined">open_in_new</span> of Antonello Zito - appendix B goes to great lengths to explain the SOLPS-ITER physics model and equations
+- [PhD thesis](files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">download</span> of Kateřina Hromasová - construction, meaning and validity of the Braginskii equations
 
 
-/// tip | Your documentation could be here!
-Although SOLPS Tutorials do not aim to substitute existing SOLPS documentation, they do aspire to become its central hub. If you have written any sort of SOLPS-related documentation, consider [contributing to SOLPS Tutorials](Contribute.md) or adding your work to the [Useful links](supplementary/SOLPS-ITER_user_wisdom.md#useful-links) section.
-///
 
 ## Contributors
 
 /// hint | Kateřina Hromasová <a href="https://orcid.org/0000-0001-9165-4816"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"></a>
 
-*"If you don't write it down, you'll forget it."*
+*"If I don't write it down, I'll forget it."*
 
 Katka was two years into her PhD on SOLPS-ITER when she got married, agreed on three kids, and realised she'd better get started. To avoid forgetting everything, she began writing down all she knew. She shared her notes with her colleagues, got help putting them up on the internet, realised people outside IPP Prague actually read them, rewrote them to pretend she was a professional... and that's how SOLPS Tutorials were born.
 ///

@@ -266,15 +266,15 @@ Author: Kateřina Hromasová, made with meme templates.</i></center>
 ***
 
 ![img](../img/Archiving_baserun.png)
-<center><i>When you let women into fusion, part 1. I spent half an hour tweaking [Honza's script for archiving `baserun`](Remote_access.md#transfer-an-entire-case-from-one-solps-installation-to-another), only to be told it could simply be done with the `-L` flag.<br>
-Author: Kateřina Hromasová, made with meme templates.</i></center>
+*When you let women into fusion, part 1. I spent half an hour tweaking [Honza's script for archiving `baserun`](Remote_access.md#transfer-an-entire-case-from-one-solps-installation-to-another), only to be told it could simply be done with the `-L` flag.*<br>
+*Author: Kateřina Hromasová, made with meme templates.*
 
 ***
 
 ![img](../img/Converting_cv.png)
 
-<center><i>When you let women into fusion, part 2. While writing a Python library for post-processing Wide Grids results, I spent an hour writing a script which converts cell numbers `cv` into structured grid indices [`ix`, `iy`]. When it was done, I skimmed the manual. And I found that the conversion array was already in `b2fgmtry`.<br>
-Author: Kateřina Hromasová, made with meme templates.</i></center>
+*When you let women into fusion, part 2. While writing a Python library for post-processing Wide Grids results, I spent an hour writing a script which converts cell numbers `cv` into structured grid indices [`ix`, `iy`]. When it was done, I skimmed the manual. And I found that the conversion array was already in `b2fgmtry`.*<br>
+*Author: Kateřina Hromasová, made with meme templates.*
 
 ***
 

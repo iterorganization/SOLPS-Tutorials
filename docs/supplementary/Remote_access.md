@@ -284,7 +284,7 @@ To set up a VPN connection, you need the certificates located in the folder `/co
 
 1. Check your version of OpenVPN.
 
-           openvpn --version
+        openvpn --version
 
     If the version is above 2.4.4 and the OpenSSL version is above 1.0.2m, you're good to go.
 
