@@ -400,6 +400,10 @@ First of all, you need access to the **IPP Garching intranet**. If you have visi
 
 Login rights to the [**TOK clusters**](https://tok.ipp.mpg.de/wiki/TOK/index.php/Computing-LinuxClusters)<span class="material-symbols-outlined">open_in_new</span> (TOK-I, TOK-S, TOK-P... ) usually don't come automatically with intranet access. To get access, write to David Coster (<span class="material-symbols-outlined">mail</span> [David.Coster@ipp.mpg.de](mailto:David.Coster@ipp.mpg.de)).
 
+/// hint | More resources
+- [Antonello Zito's notes](../files/Antonello_Zito_notes.pdf)<span class="material-symbols-outlined">download</span>, section 3 *Basic UNIX commands and computing*
+///
+
 ### SSH connection to IPP Garching
 
 All you need in this case is a command line. To log into the Solaris environment:
