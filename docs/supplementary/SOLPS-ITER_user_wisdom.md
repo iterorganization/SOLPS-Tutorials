@@ -304,6 +304,15 @@ Author: Daniel Švorc, generated with AI.</i></center>
 <center><i>SOLPS Tutorials logo.<br>
 Author: Kateřina Hromasová, based on a photo.</i></center>
 
+***
+
+![img](../img/human-readable_naming.png)
+
+<center><i>Fortran variable naming conventions have taken us to dark places.<br>
+Author: Sjoerd Reinhoudt, made with meme templates.</i></center>
+
+***
+
 **<a name="unicorn"></a>Why is the SOLPS Tutorials logo a supra-luminal unicorn?**
 
 1. Comprehensive SOLPS-ITER documentation is as rare as unicorns.
