@@ -64,63 +64,116 @@ Our tutorials are written in [Markdown](https://www.markdownguide.org/cheat-shee
 
 ## How to publish your contribution
 
-First, clean your local copy of SOLPS Tutorials.
+### 1. Get a clean local copy of SOLPS Tutorials
+
+If you don't have a local copy of SOLPS Tutorials yet, clone one.
+
+    cd /new/home/for/solps/documentation
+    git clone git@github.com:iterorganization/SOLPS-Tutorials.git
+
+If you already have a copy, clean it. It makes creating commits easier.
 
     cd SOLPS-Tutorials
     git fetch
     git status
 
-If you see you're up-to-date with `master`, you're good to go. If you are on `master` but you're missing the last updates, download them to your local copy.
+- If you see you're up-to-date with `master`, you're good to go.
+- If you are on `master` but you're missing the last updates, download them to your local copy.
 
-    git pull
+        git pull
 
-Usually I find myself a different, long-forgotten branch, from the last time I was contributing commits and forgot to switch back to `master`. Usually there are modified files as well. In such a case, it's easiest to make a new local copy of the repository and merge your changes into it. Rename your old local copy (I go with `SOLPS-Tutorials_definitely_not`) and clone another, fresh copy:
+- Kateřina usually finds herself on a different, long-forgotten branch, from the last time she was contributing and forgot to switch back to `master`. Usually there are modified files as well. In such a case, it's easiest to make a new local copy of the repository.
 
-    cd ..
-    git clone git@github.com:iterorganization/SOLPS-Tutorials.git
+        # Rename the old copy
+        cd ..
+        mv SOLPS-Tutorials SOLPS-Tutorials_definitely_not
 
-Then proceed according to the instructions below. At the point where you're supposed to start writing your contributions, copy over the files from your old folder `SOLPS-Tutorials_definitely_not`. More on that below.
+        # Clone another, fresh copy of the master branch
+        git clone git@github.com:iterorganization/SOLPS-Tutorials.git
 
-Once you are on the latest update of the `master` branch, your work table is clean. You can start on your latest contribution.
+    Proceed according to the instructions below and watch out for mentions of `SOLPS-Tutorials_definitely_not`.
 
-1. Visit the [list of `SOLPS-Tutorials` branches](https://github.com/iterorganization/SOLPS-Tutorials/branches)<span class="material-symbols-outlined">open_in_new</span> on its GitHub page. On the upper right, click `New branch`. Select `master` as the source. Name the branch using the [common conventions](https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534)<span class="material-symbols-outlined">open_in_new</span>, using branch prefixes such as `feature/`, `fix/` or `refactor/`.
+
+
+### 2. Create a new branch
+
+/// warning | Write permissions to the `SOLPS-Tutorials` repository
+The [`SOLPS-Tutorials` repository](https://github.com/iterorganization/SOLPS-Tutorials)<span class="material-symbols-outlined">open_in_new</span> is open for everyone to read and clone, but has only a limited circle of contributors with write permissions. Circumvent this by **creating your own fork**, a perfect copy of the `SOLPS-Tutorials` repository which doesn't affect the original but allows submitting pull requests. Once you've made it to the [list of major contributors](index.md#contributors), you will be granted write permissions and will be able to create branches and create pull requests straight to `SOLPS-Tutorials`.
+
+To create your own fork of `SOLPS-Tutorials`:
+
+1. Go to the [GitHub repository](https://github.com/iterorganization/SOLPS-Tutorials)<span class="material-symbols-outlined">open_in_new</span> of SOLPS Tutorials. In the upper right, click `Fork`.
+2. Click `Create fork`. This will create the repository `your_username/SOLPS-Tutorials`.
+3. In the tutorial below, do everything in your fork instead of the `SOLPS-Tutorials` repository. Create a new branch, commit your changes. Finally, go to the GitHub page of your fork and click `Contribute` instead of creating a pull request. This will initiate a pull request directly to the original `SOLPS-Tutorials` repository.
+///
+
+Like [SOLPS-ITER](https://github.com/iterorganization/SOLPS-ITER)<span class="material-symbols-outlined">open_in_new</span> itself, SOLPS Tutorials accept new contributions via [pull requests](https://docs.github.com/en/pull-requests/reference/pull-requests)<span class="material-symbols-outlined">open_in_new</span>. This allows Kateřina to review documentation changes and request edits before the contributions go live. Thus, everybody (including her) has to tread the mill of making new branches, creating pull requests, and merging branches into `master`.
+
+To create a new branch of `SOLPS-Tutorials`:
+
+1. Visit the [list of `SOLPS-Tutorials` branches](https://github.com/iterorganization/SOLPS-Tutorials/branches)<span class="material-symbols-outlined">open_in_new</span> on its GitHub page. On the upper right, click `New branch`. (If the button is not there, you don't have write permissions. Create a fork of the repository according to the instructions [above](#2-create-a-new-branch).) Select `master` as the source. Name the branch using the [common conventions](https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534)<span class="material-symbols-outlined">open_in_new</span>, using branch prefixes such as `feature/`, `fix/` or `refactor/`.
 
 2. Switch to the new branch on your local machine.
 
-        git fetch  # this downloads the information that there is a new remote branch
+        # Download the information that there is a new remote branch
+        git fetch
+
+        # Create a local copy of that branch
         git checkout -b feature/my_new_branch origin/feature/my_new_branch
 
     The `-b` will create your own local branch which tracks the remote branch. It prevents the detached HEAD state.
 
-3. If you have any accumulated past changes, integrate them. Simply copy all the contents of `SOLPS-Tutorials_definitely_not` and paste them into your new shiny `SOLPS-Tutorials`. **Immediately** after that, resolve conflicts/deletions. The `Source Control` tab in our editor of choice, [Visual Studio Code](#recommended-editors), works well. Compare your old files with the newest `master`, get familiar with what has been done while you were sleeping and modify your past contributions accordingly. Use the `Revert` button/option to undo your "deletions". You don't want to overwrite any work others have done in the meantime. I know you're impatient to get started on the actual work, but if you postpone dealing with the conflicts, they will become a headache. You'll invest effort into rewriting documentation that's out-of-date. At the end of it, when you're making your commits and merging into `master`, you will have to deal with the conflicts anyway. And it will be harder, because you've *just* polished your contribution, you want to send it out there already, and now not only you are bogged down by Git conflicts, but you also have to rewrite your contribution to accommodate the work of others.
+Now it's finally time to get writing.
 
-    - (Note: Kateřina is getting so deep into this because she's lazy. She hopes stern, detailed instructions will make Git conflicts more bearable in the long-term.)
 
-4. Write your contribution. We recommend the [Visual Studio Code](#recommended-editors) as editor. Make generous use of Markdown [extensions](#markdown-extensions) and [icons](#icons) where appropriate.
+### 3. Write and commit your contribution
 
-5. When it's time to publish your contributions, go through the changes, stage them into logical units and commit them with informative commit messages. The `Source Control` tab in [Visual Studio Code](#recommended-editors) is more convenient than doing this in the command line.
+If you have a `SOLPS-Tutorials_definitely_not`, this is where you integrate it into the fresh copy.
+
+1. Paste the modified contents of `SOLPS-Tutorials_definitely_not` into your new shiny `SOLPS-Tutorials`.
+
+2. Resolve conflicts. The `Source Control` tab in our editor of choice, [Visual Studio Code](#recommended-editors), works well. Compare your old files with the newest `master`, get familiar with what has been done while you were sleeping and modify your past contributions accordingly. Use the `Revert` button/option to undo your "deletions". You don't want to overwrite any work others have done in the meantime.
+
+/// warning | Don't postpone resolving conflicts
+I know you're impatient to get started on the actual work, but if you postpone dealing with the conflicts, they will become a headache. You'll invest effort into rewriting documentation that's out-of-date. At the end of it, when you're making your commits and merging into `master`, you will have to deal with the conflicts anyway. And it will be harder, because you've *just* polished your contribution and you want to send it out there already. But now not only you are bogged down by Git conflicts; you also have to rewrite your contribution to accommodate the work of others.
+
+(Note: Kateřina is getting so deep into this because she's lazy. This box is for her future self, who is likely to go: "Ahh, who cares about Git conflicts, we'll resolve them later.")
+///
+
+For writing your contribution, we recommend the [Visual Studio Code](#recommended-editors) as editor. Make generous use of Markdown [extensions](#markdown-extensions) and [icons](#icons) where appropriate.
+
+To commit your changes:
+
+1. Go through the changes you've made. Stage them into logical units and commit them with informative commit messages. The `Source Control` tab in [Visual Studio Code](#recommended-editors) is more convenient than doing this in the command line.
 
     Basic commit guidelines:
 
-    - It's preferable to make a large number of atomic commits ("Change recommended gas puff value", "Add section on lowering grid resolution") as opposed to one all-encompassing commit ("I'm done for today", "There were so many typos oh my God").
+    - It's preferable to make a large number of atomic commits ("Change recommended gas puff value", "Add section on lowering grid resolution") as opposed to one all-encompassing commit ("I'm done for today", "Various edits").
     - Commit messages should be so informative that you don't need to check the commit line by line to know what it did.
     - Individual commits should form logical wholes. If you aren't done yet (you're in the middle of rewriting an entire section), don't commit it yet.
-    - For commit message wording, refer to [How to write better Git commit messages](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/)<span class="material-symbols-outlined">open_in_new</span>.
+    - Refer to [How to write better Git commit messages](https://www.freecodecamp.org/news/how-to-write-better-git-commit-messages/)<span class="material-symbols-outlined">open_in_new</span>.
 
-6. Once you have a series of commits, ideally acknowledging all the changes you've made to the tutorials, upload them to the central GitLab repository.
+2. Once you have a series of commits acknowledging all the changes you've made to the Tutorials, upload them to your branch in the central repository.
 
         git push
 
-    (You can also do this in Visual Studio Code `Source Control` tab.)
+To merge these changes into the `master` branch, you will create a pull request in the next step.
 
-7. On the [`SOLPS-Tutorials` GitHub page](https://github.com/iterorganization/SOLPS-Tutorials/pulls)<span class="material-symbols-outlined">open_in_new</span>, create a new pull request which merges your new branch back into `master`. Add Katka as a reviewer so she can check the changes and give you a deserved pat on the back. Expect a response within 3 days.
 
-8. Switch to the `master` branch on your local machine. (I always forget about this step.)
+### 4. Create a pull request
+
+1. On the [`SOLPS-Tutorials` GitHub page](https://github.com/iterorganization/SOLPS-Tutorials/pulls)<span class="material-symbols-outlined">open_in_new</span>, create a new pull request which merges your branch back into `master`. Add Kateřina as a reviewer so she can check the changes and give you a deserved pat on the back. Expect a response within 3 days.
+
+2. If Kateřina requests edits, return to the previous subsection. Pull her changes if there are any, write your changes, commit them, push them. They will automatically fall within the existing pull request.
+
+3. Once your contribution has gone live, switch to the `master` branch on your local machine. (Kateřina always forgets about this step.)
 
         git checkout master
         git pull
-
-    Thank you for contributing to SOLPS Tutorials!
+    
+    It takes about two hours for changes in `master` to show up on the webpage.
+    
+Thank you for contributing to SOLPS Tutorials!
 
 
 
