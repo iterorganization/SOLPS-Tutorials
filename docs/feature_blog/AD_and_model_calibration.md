@@ -9,7 +9,7 @@ The reader is assumed to know their way around the [Wide Grids SOLPS-ITER versio
 
 SOLPS-ITER simulations (and users) suffer, among others, from two distinct problems:
 
-1. SOLPS-ITER does not know the physics behind cross-field transport in the tokamak edge plasma. Instead, it assumes that the cross-field transport is purely diffusive (with a possible convective component) and that the user knows best which diffusion coefficients $D_\perp$, $\chi_e$ and $\chi_i$ to use.
+1. SOLPS-ITER does not know the physics behind turbulent cross-field transport in the tokamak edge plasma. Instead, it assumes that such turbulent cross-field transport is purely diffusive (with a possible convective component) and that the user knows best which diffusion coefficients $D_\perp$, $\chi_e$ and $\chi_i$ to use.
 2. SOLPS-ITER users usually achieve the desired simulation results, such as a match with experimental measurements, by iterating "run simulation - adjust inputs - run simulation". Finding the best set of input parameters is tedious, especially in H-mode. And then someone looks at your hard-won simulation and asks: "Okay, you used $D_\perp = 0.3$ m<sup>2</sup>s<sup>-1</sup>. But what if you changed that to $D_\perp = 0.6$ m<sup>2</sup>s<sup>-1</sup>? Would that still work? What are the uncertainties of your inputs?"
 
 Let's call these problems the *diffusive ansatz* (choosing anomalous diffusion coefficients) and the *inverse problem* (choosing the best simulation inputs based on the desired solution).
@@ -30,9 +30,9 @@ The $\kappa$-model is a fully fledged alternative to the diffusive ansatz. It su
 
 $$D_\perp = C_D \frac{\kappa / m_i}{\sqrt{\kappa/m_i}/\rho_L + C_S \left|S_{mean}\right|} + D_{min}$$
 
-where $m_i$ is the ion mass, $\rho_L$ is the local Larmor radius, $S_{mean} = \nabla_r V_{E \times B, \perp}$ is the radial shear of the diamagnetic $E \times B$ velocity... and $C_D$ and $C_S$ are free parameters.
+where $m_i$ is the ion mass, $\rho_L$ is the local Larmor radius, $S_{mean} = \nabla_r V_{E \times B, \perp}$ is the radial shear of the diamagnetic $E \times B$ velocity, and $C_D$ and $C_S$ are free model parameters.
 
-Yeah, it isn't for free. You've just got rid of free parameters $D_\perp$, $\chi_e$ and $\chi_i$, and you're already saddled with *ten* new free parameters: $C_D$, $C_S$, $C_{\chi,e}$, $C_{\chi,i}$, $C_\nu$, $C_\kappa$, $C_{ie}$, $C_{\sigma_\parallel,1}$, $C_{\sigma_\parallel,2}$ and $C_\eta$. At least these are constants, while diffusivities often vary radially. And at any rate, you don't need to worry about setting their values. The built-in algorithmic differentiation and model calibration will do it for you!
+Yeah, it isn't for free. You've just got rid of free parameters $D_\perp$, $\chi_e$ and $\chi_i$, and you're already saddled with *ten* new free parameters: $C_D$, $C_S$, $C_{\chi,e}$, $C_{\chi,i}$, $C_\nu$, $C_\kappa$, $C_{ie}$, $C_{\sigma_\parallel,1}$, $C_{\sigma_\parallel,2}$ and $C_\eta$. At least these are (hopefully) more universal, while diffusivities often vary radially, and for each experimental scenario and tokamak. And at any rate, you don't need to worry about setting their values. The built-in algorithmic differentiation and model calibration will do it for you!
 
 /// hint | Further reading
 - R. Coosemans et al, [A new mean-field plasma edge transport model based on turbulent kinetic energy and enstrophy](https://onlinelibrary.wiley.com/doi/abs/10.1002/ctpp.201900156)<span class="material-symbols-outlined">open_in_new</span>, Contributions to Plasma Physics **60** (2020) e201900156
@@ -46,7 +46,7 @@ Yeah, it isn't for free. You've just got rid of free parameters $D_\perp$, $\chi
 
 ### Algorithmic differentiation and model calibration
 
-Algorithmic differentiation and model calibration is a method to formalise and automatise the iterative search for optimal simulation inputs. It involves differentiating the SOLPS-ITER equations using an automatic algorithm, hence algorithmic differentiation, and calibrating input parameters of the SOLPS model of plasma, hence model calibration.
+Model calibration is a method to formalise and automatise the iterative search for optimal simulation inputs. It involves differentiating the SOLPS-ITER equations using an automatic algorithm, hence algorithmic differentiation (AD), and calibrating input parameters of the SOLPS plasma model, hence model calibration.
 
 When a SOLPS-ITER user is gauging the match of their simulation outputs to experimental data, they usually use the metric of the eye. In Czech, it's called "kouknu, vidim" ("I look, I see"). It's cheap and easy, but only qualitative. A more rigorous approach is to use a **cost function**. A cost function compares experimental and simulation data and mashes them all together to produce a number, for example by calculating the root mean square. The lower this number is, the better the simulation matches the experiment. Thus, searching for the optimal SOLPS inputs becomes *finding a minimum of the cost function*.
 
@@ -54,9 +54,9 @@ Say you already have an initial SOLPS simulation, the first converged solution w
 
 > "The target temperature is high. I'll raise the separatrix density by 10 % to increase the target density and decrease the target temperature. I'll also increase $D_\perp$ by 50 % to have a flatter upstream $n_e$ profile".
 
-AD does something similar, except it orients itself with the **gradient of the cost function**. The gradient can calculated with the so-called *adjoint method* or the *tangent method*, in both cases using a Jacobian of the B2.5 equations themselves. Esentially, the algorithm differentiates each equation in the code with regard to each SOLPS input parameter. When this Jacobian is evaluated at the point of your initial simulation, it tells you how to change the inputs so that the new solution has a lower cost function value (moving down the gradient). The Jacobian is huge, but it only need be calculated once for a given set of equations. Then, the algorithm automatically iterates "run simulation - adjust inputs so cost function value falls - run simulation" until you have a solution that matches the experimental data as well as it can.
+Model calibration using optimization does something similar, except it orients itself with the **gradient of the cost function**. The gradient can be calculated with AD using the so-called *adjoint method* or the *tangent method*, in both cases using a Jacobian of the B2.5 equations themselves. Essentially, AD differentiates the cost function and each equation in the code with regard to each SOLPS input parameter, once and for all. The result is a new version of the B2.5 code which computes, along with the usual plasma state, the *directional derivatives* using this Jacobian. When this directional derivative is evaluated at a certain point of your optimization, it tells you how to change the inputs so that the new solution has a lower cost function value (moving down the gradient). Then, the model calibration automatically iterates "run gradient computation - adjust inputs so cost function value falls - run gradient computation" until you have a solution that matches the experimental data as well as it can.
 
-The real implementation is, of course, more complicated. It involves uncertainty quantification (UQ), so if you know the uncertainty of your diagnostics measurements, you get errorbars not only on simulation inputs but also on its results. You can choose which parameters to optimise for and which to keep constant, since some may compensate for each other. You can choose which diagnostics to compare against, and what weight you'll give to each measurement. But the essential thing to remember about AD is that it helps you find the optimal input parameters to match the desired plasma solution, and it does so by differentiating the B2.5 equations.
+The real implementation is, of course, more complicated. You can choose which parameters to optimise for and which to keep constant, since some may compensate for each other. You can choose which diagnostics to compare against, and what weight you'll give to each measurement. But the essential thing to remember about model calibration with AD is that it helps you find the optimal input parameters to match the desired plasma solution, and it does so by differentiating the B2.5 equations.
 
 /// hint | Further reading
 - M. Baelmans et al, [Efficient parameter estimation in 2D transport models based on an adjoint formalism](https://iopscience.iop.org/article/10.1088/0741-3335/56/11/114009/meta)<span class="material-symbols-outlined">open_in_new</span>, Plasma Physics and Controlled Fusion **56** (2014) 114009
@@ -67,14 +67,11 @@ The real implementation is, of course, more complicated. It involves uncertainty
 ///
 
 
-
-
-
 ## What you need to know before starting
 
 - Algorithmic differentiation and model calibration is only available for the [wide grids](Wide_grids.md) version of SOLPS-ITER.
 - Read the documentation in the [SOLPS-ITER manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), section *Sensitivity calculation and optimization in B2.5*.
-- The AD code is almost always NOT in sync with the standard B2.5 code. With "sync", I mean that the AD code is built upon a version of B2.5 at a certain commit (where the `feature/ad-wg` branch is). So if you recently introduced a new feature, or you are interested in a certain bug fix that happened *after* the current `feature/ad-wg` branch, you need to re-differentiate B2.5 to produce a new version of the AD code. To do so, refer to the [SOLPS-ITER manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), appendix *Expert mode for AD*, and/or contact the KU Leuven group or <span class="material-symbols-outlined">mail</span> [Stefano Carli](mailto:stefano.carli@kuleuven.be) for support.
+- The AD code is almost always NOT in sync with the standard B2.5 code. With "sync", it means that the AD code is built upon a version of B2.5 at a certain commit (where the `feature/ad-wg` branch is). So if you recently introduced a new feature, or you are interested in a certain bug fix that happened *after* the current `feature/ad-wg` branch, you need to re-differentiate B2.5 to produce a new version of the AD code. To do so, refer to the [SOLPS-ITER manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), appendix *Expert mode for AD*, and/or contact the KU Leuven group or <span class="material-symbols-outlined">mail</span> [Stefano Carli](mailto:stefano.carli@mil.be) for support.
 - You cannot use EIRENE, only (advanced) fluid neutrals. What you can do however, is optimize with fluid neutrals and then use the obtained parameters in your EIRENE run. They will likely need some adjustments, but at least you don’t start from scratch. Alternatively, you can use the Bayesian optimization approach of S. Soldat (not public yet) [[Soldat 2024]](https://dspace.cvut.cz/server/api/core/bitstreams/5be84f4a-9029-4f6b-b9f7-b7c3ca2f24eb/content)<span class="material-symbols-outlined">open_in_new</span>, or the iterative scheme proposed by Antonello Zito (also not public) [[Zito 2021]](https://iopscience.iop.org/article/10.1088/1361-6587/abfcb6)<span class="material-symbols-outlined">open_in_new</span>.
 - You need to have an already existing case which is converging or converged, i.e. residuals decrease towards machine precision. If your case has high, stagnating residuals, you can probably still use the AD code but be aware that the adjoint mode will likely not work as expected so better use the tangent one.
 - At the moment (October 2026), for truly unstructured grids coming from GOAT, the cost function definition needs to be adjusted/verified.
@@ -154,7 +151,7 @@ A common cause for optimization to crash is that the optimizer attempts too larg
 - Gradually modify the model parameters from their value at the previous iteration to the new value.
 - Reset drifts to a lower percentage strength and gradually increase them back to 100%.
 
-Line Search Failure happens when the optimizer, with the current value of the gradient, cannot find a point along the gradient direction with regard to which the cost function decreases. This often is caused by incomplete convergence of B2.5, so increasing `b2mndr_ntim` can help.
+Line Search Failure happens when the optimizer, with the current value of the gradient, cannot find a point along the gradient direction with regard to which the cost function decreases. This is often caused by incomplete convergence of B2.5, so increasing `b2mndr_ntim` can help.
 
 If your simulation crashed or failed with Line Search Failure, you can still continue it. If you enabled saving the `b2fstate` file after each optimization iteration (see the [SOLPS-ITER manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm)), you can pick the last successful optimization step by inspecting `run.log`, using the `b2fstate` saved at that iteration (found in `b2mn.exe.dir`) and copy-pasting into `b2.optimization.parameters` the parameters value at that specific iteration (see above on how to continue an optimization).
 
@@ -180,7 +177,7 @@ The best strategy to follow when re-differentiating the code is:
 
 ![AD optimizer comparison](../img/AD_table_BFGS.png)
 
-This table compares the performance of the built-in BFGS method against the default PETSc/TAO (hereafter abbreviated in TAO) BFGS one (PETSc/TAO version `3.20.6`). It contains four example cases distributed with SOLPS:
+This table compares the performance of the built-in BFGS method against the default PETSc/TAO (hereafter abbreviated in TAO) BFGS one (TAO version `3.20.6`). It contains four example cases distributed with SOLPS:
 
 - REG = `example_optim_reg_dna_hce_necore`
 - DRIFT = `example_optim_reg_drift`
