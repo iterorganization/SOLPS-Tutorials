@@ -33,6 +33,8 @@ This document collects reading materials on SOLPS-ITER, mostly articles, and the
 [annotated_interesting_switches_in_b2mn.dat](../files/annotated_interesting_switches_in_b2mn.dat)<span class="material-symbols-outlined">download</span> 
 
 
+
+
 ## Main SOLPS-ITER publications
 
 **S. Wiesen et al, [The new SOLPS-ITER package](https://www.sciencedirect.com/science/article/pii/S0022311514006965?via%3Dihub)<span class="material-symbols-outlined">open_in_new</span>, Journal of Nuclear Materials 463 (2015)**
@@ -182,11 +184,11 @@ Kateřina has been writing an article on heat flux limiting since 2021. This is 
 
 
 
-## Theses
+## Theses and notes
 
 Theses are good reading material because they are usually written by "beginners" transitioning to "capable users". As such, they are likely to contain both the basics and specialised results, as well as the path inbetween. For each thesis, highlight the most helpful part.
 
-**Kateřina Hromasová, [Interpretative SOLPS-ITER transport simulations of the COMPASS tokamak edge plasma](../files/Hromasova_PhD_thesis.pdf) <span class="material-symbols-outlined">download</span> (PhD thesis, 2025)**
+**Kateřina Hromasová, [Interpretative SOLPS-ITER transport simulations of the COMPASS tokamak edge plasma](../files/Hromasova_PhD_thesis.pdf)<span class="material-symbols-outlined">download</span> (PhD thesis, 2025)**
 
 - Highlights:
 
@@ -197,3 +199,12 @@ Theses are good reading material because they are usually written by "beginners"
 **Daniel Švorc, [Validation of tokamak equilibrium reconstructions using the SOLPS-ITER edge plasma transport code simulations](../files/Svorc_MSc_thesis.pdf)<span class="material-symbols-outlined">download</span> (MSc thesis, 2024)**
 
 - Highlight: Did you know you can use SOLPS-ITER to decide which magnetic equilibrium reconstruction is better? You can even make better reconstructions with it!
+
+**Antonello Zito, [Experimental and numerical investigation of helium exhaust at the ASDEX Upgrade tokamak with full-tungsten wall](https://www.researchgate.net/publication/376610776_Experimental_and_numerical_investigation_of_helium_exhaust_at_the_ASDEX_Upgrade_tokamak_with_full-tungsten_wall)<span class="material-symbols-outlined">open_in_new</span> (PhD thesis, 2023)**
+
+- Highlight: A deep dive into SOLPS-ITER equations, including the coordinates and metric coefficients, is given in appendix B *Further aspects of plasma edge
+modelling with SOLPS-ITER*.
+
+**Antonello Zito, [SOLPS-ITER](../files/Antonello_Zito_notes.pdf)<span class="material-symbols-outlined">download</span> (collection of notes, 2020)**
+
+- Highlight: Contains an equivalent of the [Creating a new SOLPS-ITER simulation](../my_first_simulation/Creating_a_new_SOLPS-ITER_simulation.md) tutorial centred on ASDEX Upgrade in section 8 *Constructing a SOLPS-ITER grid*.

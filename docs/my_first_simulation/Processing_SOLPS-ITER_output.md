@@ -625,6 +625,12 @@ If you think that's a lot of work to get the neutral energy spectrum, welcome to
 
 Plasma transport in the B2.5 code happens in two independent directions: poloidal (`x`) and radial (`y`). The plasma solution is symmetric in the toroidal coordinate (`z`). The underlying transport physics is, however, defined mostly in terms of transport parallel to the magnetic field ($\parallel$) and transport perpendicular to it ($\perp$). As a result, users of SOLPS must learn to **convert fluxes between these coordinate systems**.
 
+/// hint | Further reading
+- Antonello Zito's [PhD thesis](https://www.researchgate.net/publication/376610776_Experimental_and_numerical_investigation_of_helium_exhaust_at_the_ASDEX_Upgrade_tokamak_with_full-tungsten_wall)<span class="material-symbols-outlined">open_in_new</span> (2023), appendix B.1.1, explains the curvilinear coordinate system of B2.5 grids in the "narrow grids" SOLPS version
+///
+
+
+
 ### Energy flux nomenclature
 
 For the sake of proper understanding, we will devote three boring paragraphs to nomenclature. Proper names of fluxes can be a mouthful, so they are often shortened and interchanged. Usually you can tell what is what by the context and units, but brevity comes at the cost is clarity (and sounding uneducated). If you know the difference between a flux and a flux density, energy flux and heat flux, and poloidal, parallel and perpendicular fluxes, you can skip this section.

@@ -168,7 +168,11 @@ SOLPS Tutorials offer three installation guides in addition to [installing on a 
 
 **Compiling SOLPS elsewhere**: Discouraged for beginners. You can spend a lot of time installing SOLPS-ITER when you wanted to perform simulations of the edge plasma. If you absolutely must do it, get in touch with someone experienced (<span class="material-symbols-outlined">mail</span> [Jan Hečko](mailto:hecko@ipp.cas.cz), <span class="material-symbols-outlined">mail</span> [Xavier Bonnin](mailto:xavier.bonnin@iter.org), your local SOLPS guru). Look for the `SETUP/easybuild-local.sh` script in the SOLPS-ITER repository, which is currently the recommended tool for the job. It should install all the dependencies for you in the form of environmental modules. As for its documentation, there are comments in the script and there are a few words written about it in the [SOLPS-ITER GUI documentation](https://static.iter.org/imas/assets/solps-iter/html/howto/install.html#solps-iter-installation)<span class="material-symbols-outlined">open_in_new</span>.
 
-
+/// hint | More resources
+- [SOLPS-ITER README](https://github.com/iterorganization/SOLPS-ITER/blob/master/README)<span class="material-symbols-outlined">open_in_new</span>
+- [SOLPS-ITER manual](../supplementary/SOLPS-ITER_user_wisdom.md#rtfm), section 1.1 *Obtaining and updating the code*
+- [Antonello Zito's notes](../files/Antonello_Zito_notes.pdf)<span class="material-symbols-outlined">download</span>, section 4 *Download, installation and compilation of the code*
+///
 
 
 ## How to initiate the SOLPS-ITER work environment
